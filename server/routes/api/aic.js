@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
 	};
 	const response = await fetch(aicURL, { headers });
 	const data = await response.json();
-	console.log(data);
 	res.json(data);
 });
 

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 
 function App() {
-	async function getServerMessage() {
+	console.log("App rendered");
+
+	async function getAicTestResponse() {
 		const response = await fetch("/api/aic/", {
 			method: "GET",
 		});
@@ -9,8 +11,20 @@ function App() {
 		console.log(data);
 	}
 
+	async function getMetTestResponse() {
+		const response = await fetch("/api/met/", {
+			method: "GET",
+		});
+		const data = await response.json();
+		console.log(data);
+	}
+
 	useEffect(() => {
-		getServerMessage();
+		getMetTestResponse();
+	}, []);
+
+	useEffect(() => {
+		getAicTestResponse();
 	}, []);
 
 	return (
