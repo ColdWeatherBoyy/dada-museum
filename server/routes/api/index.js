@@ -1,8 +1,10 @@
 import { Router } from "express";
-import testRoutes from "./test.js";
+import aicRoutes from "./aic.js";
+import metRoutes from "./met.js";
 
 const router = Router();
 
-router.use("/tests", testRoutes);
+router.use("/aic", aicRoutes);
+router.use("/met", metRoutes);
 
 export default router;
