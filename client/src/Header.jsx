@@ -33,6 +33,7 @@ function Header() {
 			</Box>
 			<Menu>
 				<MenuButton
+					marginRight="1vw"
 					as={IconButton}
 					aria-label="Options"
 					icon={<HamburgerIcon boxSize={12} />}
