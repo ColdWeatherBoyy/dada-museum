@@ -1,4 +1,13 @@
-import { Box, Heading, IconButton } from "@chakra-ui/react";
+import {
+	Box,
+	Heading,
+	IconButton,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem,
+	Text,
+} from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import "./theme/heading.css";
 
@@ -12,19 +21,42 @@ function Header() {
 			alignItems="center"
 			justifyContent="space-between"
 		>
-			<Box display="flex" marginLeft="1vw">
+			<Box display="flex" alignItems="center" marginLeft="2vw">
 				<Heading variant="first-d">D</Heading>
 				<Heading variant="first-a">A</Heading>
-				<Heading variant="second-d">D</Heading>
-				<Heading variant="second-a">A&nbsp;&nbsp;&nbsp;</Heading>
+				<Heading size="2xl" variant="second-d">
+					D
+				</Heading>
+				<Heading variant="second-a">A</Heading>
+				<Heading>&nbsp;&nbsp;</Heading>
 				<Heading variant="art-museum-font">Art Museum</Heading>
 			</Box>
-			<IconButton
-				aria-label="Toggle dropdown"
-				marginRight="1vw"
-				bg="transparent"
-				icon={<HamburgerIcon boxSize={12} />}
-			/>
+			<Menu>
+				<MenuButton
+					as={IconButton}
+					aria-label="Options"
+					icon={<HamburgerIcon boxSize={12} />}
+					bg="transparent"
+				/>
+				<MenuList>
+					<MenuItem>
+						<Box textStyle="dropdownFirstD">D</Box>
+						<Text>ada</Text>
+					</MenuItem>
+					<MenuItem>
+						<Box textStyle="dropdownFirstA">A</Box>
+						<Text>bout the Museum</Text>
+					</MenuItem>
+					<MenuItem>
+						<Box textStyle="dropdownSecondD">D</Box>
+						<Text>isplays</Text>
+					</MenuItem>
+					<MenuItem>
+						<Box textStyle="dropdownSecondA">A</Box>
+						<Text>dmissions</Text>
+					</MenuItem>
+				</MenuList>
+			</Menu>
 		</Box>
 	);
 }
