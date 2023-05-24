@@ -4,7 +4,7 @@ import ExhibitImage from "./ExhibitImage";
 function CurrentExhibits() {
 	return (
 		<Box paddingTop={16} w="100%" minH="90vh">
-			<SimpleGrid columns={{ sm: 1, md: 2 }} spacing={6} mx={10} justifyContent="center">
+			<SimpleGrid columns={{ sm: 1, md: 2 }} spacing={24} mx={24} justifyContent="center">
 				<Box>
 					<Flex direction="column" align="center">
 						<Heading textAlign="left" variant="section-heading" fontSize="3em">
