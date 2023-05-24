@@ -5,19 +5,20 @@ import CollageElement from "./CollageElement";
 function Collage() {
 
     const collageBoundary = useRef();
-    const [collageElements, setCollageElements] = useState([{type: "box", color: "blue"}, {type: "box", color: "blue"}]);
-    const [colorValue, setColorValue] = useState("red");
+    const [collageElements, setCollageElements] = useState([]);
+    const [textValue, setTextValue] = useState("D");
+    const [fontValue, setFontValue] = useState("serif");
+    const [fontSize, setFontSize] = useState("small");
 
     const addShape = () => {
         console.log("submitted");
-        console.log(collageElements);
         const newShape = {
-            type: "box",
-            color: colorValue
+            text: textValue,
+            font: fontValue,
+            size: fontSize
         };
         const newArray = [...collageElements, newShape];
         setCollageElements(newArray);
-        console.log(collageElements);
     }
 
     useEffect(() => {
@@ -45,7 +46,7 @@ function Collage() {
                 >
                     {
                         collageElements.map((element, index) => {
-                            return <CollageElement collageBoundary={collageBoundary} classText={element.type + " " + element.color} key={index}/>
+                            return <CollageElement collageBoundary={collageBoundary} classText={element.font + " " + element.size} text={element.text} key={index}/>
                         })
                     }
                 </Box>
@@ -55,12 +56,35 @@ function Collage() {
                     minH="90vh"
                 >
                     <RadioGroup
-                        onChange={setColorValue}
-                        value={colorValue}
+                        onChange={setTextValue}
+                        value={textValue}
                     >
                         <Stack direction='row'>
-                            <Radio value='red'>Red</Radio>
-                            <Radio value='blue'>Blue</Radio>
+                            <Radio value='D'>D</Radio>
+                            <Radio value='A'>A</Radio>
+                            <Radio value='d'>d</Radio>
+                            <Radio value='a'>a</Radio>
+                            <Radio value='!'>!</Radio>
+                            <Radio value='?'>?</Radio>
+                        </Stack>
+                    </RadioGroup>
+                    <RadioGroup
+                        onChange={setFontValue}
+                        value={fontValue}
+                    >
+                        <Stack direction='row'>
+                            <Radio value='serif'>Serif</Radio>
+                            <Radio value='sans-serif'>Sans-Serif</Radio>
+                        </Stack>
+                    </RadioGroup>
+                    <RadioGroup
+                        onChange={setFontSize}
+                        value={fontSize}
+                    >
+                        <Stack direction='row'>
+                            <Radio value='small'>Small</Radio>
+                            <Radio value='medium'>Medium</Radio>
+                            <Radio value='large'>Large</Radio>
                         </Stack>
                     </RadioGroup>
                     <Button onClick={addShape}>Submit</Button>

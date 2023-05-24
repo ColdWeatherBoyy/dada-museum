@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import "./styles/dragStyles.css";
 
-function CollageElement({ collageBoundary, classText }) {
+function CollageElement({ collageBoundary, classText, text }) {
 
     return (
             <motion.div 
@@ -10,7 +10,9 @@ function CollageElement({ collageBoundary, classText }) {
                 dragMomentum={false}
                 dragConstraints={collageBoundary}
                 dragElastic={false}
-            />
+            >
+                {text}
+            </motion.div>
     );
 }
 
