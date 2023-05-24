@@ -12,14 +12,33 @@ function Collage() {
             bgColor="yellow.300"
             w="100%"
             minH="100vh"
-            ref={collageBoundary}
         >
             Collage
-            {
-                collageElements.map((element, index) => {
-                    return <CollageElement collageBoundary={collageBoundary} classText={element} key={index}/>
-                })
-            }
+            <Box
+                mx="1vw"
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+            >
+                <Box
+                    bgColor="white"
+                    w="60%"
+                    minH="90vh"
+                    ref={collageBoundary}
+                >
+                    {
+                        collageElements.map((element, index) => {
+                            return <CollageElement collageBoundary={collageBoundary} classText={element} key={index}/>
+                        })
+                    }
+                </Box>
+                <Box
+                    bgColor="white"
+                    w="30%"
+                    minH="90vh"
+                >
+                </Box>
+            </Box>
         </Box>
     );
 }
