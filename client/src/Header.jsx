@@ -16,6 +16,7 @@ function Header() {
 		<Box
 			bgColor="red.300"
 			w="100%"
+			height="18vh"
 			minH="10vh"
 			display="flex"
 			alignItems="center"
