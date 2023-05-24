@@ -5,6 +5,7 @@ import CollageElement from "./CollageElement";
 function Collage() {
 
     const collageBoundary = useRef();
+    const [collageElements, setCollageElements] = useState(["box", "box"]); 
 
     return (
         <Box
@@ -14,7 +15,11 @@ function Collage() {
             ref={collageBoundary}
         >
             Collage
-            <CollageElement collageBoundary={collageBoundary}/>
+            {
+                collageElements.map((element, index) => {
+                    return <CollageElement collageBoundary={collageBoundary} classText={element} key={index}/>
+                })
+            }
         </Box>
     );
 }
