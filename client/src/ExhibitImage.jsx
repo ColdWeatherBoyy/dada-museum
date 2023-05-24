@@ -16,7 +16,7 @@ function ExhibitImage({ headingOne, headingTwo, src, alt, hoverText, imageCredit
 				position="relative"
 				borderRadius="sm"
 				onMouseEnter={() => setIsActive(true)}
-				// onMouseLeave={() => setIsActive(false)}
+				onMouseLeave={() => setIsActive(false)}
 				onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
 			>
 				<Image
