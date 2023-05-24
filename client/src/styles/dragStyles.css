@@ -2,5 +2,12 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: blue;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
 }

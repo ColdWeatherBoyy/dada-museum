@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import "./styles/dragStyles.css";
 
-function CollageElement({ collageBoundary, classText, key }) {
+function CollageElement({ collageBoundary, classText }) {
 
     return (
             <motion.div 
