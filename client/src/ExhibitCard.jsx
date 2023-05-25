@@ -8,9 +8,21 @@ function ExhibitCard() {
 		<Card width="90%">
 			<CardBody textStyle="playfairBold">
 				<Stack divider={<StackDivider />} spacing="4">
-					<ExhibitCardLinks justification="flex-start" text="Permanent Exhibits" />
-					<ExhibitCardLinks justification="flex-end" text="Upcoming Exhibits" />
-					<ExhibitCardLinks justification="flex-start" text="Previous Exhibits" />
+					<ExhibitCardLinks
+						// destination=""
+						justification="flex-start"
+						text="Permanent Exhibits"
+					/>
+					<ExhibitCardLinks
+						// destination=""
+						justification="flex-end"
+						text="Upcoming Exhibits"
+					/>
+					<ExhibitCardLinks
+						// destination=""
+						justification="flex-start"
+						text="Previous Exhibits"
+					/>
 				</Stack>
 			</CardBody>
 		</Card>

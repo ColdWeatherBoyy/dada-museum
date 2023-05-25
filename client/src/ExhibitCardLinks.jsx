@@ -3,11 +3,12 @@ import { Stack, Text, Box, StackDivider, Flex } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/react";
 import { useState } from "react";
 
-function ExhibitCardLinks({ justification, text }) {
+function ExhibitCardLinks({ destination, justification, text }) {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
 		<Link
+			href={destination}
 			onMouseEnter={() => setIsActive(true)}
 			onMouseLeave={() => setIsActive(false)}
 			onTouchStart={() => setIsActive((prevState) => !prevState)}

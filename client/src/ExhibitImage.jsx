@@ -5,7 +5,11 @@ function ExhibitImage({ headingOne, headingTwo, src, alt, hoverText, imageCredit
 	const [isActive, setIsActive] = useState(false);
 
 	return (
-		<Box position="relative" display="inline-block">
+		<Box
+			position="relative"
+			display="inline-block"
+			marginBottom={{ sm: "5%", md: "10%", lg: "15%" }}
+		>
 			<Heading variant="exhibit-heading" textAlign="left" fontSize="2em" pb={0}>
 				{headingOne}
 			</Heading>
