@@ -1,0 +1,22 @@
+.small {
+    font-size: 16px;
+    max-width: 16px;
+}
+
+.medium {
+    font-size: 36px;
+    max-width: 36px;
+}
+
+.large {
+    font-size: 72px;
+    max-width: 72px;
+}
+
+.serif {
+    font-family: serif;
+}
+
+.sans-serif {
+    font-family: sans-serif;
+}
