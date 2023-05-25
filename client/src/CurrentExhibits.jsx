@@ -35,6 +35,7 @@ function CurrentExhibits() {
 								<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
 							</Box>
 							<ExhibitImage
+								// destination=""
 								headingOne="Champions of Collage"
 								headingTwo="June '23 - June '24"
 								src="/images/DetailCutWithTheKitchenKnifeHoch.jpg"
@@ -42,6 +43,7 @@ function CurrentExhibits() {
 								hoverText="Tracing the evolution of photomontage and collage in the early 20th century, this exhibit highlights works by Kurt Schwitters, William S. Burroughs, and others whose innovative approach transformed the art world."
 							/>
 							<ExhibitImage
+								// destination=""
 								headingOne="The Art of Chance"
 								headingTwo="Feb '23 - Feb '24"
 								src="/images/ExcerptAccordingToTheLawsOfChanceJeanArp.jpeg"
@@ -49,6 +51,7 @@ function CurrentExhibits() {
 								hoverText="Explore the role of randomness in the creative process of Dada artists like Jean Arp, Francis Picabia, and Marcel Duchamp, as they sought to embrace chance, errors, and the unexpected in their art-making process."
 							/>
 							<ExhibitImage
+								// destination=""
 								headingOne="Duchamp's Readymades"
 								headingTwo="Closing Sept. '23"
 								src="/images/DuchampTheFountain.jpg"
@@ -75,6 +78,7 @@ function CurrentExhibits() {
 									<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
 								</Box>
 								<ExhibitImage
+									// destination=""
 									headingOne="The Art of Chance"
 									headingTwo="Feb '23 - Feb '24"
 									src="/images/ExcerptAccordingToTheLawsOfChanceJeanArp.jpeg"
@@ -86,6 +90,7 @@ function CurrentExhibits() {
 						</Box>
 						<Flex direction="column" pt={6}>
 							<ExhibitImage
+								// destination=""
 								headingOne="Champions of Collage"
 								headingTwo="June '23 - June '24"
 								src="/images/DetailCutWithTheKitchenKnifeHoch.jpg"
@@ -93,6 +98,7 @@ function CurrentExhibits() {
 								hoverText="Tracing the evolution of photomontage and collage in the early 20th century, this exhibit highlights works by Kurt Schwitters, William S. Burroughs, and others whose innovative approach transformed the art world."
 							/>
 							<ExhibitImage
+								// destination=""
 								headingOne="Duchamp's Readymades"
 								headingTwo="Closing Sept. '23"
 								src="/images/DuchampTheFountain.jpg"

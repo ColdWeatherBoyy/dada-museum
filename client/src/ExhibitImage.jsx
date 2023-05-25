@@ -1,7 +1,7 @@
-import { Box, Image, Text, Heading } from "@chakra-ui/react";
+import { Box, Image, Text, Heading, Link } from "@chakra-ui/react";
 import { useState } from "react";
 
-function ExhibitImage({ headingOne, headingTwo, src, alt, hoverText, imageCredit }) {
+function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText }) {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
@@ -10,9 +10,11 @@ function ExhibitImage({ headingOne, headingTwo, src, alt, hoverText, imageCredit
 			display="inline-block"
 			marginBottom={{ sm: "5%", md: "10%", lg: "15%" }}
 		>
-			<Heading variant="exhibit-heading" textAlign="left" fontSize="2em" pb={0}>
-				{headingOne}
-			</Heading>
+			<Link destination={destination}>
+				<Heading variant="exhibit-heading" textAlign="left" fontSize="2em" pb={0}>
+					{headingOne}
+				</Heading>
+			</Link>
 			<Heading variant="exhibit-heading" textAlign="left" fontSize="1.75em" pb={2}>
 				{headingTwo}
 			</Heading>
