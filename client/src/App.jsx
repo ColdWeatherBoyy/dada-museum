@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
 import Header from "./Header";
 import CurrentExhibits from "./CurrentExhibits";
 import Visit from "./Visit";
 import Featured from "./Featured";
 import Collage from "./Collage";
 import SiteMap from "./SiteMap";
-import theme from "./theme/index.js"
-import "./theme/heading.css";
-
 
 function App() {
 	console.log("App rendered");
@@ -38,14 +34,14 @@ function App() {
 	// }, []);
 
 	return (
-		<ChakraProvider theme={theme}>
+		<>
 			<Header />
 			<CurrentExhibits />
 			<Visit />
 			<Featured />
 			<Collage />
 			<SiteMap />
-		</ChakraProvider>
+		</>
 	);
 }
 

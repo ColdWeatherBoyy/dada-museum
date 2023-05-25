@@ -9,13 +9,13 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import "./theme/heading.css";
 
 function Header() {
 	return (
 		<Box
 			bgColor="red.300"
 			w="100%"
+			height="18vh"
 			minH="10vh"
 			display="flex"
 			alignItems="center"

@@ -6,6 +6,16 @@ const artMuseumFont = defineStyle({
 	letterSpacing: "0.1em",
 });
 
+const exhibitHeading = defineStyle({
+	fontFamily: "Playfair Display, serif",
+});
+
+const sectionHeading = defineStyle({
+	fontFamily: "Playfair Display, serif",
+	letterSpacing: "0.35em",
+	lineHeight: "1.5em",
+});
+
 const firstD = defineStyle({
 	fontFamily: "Oi, sans-serif",
 	letterSpacing: ".3em",
@@ -33,5 +43,7 @@ export const headingTheme = defineStyleConfig({
 		"first-a": firstA,
 		"second-d": secondD,
 		"second-a": secondA,
+		"section-heading": sectionHeading,
+		"exhibit-heading": exhibitHeading,
 	},
 });
