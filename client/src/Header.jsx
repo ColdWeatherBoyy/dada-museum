@@ -9,7 +9,6 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import "./theme/heading.css";
 
 function Header() {
 	return (

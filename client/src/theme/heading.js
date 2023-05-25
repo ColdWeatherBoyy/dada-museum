@@ -12,7 +12,7 @@ const exhibitHeading = defineStyle({
 
 const sectionHeading = defineStyle({
 	fontFamily: "Playfair Display, serif",
-	letterSpacing: "0.4em",
+	letterSpacing: "0.35em",
 	lineHeight: "1.5em",
 });
 
