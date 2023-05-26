@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, Heading, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import ExhibitImage from "./ExhibitImage";
-import ExhibitCard from "./ExhibitCard";
+import ExhibitImage from "../components/ExhibitImage";
+import ExhibitCard from "../components/ExhibitCard";
 
 function CurrentExhibits() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -71,7 +71,11 @@ function CurrentExhibits() {
 								height="100%"
 							>
 								<Box width="100%" alignSelf="flex-start">
-									<Heading textAlign="center" variant="section-heading" fontSize="3.15em">
+									<Heading
+										textAlign="center"
+										variant="section-heading"
+										fontSize={{ base: "3.1em", xl: "4em" }}
+									>
 										Current <br />
 										Exhibits
 									</Heading>
