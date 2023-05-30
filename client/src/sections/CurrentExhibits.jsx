@@ -16,21 +16,19 @@ function CurrentExhibits() {
 	}, [window.innerWidth]);
 
 	return (
-		<Box paddingY={16} w="100%" minH="90vh">
+		<Box paddingY={16} minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
 			{/* Sets up responsive grid with two columns on larger screens, one column on smaller */}
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
 				spacingX={{ sm: 0, md: 8, lg: 16 }}
 				spacingY={20}
-				mx={{ sm: 8, md: 8, lg: 16 }}
-				justifyContent="center"
 			>
 				{/* ternary to reorganize grid components depending on numbrer of columns */}
 				{windowWidth <= 768 ? (
 					<>
 						<Flex direction="column" align="center" justify="space-around" height="100%">
 							<Box width="100%" alignSelf="flex-start">
-								<Heading textAlign="center" variant="section-heading" fontSize="3.15em">
+								<Heading variant="section-heading" fontSize="3.15em">
 									Current <br />
 									Exhibits
 								</Heading>
@@ -69,7 +67,6 @@ function CurrentExhibits() {
 						<Flex direction="column" align="center" justify="space-around" height="100%">
 							<Box width="100%" alignSelf="flex-start">
 								<Heading
-									textAlign="center"
 									variant="section-heading"
 									fontSize={{ base: "3.1em", xl: "4em" }}
 								>
@@ -89,7 +86,7 @@ function CurrentExhibits() {
 							<ExhibitCard />
 						</Flex>
 
-						<Flex direction="column" pt={6}>
+						<Flex direction="column" pt={12}>
 							<ExhibitImage
 								// destination=""
 								headingOne="Champions of Collage"
