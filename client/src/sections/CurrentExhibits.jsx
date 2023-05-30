@@ -29,7 +29,7 @@ function CurrentExhibits() {
 						<Flex direction="column" align="center" justify="space-around" height="100%">
 							<Box width="100%" alignSelf="flex-start">
 								<Heading variant="section-heading" fontSize="3.15em">
-									Current <br />
+									Current {"\n"}
 									Exhibits
 								</Heading>
 								{/* border controlled seperately from text length */}
