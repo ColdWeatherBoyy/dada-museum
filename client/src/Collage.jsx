@@ -52,6 +52,7 @@ function Collage() {
                     bgColor="white"
                     w="60%"
                     minH="90vh"
+                    p="0"
                     ref={collageBoundary}
                 >
                     {

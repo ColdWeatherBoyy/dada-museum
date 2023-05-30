@@ -1,16 +1,19 @@
 .small {
     font-size: 36px;
     max-width: 36px;
+    position: absolute;
 }
 
 .medium {
     font-size: 72px;
     max-width: 72px;
+    position: absolute;
 }
 
 .large {
     font-size: 144px;
     max-width: 144px;
+    position: absolute;
 }
 
 .serif {
