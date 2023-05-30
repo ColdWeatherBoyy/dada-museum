@@ -1,6 +1,6 @@
 import { Box, SimpleGrid, Flex, Heading } from "@chakra-ui/react"
 import VisitComponent from "./VisitComponent.jsx"
-import Button from "./Button.jsx"
+import VisitCard from "./VisitCard.jsx"
 
 function Visit() {
     return (
@@ -21,15 +21,14 @@ function Visit() {
                     </Box>
                     <VisitComponent
                         headingText="Hours:"
-                        contentText="Mon: Closed<br/>Tues-Thurs: 10am-5pm<br/>Fri-Sat: 10am-7pm<br/>Sun: 12pm"
+                        contentArray={["Mon: Closed", "Tues-Thurs: 10am-5pm", "Fri-Sat: 10am-7pm", "Sun: 12pm"]}
                     />
-                    <Button buttonText="Buy Tickets" />
-                    <Button buttonText="Become a Member" />
+                    <VisitCard />
                 </Flex>
                 <Flex direction="column" align="start" justify="space-around" height="100%">
                     <VisitComponent
                         headingText="Museum Status:"
-                        contentText="Open"
+                        contentArray={["Open"]}
                     />
                 </Flex>
             </SimpleGrid>

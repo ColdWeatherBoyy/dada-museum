@@ -1,7 +1,8 @@
 import { Box, Image, Text, Heading } from "@chakra-ui/react";
 import { useState } from "react";
+import VisitTextItem from "./VisitTextItem";
 
-function VisitComponent({ headingText, contentText }) {
+function VisitComponent({ headingText, contentArray }) {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
@@ -9,6 +10,7 @@ function VisitComponent({ headingText, contentText }) {
 			position="relative"
 			display="inline-block"
 			marginBottom={{ sm: "5%", md: "10%", lg: "15%" }}
+			w="100%"
 		>
 			<Heading variant="exhibit-heading" textAlign="left" fontSize="2em" pb={0}>
 				{headingText}
@@ -26,14 +28,11 @@ function VisitComponent({ headingText, contentText }) {
 					borderRadius="sm"
 					textStyle="battambang"
 				>
-					<Text
-						color="black"
-						textAlign="left"
-						pr={{ sm: "10%", md: "10%", lg: "10%" }}
-						fontSize={{ sm: "17px", md: "15px", lgm: "18px" }}
-					>
-						{contentText}
-					</Text>
+					{
+                        contentArray.map((contentLine, index) => {
+                            return <VisitTextItem contentText={contentLine} />
+						})
+					}
 				</Box>
 			</Box>
 		</Box>
