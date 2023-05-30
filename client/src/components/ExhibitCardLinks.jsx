@@ -1,5 +1,4 @@
-import { Card, CardBody } from "@chakra-ui/card";
-import { Stack, Text, Box, StackDivider, Flex } from "@chakra-ui/layout";
+import { Text, Flex } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/react";
 import { useState } from "react";
 

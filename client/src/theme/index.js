@@ -16,6 +16,9 @@ const theme = extendTheme({
 			fontFamily: "Playfair Display, serif",
 			fontWeight: "bold",
 		},
+		playfair: {
+			fontFamily: "Playfair Display, serif",
+		},
 		battambang: {
 			fontFamily: "Battambang, serif",
 		},
