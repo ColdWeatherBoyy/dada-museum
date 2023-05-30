@@ -23,13 +23,13 @@ function Visit() {
                         headingText="Hours:"
                         contentArray={["Mon: Closed", "Tues-Thurs: 10am-5pm", "Fri-Sat: 10am-7pm", "Sun: 12pm"]}
                     />
-                    <VisitCard />
-                </Flex>
-                <Flex direction="column" align="start" justify="space-around" height="100%">
                     <VisitComponent
                         headingText="Museum Status:"
                         contentArray={["Open"]}
                     />
+                </Flex>
+                <Flex direction="column" align="start" justify="space-around" height="100%">
+                    <VisitCard />
                 </Flex>
             </SimpleGrid>
         </Box>

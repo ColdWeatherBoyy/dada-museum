@@ -1,16 +1,16 @@
 .small {
-    font-size: 16px;
-    max-width: 16px;
-}
-
-.medium {
     font-size: 36px;
     max-width: 36px;
 }
 
-.large {
+.medium {
     font-size: 72px;
     max-width: 72px;
+}
+
+.large {
+    font-size: 144px;
+    max-width: 144px;
 }
 
 .serif {

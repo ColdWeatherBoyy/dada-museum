@@ -1,6 +1,7 @@
-import { Box, Radio, RadioGroup, Stack, Button } from "@chakra-ui/react"
+import { Box, Radio, RadioGroup, Stack, Button, Heading, SimpleGrid, Card } from "@chakra-ui/react"
 import { useRef, useState, useEffect } from "react";
 import CollageElement from "./CollageElement";
+import CollagePreview from "./CollagePreview";
 
 function Collage() {
 
@@ -26,19 +27,28 @@ function Collage() {
     },[])
 
     return (
-        <Box
-            bgColor="yellow.300"
-            w="100%"
-            minH="100vh"
-        >
-            Collage
+        <Box paddingY={16} w="100%" minH="90vh">
+			<SimpleGrid
+				columns={{ sm: 1, md: 2 }}
+				spacingX={{ sm: 0, md: 8, lg: 16 }}
+				spacingY={20}
+				mx={{ sm: 8, md: 8, lg: 16 }}
+				justifyContent="center"
+			>
+                <Box width="100%" alignSelf="flex-start">
+                    <Heading textAlign="center" variant="section-heading" fontSize="3.15em">
+                        Make a<br/>Collage
+                    </Heading>
+                    <Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
+                </Box>
+            </SimpleGrid>
             <Box
-                mx="1vw"
                 display="flex"
                 flexDirection="row"
                 justifyContent="space-between"
+                mx={{ sm: 8, md: 8, lg: 16 }}
             >
-                <Box
+                <Card
                     bgColor="white"
                     w="60%"
                     minH="90vh"
@@ -49,11 +59,15 @@ function Collage() {
                             return <CollageElement collageBoundary={collageBoundary} classText={element.font + " " + element.size} text={element.text} key={index}/>
                         })
                     }
-                </Box>
-                <Box
+                </Card>
+                <Card
                     bgColor="white"
                     w="30%"
                     minH="90vh"
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="space-around"
+                    alignItems="center"
                 >
                     <RadioGroup
                         onChange={setTextValue}
@@ -64,6 +78,8 @@ function Collage() {
                             <Radio value='A'>A</Radio>
                             <Radio value='d'>d</Radio>
                             <Radio value='a'>a</Radio>
+                        </Stack>
+                        <Stack direction='row'>
                             <Radio value='!'>!</Radio>
                             <Radio value='?'>?</Radio>
                         </Stack>
@@ -72,7 +88,7 @@ function Collage() {
                         onChange={setFontValue}
                         value={fontValue}
                     >
-                        <Stack direction='row'>
+                        <Stack direction='column'>
                             <Radio value='serif'>Serif</Radio>
                             <Radio value='sans-serif'>Sans-Serif</Radio>
                         </Stack>
@@ -81,14 +97,25 @@ function Collage() {
                         onChange={setFontSize}
                         value={fontSize}
                     >
-                        <Stack direction='row'>
+                        <Stack direction='column'>
                             <Radio value='small'>Small</Radio>
                             <Radio value='medium'>Medium</Radio>
                             <Radio value='large'>Large</Radio>
                         </Stack>
                     </RadioGroup>
-                    <Button onClick={addShape}>Submit</Button>
-                </Box>
+                    <Box
+                        bgColor="gray.100"
+                        w="250px"
+                        aspectRatio="1 / 1"
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <CollagePreview classText={fontValue + " " + fontSize} text={textValue} />
+                    </Box>
+                    <Button onClick={addShape}>Add</Button>
+                </Card>
             </Box>
         </Box>
     );
