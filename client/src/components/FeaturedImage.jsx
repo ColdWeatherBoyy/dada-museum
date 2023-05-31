@@ -8,13 +8,13 @@ function FeaturedImage({ flexDirection, alignment, title, date, url, alt }) {
 			justify={{ base: "space-between", lg: "space-around" }}
 			my={{ base: 0, lg: 4 }}
 			mx={{ base: 4, lg: 0 }}
-			height={{ base: "50vw", lg: "auto" }}
+			height={{ base: "55VW", lg: "auto" }}
 		>
 			<Flex direction="column" align={alignment}>
-				<Box textStyle="battambang" fontSize={{ sm: "17px", md: "15px", lgm: "18px" }}>
+				<Box textStyle="battambang" fontSize={{ sm: "17px", md: "18px" }}>
 					{title}
 				</Box>
-				<Box textStyle="battambang" fontSize={{ sm: "15px", md: "13px", lgm: "16px" }}>
+				<Box textStyle="battambang" fontSize={{ sm: "15px", md: "16px" }}>
 					{date}
 				</Box>
 			</Flex>

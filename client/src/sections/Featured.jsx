@@ -13,7 +13,7 @@ function Featured() {
 					<Box width="100%" alignSelf="flex-start">
 						<Heading
 							variant="section-heading"
-							fontSize={{ base: "3.1em", sm: "3.15em", xl: "4em" }}
+							fontSize={{ base: "3em", sm: "3.15em", xl: "4em" }}
 						>
 							Featured <br />
 							Artist
@@ -63,9 +63,25 @@ function Featured() {
 						direction={{ base: "row", lg: "column" }}
 						my={{ base: 4, lg: 16 }}
 						position="relative"
-						width={{ base: "170%", lg: "auto" }}
-						justify={{ base: "auto", lg: "space-around" }}
+						width={{ base: "330%", md: "270%", lg: "auto" }}
+						justify="space-around"
 					>
+						<FeaturedImage
+							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
+							alignment={{ base: "flex-start", lg: "flex-end" }}
+							title="The Fountain"
+							date="1917"
+							url="/images/Duchamp.jpeg"
+							alt="Duchamp"
+						/>
+						<FeaturedImage
+							flexDirection={{ base: "column", lg: "row" }}
+							alignment={{ base: "flex-end", lg: "flex-start" }}
+							title="The Fountain"
+							date="1917"
+							url="/images/Duchamp.jpeg"
+							alt="Duchamp"
+						/>
 						<FeaturedImage
 							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
 							alignment={{ base: "flex-start", lg: "flex-end" }}
