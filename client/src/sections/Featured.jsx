@@ -117,16 +117,28 @@ function Featured() {
 					position="relative"
 					height="100%"
 				>
-					{/* {isLoading ? (
-						<div>Loading...</div>
-					) : ( */}
-					<Box pointerEvents="none">
-						{scrollDirection.left && <Box>Left</Box>}
-						{scrollDirection.right && <Box>Right</Box>}
-						{scrollDirection.up && <Box>Up</Box>}
-						{scrollDirection.down && <Box>Down</Box>}
+					<Box pointerEvents="none" width="100%" height="100%" position="absolute">
+						{scrollDirection.left && (
+							<Box position="absolute" height="100%" left="0" zIndex="1">
+								Left
+							</Box>
+						)}
+						{scrollDirection.right && (
+							<Box position="absolute" height="100%" right="0" zIndex="1">
+								Right
+							</Box>
+						)}
+						{scrollDirection.up && (
+							<Box position="absolute" width="100%" bottom="0" zIndex="1">
+								Up
+							</Box>
+						)}
+						{scrollDirection.down && (
+							<Box position="absolute" width="100%" top="0" zIndex="1">
+								Down
+							</Box>
+						)}
 					</Box>
-					{/* )} */}
 					<Flex
 						direction={{ base: "row", lg: "column" }}
 						my={{ base: 4, lg: 0 }}
