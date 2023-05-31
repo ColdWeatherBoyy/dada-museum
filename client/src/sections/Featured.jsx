@@ -117,7 +117,7 @@ function Featured() {
 					position="relative"
 					height="100%"
 				>
-					<Box pointerEvents="none" width="100%" height="100%" position="absolute">
+					{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
 						{scrollDirection.left && (
 							<Box position="absolute" height="100%" left="0" zIndex="1">
 								Left
@@ -129,16 +129,16 @@ function Featured() {
 							</Box>
 						)}
 						{scrollDirection.up && (
-							<Box position="absolute" width="100%" bottom="0" zIndex="1">
+							<Box position="absolute" width="100%" top="0" zIndex="1">
 								Up
 							</Box>
 						)}
 						{scrollDirection.down && (
-							<Box position="absolute" width="100%" top="0" zIndex="1">
+							<Box position="absolute" width="100%" bottom="0" zIndex="1">
 								Down
 							</Box>
 						)}
-					</Box>
+					</Box> */}
 					<Flex
 						direction={{ base: "row", lg: "column" }}
 						my={{ base: 4, lg: 0 }}
