@@ -5,11 +5,12 @@ function FeaturedImage({ flexDirection, alignment, title, date, url, alt }) {
 		<Flex
 			width="100%"
 			direction={flexDirection}
-			align="center"
-			justify="space-around"
-			my={4}
+			align={{ base: "auto", lg: "center" }}
+			justify={{ base: "center", lg: "space-around" }}
+			my={{ base: 0, lg: 4 }}
+			mx={{ base: 4, lg: 0 }}
 		>
-			<Flex direction="column" align={alignment} justify="space-around">
+			<Flex direction="column" align={alignment}>
 				<Box textStyle="battambang" fontSize={{ sm: "17px", md: "15px", lgm: "18px" }}>
 					{title}
 				</Box>
