@@ -55,47 +55,51 @@ function Featured() {
 						</Box>
 					</Flex>
 				</Flex>
-				<Flex
-					direction={{ base: "row", lg: "column" }}
-					overflowY={{ base: "auto", lg: "scroll" }}
-					overflowX={{ base: "scroll", lg: "auto" }}
-					my={{ base: 4, lg: 16 }}
-					position="relative"
-					height={{ base: "50vw", lg: "auto" }}
+				<Box
+					overflowY={{ base: "visible", lg: "scroll" }}
+					overflowX={{ base: "scroll", lg: "visible" }}
 				>
-					<FeaturedImage
-						flexDirection={{ base: "column", lg: "row" }}
-						alignment={{ base: "flex-end", lg: "flex-start" }}
-						title="The Fountain"
-						date="1917"
-						url="/images/Duchamp.jpeg"
-						alt="Duchamp"
-					/>
-					<FeaturedImage
-						flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-						alignment={{ base: "flex-start", lg: "flex-end" }}
-						title="The Fountain"
-						date="1917"
-						url="/images/Duchamp.jpeg"
-						alt="Duchamp"
-					/>
-					<FeaturedImage
-						flexDirection={{ base: "column", lg: "row" }}
-						alignment={{ base: "flex-end", lg: "flex-start" }}
-						title="The Fountain"
-						date="1917"
-						url="/images/Duchamp.jpeg"
-						alt="Duchamp"
-					/>
-					<FeaturedImage
-						flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-						alignment={{ base: "flex-start", lg: "flex-end" }}
-						title="The Fountain"
-						date="1917"
-						url="/images/Duchamp.jpeg"
-						alt="Duchamp"
-					/>
-				</Flex>
+					<Flex
+						direction={{ base: "row", lg: "column" }}
+						my={{ base: 4, lg: 16 }}
+						position="relative"
+						width={{ base: "170%", lg: "auto" }}
+						justify={{ base: "auto", lg: "space-around" }}
+					>
+						<FeaturedImage
+							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
+							alignment={{ base: "flex-start", lg: "flex-end" }}
+							title="The Fountain"
+							date="1917"
+							url="/images/Duchamp.jpeg"
+							alt="Duchamp"
+						/>
+						<FeaturedImage
+							flexDirection={{ base: "column", lg: "row" }}
+							alignment={{ base: "flex-end", lg: "flex-start" }}
+							title="The Fountain"
+							date="1917"
+							url="/images/Duchamp.jpeg"
+							alt="Duchamp"
+						/>
+						<FeaturedImage
+							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
+							alignment={{ base: "flex-start", lg: "flex-end" }}
+							title="The Fountain"
+							date="1917"
+							url="/images/Duchamp.jpeg"
+							alt="Duchamp"
+						/>
+						<FeaturedImage
+							flexDirection={{ base: "column", lg: "row" }}
+							alignment={{ base: "flex-end", lg: "flex-start" }}
+							title="The Fountain"
+							date="1917"
+							url="/images/Duchamp.jpeg"
+							alt="Duchamp"
+						/>
+					</Flex>
+				</Box>
 			</Grid>
 		</Box>
 	);
