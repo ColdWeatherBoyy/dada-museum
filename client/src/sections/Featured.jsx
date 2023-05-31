@@ -4,58 +4,82 @@ import { useEffect, useRef, useState } from "react";
 import FeaturedImage from "../components/FeaturedImage";
 
 function Featured() {
-	const scrollBoxRef = useRef(null);
-	const [scrollDirection, setScrollDirection] = useState({
-		left: false,
-		right: false,
-		up: false,
-		down: true,
-	});
+	async function getAicTestResponse() {
+		const response = await fetch("/api/aic/", {
+			method: "GET",
+		});
+		const data = await response.json();
+		console.log(data);
+	}
 
-	// if check to see window size and set scrollDirection accordingly
-	useEffect(() => {
-		if (window.innerWidth < 992) {
-			setScrollDirection({
-				left: false,
-				right: true,
-				up: false,
-				down: false,
-			});
-		}
-	}, []);
+	async function getMetTestResponse() {
+		const response = await fetch("/api/met/", {
+			method: "GET",
+		});
+		const data = await response.json();
+		console.log(data);
+	}
 
-	useEffect(() => {
-		const scrollBox = scrollBoxRef.current;
-		const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
+	// useEffect(() => {
+	// 	getMetTestResponse();
+	// }, []);
 
-		const handleScroll = () => {
-			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+	// useEffect(() => {
+	// 	getAicTestResponse();
+	// }, []);
 
-			setScrollDirection({
-				left: scrollBox.scrollLeft > 0 && isScrollableX,
-				right:
-					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-					isScrollableX,
-				up: scrollBox.scrollTop > 0 && isScrollableY,
-				down:
-					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-					isScrollableY,
-			});
-		};
+	// const scrollBoxRef = useRef(null);
+	// const [scrollDirection, setScrollDirection] = useState({
+	// 	left: false,
+	// 	right: false,
+	// 	up: false,
+	// 	down: true,
+	// });
 
-		scrollBox.addEventListener("scroll", handleScroll);
-		window.addEventListener("resize", handleScroll);
+	// // if check to see window size and set scrollDirection accordingly
+	// useEffect(() => {
+	// 	if (window.innerWidth < 992) {
+	// 		setScrollDirection({
+	// 			left: false,
+	// 			right: true,
+	// 			up: false,
+	// 			down: false,
+	// 		});
+	// 	}
+	// }, []);
 
-		return () => {
-			scrollBox.removeEventListener("scroll", handleScroll);
-			window.removeEventListener("resize", handleScroll);
-		};
-	}, []);
+	// useEffect(() => {
+	// 	const scrollBox = scrollBoxRef.current;
+	// 	const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
 
-	useEffect(() => {
-		console.log(scrollDirection);
-	}, [scrollDirection]);
+	// 	const handleScroll = () => {
+	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+
+	// 		setScrollDirection({
+	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
+	// 			right:
+	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+	// 				isScrollableX,
+	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
+	// 			down:
+	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+	// 				isScrollableY,
+	// 		});
+	// 	};
+
+	// 	scrollBox.addEventListener("scroll", handleScroll);
+	// 	window.addEventListener("resize", handleScroll);
+
+	// 	return () => {
+	// 		scrollBox.removeEventListener("scroll", handleScroll);
+	// 		window.removeEventListener("resize", handleScroll);
+	// 	};
+	// }, []);
+
+	// useEffect(() => {
+	// 	console.log(scrollDirection);
+	// }, [scrollDirection]);
 
 	return (
 		<Box paddingY={16} minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
