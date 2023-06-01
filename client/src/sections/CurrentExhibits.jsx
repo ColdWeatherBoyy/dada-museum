@@ -16,7 +16,7 @@ function CurrentExhibits() {
 	}, [window.innerWidth]);
 
 	return (
-		<Box paddingY={16} minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box paddingY={6} mx={{ sm: 8, md: 8, lg: 16 }}>
 			{/* Sets up responsive grid with two columns on larger screens, one column on smaller */}
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
@@ -28,9 +28,8 @@ function CurrentExhibits() {
 					<>
 						<Flex direction="column" align="center" justify="space-around" height="100%">
 							<Box width="100%" alignSelf="flex-start">
-								<Heading variant="section-heading" fontSize="3.15em">
-									Current {"\n"}
-									Exhibits
+								<Heading variant="section-heading" fontSize="2.25em">
+									Current Exhibits
 								</Heading>
 								{/* border controlled seperately from text length */}
 								<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
@@ -66,12 +65,8 @@ function CurrentExhibits() {
 					<>
 						<Flex direction="column" align="center" justify="space-around" height="100%">
 							<Box width="100%" alignSelf="flex-start">
-								<Heading
-									variant="section-heading"
-									fontSize={{ base: "3.1em", xl: "4em" }}
-								>
-									Current <br />
-									Exhibits
+								<Heading variant="section-heading" fontSize="2.25em">
+									Current Exhibits
 								</Heading>
 								<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
 							</Box>

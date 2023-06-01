@@ -11,11 +11,11 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 			marginBottom={{ sm: "5%", md: "10%", lg: "15%" }}
 		>
 			<Link destination={destination}>
-				<Heading variant="exhibit-heading" textAlign="left" fontSize="2em" pb={0}>
+				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.25em" pb={0}>
 					{headingOne}
 				</Heading>
 			</Link>
-			<Heading variant="exhibit-heading" textAlign="left" fontSize="1.75em" pb={2}>
+			<Heading variant="exhibit-heading" textAlign="left" fontSize="1.25em" pb={2}>
 				{headingTwo}
 			</Heading>
 			<Box

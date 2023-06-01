@@ -4,7 +4,7 @@ import VisitCard from "../components/VisitCard.jsx";
 
 function Visit() {
 	return (
-		<Box paddingY={16} w="100%" minH="90vh">
+		<Box w="100%" bgColor="gray.100">
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
 				spacingX={{ sm: 0, md: 8, lg: 16 }}
@@ -14,7 +14,7 @@ function Visit() {
 			>
 				<Flex direction="column" align="start" justify="space-around" height="100%">
 					<Box width="100%" alignSelf="flex-start">
-						<Heading textAlign="center" variant="section-heading" fontSize="3.15em">
+						<Heading variant="section-heading" fontSize="2.25em">
 							Visit Us
 						</Heading>
 						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
