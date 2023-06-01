@@ -4,28 +4,70 @@ import { useEffect, useRef, useState } from "react";
 import FeaturedImage from "../components/FeaturedImage";
 
 function Featured() {
-	async function getAicTestResponse() {
-		const response = await fetch("/api/aic/", {
-			method: "GET",
-		});
-		const data = await response.json();
-		console.log(data);
-	}
+	const [duchampImagesData, setDuchampImagesData] = useState({});
+	const [duchampImagesInfo, setDuchampImagesInfo] = useState([]);
+	const randomImageArray = [];
 
-	async function getMetTestResponse() {
-		const response = await fetch("/api/met/", {
+	const fillDuchampImages = async () => {
+		const response = await fetch("/api/aic/marcel-duchamp", {
 			method: "GET",
 		});
 		const data = await response.json();
 		console.log(data);
-	}
+		setDuchampImagesData(data);
+	};
+
+	const selectRandomArtwork = async () => {
+		if (Object.keys(duchampImagesData).length > 0) {
+			const randomIndex = Math.floor(Math.random() * duchampImagesData.data.length);
+			const randomArtwork = duchampImagesData.data[randomIndex];
+			if (!randomImageArray.includes(randomArtwork)) {
+				randomImageArray.push(randomArtwork);
+				const randomArtWorkImageURL =
+					duchampImagesData.config.iiif_url +
+					"/" +
+					randomArtwork.image_id +
+					"/full/843,/0/default.jpg";
+				console.log(randomArtwork);
+				setDuchampImagesInfo((duchampImagesInfo) => [
+					...duchampImagesInfo,
+					{
+						url: randomArtWorkImageURL,
+						title: randomArtwork.title,
+						date: randomArtwork.date_display,
+						alt: randomArtwork.thumbnail.alt_text,
+					},
+				]);
+			} else {
+				selectRandomArtwork();
+			}
+		}
+	};
+
+	useEffect(() => {
+		fillDuchampImages();
+	}, []);
+
+	// random math to pull a random artwork from the array
+	useEffect(() => {
+		selectRandomArtwork();
+		selectRandomArtwork();
+		selectRandomArtwork();
+		selectRandomArtwork();
+		selectRandomArtwork();
+		selectRandomArtwork();
+	}, [duchampImagesData]);
+
+	// async function getMetTestResponse() {
+	// 	const response = await fetch("/api/met/", {
+	// 		method: "GET",
+	// 	});
+	// 	const data = await response.json();
+	// 	console.log(data);
+	// }
 
 	// useEffect(() => {
 	// 	getMetTestResponse();
-	// }, []);
-
-	// useEffect(() => {
-	// 	getAicTestResponse();
 	// }, []);
 
 	// const scrollBoxRef = useRef(null);
@@ -135,7 +177,7 @@ function Featured() {
 					</Flex>
 				</Flex>
 				<Box
-					ref={scrollBoxRef}
+					// ref={scrollBoxRef}
 					overflowY={{ base: "visible", lg: "scroll" }}
 					overflowX={{ base: "scroll", lg: "visible" }}
 					position="relative"
@@ -173,10 +215,10 @@ function Featured() {
 						<FeaturedImage
 							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
 							alignment={{ base: "flex-start", lg: "flex-end" }}
-							title="The Fountain"
-							date="1917"
-							url="/images/Duchamp.jpeg"
-							alt="Duchamp"
+							title={duchampImagesInfo[0].title}
+							date={duchampImagesInfo[0].date_display}
+							url={duchampImagesInfo[0].url}
+							alt={duchampImagesInfo[0].alt_text}
 						/>
 						<FeaturedImage
 							flexDirection={{ base: "column", lg: "row" }}
