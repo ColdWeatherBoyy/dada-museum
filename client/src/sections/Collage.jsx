@@ -35,7 +35,7 @@ function Collage() {
 	}, []);
 
 	return (
-		<Box paddingY={16} w="100%" minH="90vh">
+		<Box paddingY={6} w="100%" bgColor="gray.100">
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
 				spacingX={{ sm: 0, md: 8, lg: 16 }}
@@ -44,9 +44,8 @@ function Collage() {
 				justifyContent="center"
 			>
 				<Box width="100%" alignSelf="flex-start">
-					<Heading textAlign="center" variant="section-heading" fontSize="3.15em">
-						Make a<br />
-						Collage
+					<Heading variant="section-heading" fontSize="2.25em">
+						Make a Collage
 					</Heading>
 					<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
 				</Box>

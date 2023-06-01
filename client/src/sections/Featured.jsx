@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 
 import FeaturedImage from "../components/FeaturedImage";
 
+// add Man Ray, Tristan Tzara, Francis Picabia, Hannah Höch, Suzanne Duchamp, and Jean Crotti
+
 function Featured() {
 	// establish states for the featured artist
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
@@ -50,7 +52,7 @@ function Featured() {
 						"/" +
 						randomArtwork.image_id +
 						"/full/843,/0/default.jpg";
-					console.log(randomArtwork.id);
+					// console.log(randomArtwork.id);
 
 					duchampImagesArray.push({
 						url: randomArtWorkImageURL,
@@ -78,7 +80,7 @@ function Featured() {
 	// use effect for setting loading state to false once featuredArtistImageInfo array is filled
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
-			console.log(featuredArtistImageInfo);
+			// console.log(featuredArtistImageInfo);
 			setLoading(false);
 		}
 	}, [featuredArtistImageInfo]);
@@ -95,61 +97,61 @@ function Featured() {
 	// 	getMetTestResponse();
 	// }, []);
 
-	// const scrollBoxRef = useRef(null);
-	// const [scrollDirection, setScrollDirection] = useState({
-	// 	left: false,
-	// 	right: false,
-	// 	up: false,
-	// 	down: true,
-	// });
+	const scrollBoxRef = useRef(null);
+	const [scrollDirection, setScrollDirection] = useState({
+		left: false,
+		right: false,
+		up: false,
+		down: true,
+	});
 
-	// // if check to see window size and set scrollDirection accordingly
-	// useEffect(() => {
-	// 	if (window.innerWidth < 992) {
-	// 		setScrollDirection({
-	// 			left: false,
-	// 			right: true,
-	// 			up: false,
-	// 			down: false,
-	// 		});
-	// 	}
-	// }, []);
+	// if check to see window size and set scrollDirection accordingly
+	useEffect(() => {
+		if (window.innerWidth < 992) {
+			setScrollDirection({
+				left: false,
+				right: true,
+				up: false,
+				down: false,
+			});
+		}
+	}, [loading]);
 
-	// useEffect(() => {
-	// 	const scrollBox = scrollBoxRef.current;
-	// 	const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
+	useEffect(() => {
+		const scrollBox = scrollBoxRef.current;
+		// const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
 
-	// 	const handleScroll = () => {
-	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+		const handleScroll = () => {
+			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
 
-	// 		setScrollDirection({
-	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
-	// 			right:
-	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-	// 				isScrollableX,
-	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
-	// 			down:
-	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-	// 				isScrollableY,
-	// 		});
-	// 	};
+			setScrollDirection({
+				left: scrollBox.scrollLeft > 0 && isScrollableX,
+				right:
+					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+					isScrollableX,
+				up: scrollBox.scrollTop > 0 && isScrollableY,
+				down:
+					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+					isScrollableY,
+			});
+		};
 
-	// 	scrollBox.addEventListener("scroll", handleScroll);
-	// 	window.addEventListener("resize", handleScroll);
+		scrollBox.addEventListener("scroll", handleScroll);
+		window.addEventListener("resize", handleScroll);
 
-	// 	return () => {
-	// 		scrollBox.removeEventListener("scroll", handleScroll);
-	// 		window.removeEventListener("resize", handleScroll);
-	// 	};
-	// }, []);
+		return () => {
+			scrollBox.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("resize", handleScroll);
+		};
+	}, [loading]);
 
-	// useEffect(() => {
-	// 	console.log(scrollDirection);
-	// }, [scrollDirection]);
+	useEffect(() => {
+		console.log(scrollDirection);
+	}, [scrollDirection]);
 
 	return (
-		<Box paddingY={16} minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
 				height={{ base: "auto", lg: "50vw" }}
@@ -157,12 +159,8 @@ function Featured() {
 			>
 				<Flex width="100%" direction="column" align="center" justify="space-evenly">
 					<Box width="100%" alignSelf="flex-start">
-						<Heading
-							variant="section-heading"
-							fontSize={{ base: "3em", sm: "3.15em", xl: "4em" }}
-						>
-							Featured <br />
-							Artist
+						<Heading variant="section-heading" fontSize="2.25em" textAlign="center">
+							Featured Artist
 						</Heading>
 						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
 					</Box>
@@ -202,14 +200,14 @@ function Featured() {
 					</Flex>
 				</Flex>
 				<Box
-					// ref={scrollBoxRef}
+					ref={scrollBoxRef}
 					overflowY={{ base: "hidden", lg: "scroll" }}
 					overflowX={{ base: "scroll", lg: "hidden" }}
 					position="relative"
-					height="100%"
+					width="100%"
 					mt={{ base: 4, lg: 12 }}
 				>
-					{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
+					<Box pointerEvents="none" width="100%" height="100%" position="absolute">
 						{scrollDirection.left && (
 							<Box position="absolute" height="100%" left="0" zIndex="1">
 								Left
@@ -230,7 +228,7 @@ function Featured() {
 								Down
 							</Box>
 						)}
-					</Box> */}
+					</Box>
 					{loading ? (
 						<Box>Loading...</Box>
 					) : (

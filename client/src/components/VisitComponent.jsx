@@ -12,7 +12,13 @@ function VisitComponent({ headingText, contentArray }) {
 			marginBottom={{ sm: "5%", md: "10%", lg: "15%" }}
 			w="100%"
 		>
-			<Heading variant="exhibit-heading" textAlign="left" fontSize="2em" pb={0} mb="1em">
+			<Heading
+				variant="exhibit-heading"
+				textAlign="left"
+				fontSize="1.25em"
+				pb={0}
+				mb="1em"
+			>
 				{headingText}
 			</Heading>
 			<Box
