@@ -4,59 +4,84 @@ import { useEffect, useRef, useState } from "react";
 import FeaturedImage from "../components/FeaturedImage";
 
 function Featured() {
-	const [duchampImagesData, setDuchampImagesData] = useState({});
-	const [duchampImagesInfo, setDuchampImagesInfo] = useState([]);
-	const randomImageArray = [];
+	// establish states for the featured artist
+	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
+	const [loading, setLoading] = useState(true);
 
-	// const fillDuchampImages = async () => {
-	// 	const response = await fetch("/api/aic/marcel-duchamp", {
-	// 		method: "GET",
-	// 	});
-	// 	const data = await response.json();
-	// 	console.log(data);
-	// 	setDuchampImagesData(data);
-	// };
+	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
+	const fillFeaturedArtistImages = async () => {
+		try {
+			// fetch request to AIC api for featured artist (hard-coded to Duchamp for now)
+			const response = await fetch("/api/aic/marcel-duchamp", {
+				method: "GET",
+			});
+			const data = await response.json();
+			console.log(data);
 
-	// const selectRandomArtwork = async () => {
-	// 	if (Object.keys(duchampImagesData).length > 0) {
-	// 		const randomIndex = Math.floor(Math.random() * duchampImagesData.data.length);
-	// 		const randomArtwork = duchampImagesData.data[randomIndex];
-	// 		if (!randomImageArray.includes(randomArtwork)) {
-	// 			randomImageArray.push(randomArtwork);
-	// 			const randomArtWorkImageURL =
-	// 				duchampImagesData.config.iiif_url +
-	// 				"/" +
-	// 				randomArtwork.image_id +
-	// 				"/full/843,/0/default.jpg";
-	// 			console.log(randomArtwork);
-	// 			setDuchampImagesInfo((duchampImagesInfo) => [
-	// 				...duchampImagesInfo,
-	// 				{
-	// 					url: randomArtWorkImageURL,
-	// 					title: randomArtwork.title,
-	// 					date: randomArtwork.date_display,
-	// 					alt: randomArtwork.thumbnail.alt_text,
-	// 				},
-	// 			]);
-	// 		} else {
-	// 			selectRandomArtwork();
-	// 		}
-	// 	}
-	// };
+			// check length of featuredArtistImageInfo array and reset if it's greater than 6
+			if (featuredArtistImageInfo.length >= 6) {
+				setFeaturedArtistImageInfo([]);
+			}
 
-	// useEffect(() => {
-	// 	fillDuchampImages();
-	// }, []);
+			// set up array to hold random images (to deal for asynchronous nature of state defining)
+			const duchampImagesArray = [];
+			const randomIndexArray = [];
 
-	// // random math to pull a random artwork from the array
-	// useEffect(() => {
-	// 	selectRandomArtwork();
-	// 	selectRandomArtwork();
-	// 	selectRandomArtwork();
-	// 	selectRandomArtwork();
-	// 	selectRandomArtwork();
-	// 	selectRandomArtwork();
-	// }, [duchampImagesData]);
+			// for loop to grab 6 random artworks with relevant info from our call to the AIC API
+			for (let i = 0; i < 6; i++) {
+				// randomizer to grab random index from the returned artwork array
+				const randomIndex = Math.floor(Math.random() * data.data.length);
+				const randomArtwork = data.data[randomIndex];
+
+				// push the random artwork to the array with url, title, date, and alt-text (if necessary details present)
+				if (
+					randomIndexArray.includes(randomIndex) ||
+					!randomArtwork.image_id ||
+					randomArtwork.artist_title !== "Marcel Duchamp"
+				) {
+					// if doesn't meet criteria, decrement i
+					i--;
+				} else {
+					randomIndexArray.push(randomIndex);
+					// otherwise, make URL and push to array
+					// Concatenate the random artwork image id with the iiif url to get the image url
+					const randomArtWorkImageURL =
+						data.config.iiif_url +
+						"/" +
+						randomArtwork.image_id +
+						"/full/843,/0/default.jpg";
+					console.log(randomArtwork.id);
+
+					duchampImagesArray.push({
+						url: randomArtWorkImageURL,
+						title: randomArtwork.title,
+						date: randomArtwork.date_display,
+						alt:
+							randomArtwork.thumbnail && randomArtwork.thumbnail.alt_text
+								? randomArtwork.thumbnail.alt_text
+								: "A work entitled " + randomArtwork.title + " by Marcel Duchamp",
+					});
+				}
+			}
+			// set the state of the featuredArtistImageInfo array to the duchampImagesArray (for asynchronous nature of state defining)
+			setFeaturedArtistImageInfo(duchampImagesArray);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	// call function on page load
+	useEffect(() => {
+		fillFeaturedArtistImages();
+	}, []);
+
+	// use effect for setting loading state to false once featuredArtistImageInfo array is filled
+	useEffect(() => {
+		if (featuredArtistImageInfo.length === 6) {
+			console.log(featuredArtistImageInfo);
+			setLoading(false);
+		}
+	}, [featuredArtistImageInfo]);
 
 	// async function getMetTestResponse() {
 	// 	const response = await fetch("/api/met/", {
@@ -178,10 +203,11 @@ function Featured() {
 				</Flex>
 				<Box
 					// ref={scrollBoxRef}
-					overflowY={{ base: "visible", lg: "scroll" }}
-					overflowX={{ base: "scroll", lg: "visible" }}
+					overflowY={{ base: "hidden", lg: "scroll" }}
+					overflowX={{ base: "scroll", lg: "hidden" }}
 					position="relative"
 					height="100%"
+					mt={{ base: 4, lg: 12 }}
 				>
 					{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
 						{scrollDirection.left && (
@@ -205,62 +231,93 @@ function Featured() {
 							</Box>
 						)}
 					</Box> */}
-					<Flex
-						direction={{ base: "row", lg: "column" }}
-						my={{ base: 4, lg: 0 }}
-						position="relative"
-						width={{ base: "330%", md: "270%", lg: "auto" }}
-						justify="space-around"
-					>
-						{/* <FeaturedImage
-							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-							alignment={{ base: "flex-start", lg: "flex-end" }}
-							title={duchampImagesInfo[0].title}
-							date={duchampImagesInfo[0].date_display}
-							url={duchampImagesInfo[0].url}
-							alt={duchampImagesInfo[0].alt_text}
-						/> */}
-						<FeaturedImage
-							flexDirection={{ base: "column", lg: "row" }}
-							alignment={{ base: "flex-end", lg: "flex-start" }}
-							title="The Fountain"
-							date="1917"
-							url="/images/Duchamp.jpeg"
-							alt="Duchamp"
-						/>
-						<FeaturedImage
-							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-							alignment={{ base: "flex-start", lg: "flex-end" }}
-							title="The Fountain"
-							date="1917"
-							url="/images/Duchamp.jpeg"
-							alt="Duchamp"
-						/>
-						<FeaturedImage
-							flexDirection={{ base: "column", lg: "row" }}
-							alignment={{ base: "flex-end", lg: "flex-start" }}
-							title="The Fountain"
-							date="1917"
-							url="/images/Duchamp.jpeg"
-							alt="Duchamp"
-						/>
-						<FeaturedImage
-							flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-							alignment={{ base: "flex-start", lg: "flex-end" }}
-							title="The Fountain"
-							date="1917"
-							url="/images/Duchamp.jpeg"
-							alt="Duchamp"
-						/>
-						<FeaturedImage
-							flexDirection={{ base: "column", lg: "row" }}
-							alignment={{ base: "flex-end", lg: "flex-start" }}
-							title="The Fountain"
-							date="1917"
-							url="/images/Duchamp.jpeg"
-							alt="Duchamp"
-						/>
-					</Flex>
+					{loading ? (
+						<Box>Loading...</Box>
+					) : (
+						<Flex
+							direction={{ base: "row", lg: "column" }}
+							my={{ base: 4, lg: 0 }}
+							position="relative"
+							width={{ base: "330%", md: "270%", lg: "auto" }}
+							justify="space-around"
+						>
+							{featuredArtistImageInfo.map((image, index) => {
+								const flexDirection =
+									index % 2 === 0
+										? { base: "column-reverse", lg: "row-reverse" }
+										: { base: "column", lg: "row" };
+								const alignment =
+									index % 2 === 0
+										? { base: "flex-start", lg: "flex-end" }
+										: { base: "flex-end", lg: "flex-start" };
+								const textAlign =
+									index % 2 === 0
+										? { base: "left", lg: "right" }
+										: { base: "right", lg: "left" };
+
+								return (
+									<FeaturedImage
+										key={index}
+										flexDirection={flexDirection}
+										alignment={alignment}
+										textAlign={textAlign}
+										title={image.title}
+										date={image.date}
+										url={image.url}
+										alt={image.alt}
+									/>
+								);
+							})}
+						</Flex>
+					)}
+					{/* // <FeaturedImage
+								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
+								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
+								// 	title={featuredArtistImageInfo[0].title}
+								// 	date={featuredArtistImageInfo[0].date_display}
+								// 	url={featuredArtistImageInfo[0].url}
+								// 	alt={featuredArtistImageInfo[0].alt_text}
+								// />
+								// <FeaturedImage
+								// 	flexDirection={{ base: "column", lg: "row" }}
+								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
+								// 	title="The Fountain"
+								// 	date="1917"
+								// 	url="/images/Duchamp.jpeg"
+								// 	alt="Duchamp"
+								// />
+								// <FeaturedImage
+								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
+								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
+								// 	title="The Fountain"
+								// 	date="1917"
+								// 	url="/images/Duchamp.jpeg"
+								// 	alt="Duchamp"
+								// />
+								// <FeaturedImage
+								// 	flexDirection={{ base: "column", lg: "row" }}
+								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
+								// 	title="The Fountain"
+								// 	date="1917"
+								// 	url="/images/Duchamp.jpeg"
+								// 	alt="Duchamp"
+								// />
+								// <FeaturedImage
+								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
+								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
+								// 	title="The Fountain"
+								// 	date="1917"
+								// 	url="/images/Duchamp.jpeg"
+								// 	alt="Duchamp"
+								// />
+								// <FeaturedImage
+								// 	flexDirection={{ base: "column", lg: "row" }}
+								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
+								// 	title="The Fountain"
+								// 	date="1917"
+								// 	url="/images/Duchamp.jpeg"
+								// 	alt="Duchamp"
+								// /> */}
 				</Box>
 			</Grid>
 		</Box>

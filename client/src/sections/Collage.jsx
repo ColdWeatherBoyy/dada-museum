@@ -31,7 +31,7 @@ function Collage() {
 	};
 
 	useEffect(() => {
-		console.log(collageElements);
+		// console.log(collageElements);
 	}, []);
 
 	return (
