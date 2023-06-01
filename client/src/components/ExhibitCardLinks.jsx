@@ -17,7 +17,7 @@ function ExhibitCardLinks({ destination, justification, text }) {
 				<Text
 					pt="2"
 					px={2}
-					fontSize="1.65em"
+					fontSize="1.25em"
 					textDecoration={isActive ? "underline" : "none"}
 					letterSpacing={isActive ? ".5px" : "normal"}
 					transition="all .3s ease"
