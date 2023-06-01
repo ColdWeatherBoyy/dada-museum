@@ -3,18 +3,23 @@ import { useEffect, useRef, useState } from "react";
 
 import FeaturedImage from "../components/FeaturedImage";
 
-// add Man Ray, Tristan Tzara, Francis Picabia, Hannah Höch, Suzanne Duchamp, and Jean Crotti
+// add Hannah Höch, Suzanne Duchamp check met
 
 function Featured() {
 	// establish states for the featured artist
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [selectedArtist, setSelectedArtist] = useState(0);
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
 		try {
-			// fetch request to AIC api for featured artist (hard-coded to Duchamp for now)
-			const response = await fetch("/api/aic/marcel-duchamp", {
+			// fetch request to AIC api for featured artist
+			const featuredArtist = selectedArtist
+				.toLowerCase()
+				.replace(" ", "-")
+				.replace("(hans) ", "");
+			const response = await fetch(`/api/aic/${featuredArtist}`, {
 				method: "GET",
 			});
 			const data = await response.json();
@@ -39,7 +44,8 @@ function Featured() {
 				if (
 					randomIndexArray.includes(randomIndex) ||
 					!randomArtwork.image_id ||
-					randomArtwork.artist_title !== "Marcel Duchamp"
+					(randomArtwork.artist_title !== selectedArtist &&
+						randomArtwork.artist_title !== selectedArtist + " (Emmanuel Radnitzky)")
 				) {
 					// if doesn't meet criteria, decrement i
 					i--;
@@ -52,16 +58,18 @@ function Featured() {
 						"/" +
 						randomArtwork.image_id +
 						"/full/843,/0/default.jpg";
-					// console.log(randomArtwork.id);
 
 					duchampImagesArray.push({
 						url: randomArtWorkImageURL,
 						title: randomArtwork.title,
-						date: randomArtwork.date_display,
+						date:
+							randomArtwork.date_display === "n.d."
+								? randomArtwork.date_end
+								: randomArtwork.date_display,
 						alt:
 							randomArtwork.thumbnail && randomArtwork.thumbnail.alt_text
 								? randomArtwork.thumbnail.alt_text
-								: "A work entitled " + randomArtwork.title + " by Marcel Duchamp",
+								: "A work entitled " + randomArtwork.title + " by " + selectedArtist,
 					});
 				}
 			}
@@ -74,8 +82,24 @@ function Featured() {
 
 	// call function on page load
 	useEffect(() => {
-		fillFeaturedArtistImages();
+		const artistArray = [
+			"Marcel Duchamp",
+			"Man Ray",
+			"Francis Picabia",
+			"Kurt Schwitters",
+			"Jean (Hans) Arp",
+			"Max Ernst",
+		];
+
+		// randomizer to select artist from array
+		const artistIndex = Math.floor(Math.random() * artistArray.length);
+		setSelectedArtist(artistArray[artistIndex]);
 	}, []);
+
+	// call function on selectedArtist defined
+	useEffect(() => {
+		fillFeaturedArtistImages();
+	}, [selectedArtist]);
 
 	// use effect for setting loading state to false once featuredArtistImageInfo array is filled
 	useEffect(() => {
@@ -195,7 +219,7 @@ function Featured() {
 								WebkitBackdropFilter: "blur(1.5px)",
 							}}
 						>
-							Marcel Duchamp
+							{selectedArtist}
 						</Box>
 					</Flex>
 				</Flex>
