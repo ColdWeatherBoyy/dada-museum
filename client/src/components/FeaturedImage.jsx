@@ -5,7 +5,7 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 		<Flex
 			direction={flexDirection}
 			align={{ base: "auto", lg: "center" }}
-			justify={{ base: "space-between", lg: "space-around" }}
+			justify={{ base: "space-between", lg: "space-evenly" }}
 			mb={{ base: 0, lg: 8 }}
 			mx={{ base: 4, lg: 0 }}
 			height={{ base: "55vw", lg: "auto" }}
@@ -18,11 +18,15 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 				>
 					{title}
 				</Box>
-				<Box textStyle="battambang" fontSize={{ base: "12px", sm: "13px", md: "16px" }}>
+				<Box
+					textStyle="battambang"
+					fontSize={{ base: "12px", sm: "13px", md: "16px" }}
+					textAlign={textAlign}
+				>
 					{date}
 				</Box>
 			</Flex>
-			<Image src={url} alt={alt} maxW={{ base: "75%", lg: "50%" }} />
+			<Image src={url} alt={alt} maxW={{ base: "70%", lg: "35%" }} />
 		</Flex>
 	);
 }

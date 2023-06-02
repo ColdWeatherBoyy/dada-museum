@@ -1,32 +1,30 @@
-import { Box, Flex, Grid, Heading, Image, SimpleGrid } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { Box, Flex, Grid, Heading, Image } from "@chakra-ui/react";
+import Button from "../components/Button.jsx";
+import { useEffect, useState } from "react";
 
 import FeaturedImage from "../components/FeaturedImage";
-
-// add Man Ray, Tristan Tzara, Francis Picabia, Hannah Höch, Suzanne Duchamp, and Jean Crotti
 
 function Featured() {
 	// establish states for the featured artist
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [selectedArtist, setSelectedArtist] = useState({});
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
 		try {
-			// fetch request to AIC api for featured artist (hard-coded to Duchamp for now)
-			const response = await fetch("/api/aic/marcel-duchamp", {
+			// fetch request to AIC api for featured artist
+			const featuredArtist = selectedArtist.name
+				.toLowerCase()
+				.replace(" ", "-")
+				.replace("(hans) ", "");
+			const response = await fetch(`/api/aic/${featuredArtist}`, {
 				method: "GET",
 			});
 			const data = await response.json();
-			console.log(data);
-
-			// check length of featuredArtistImageInfo array and reset if it's greater than 6
-			if (featuredArtistImageInfo.length >= 6) {
-				setFeaturedArtistImageInfo([]);
-			}
 
 			// set up array to hold random images (to deal for asynchronous nature of state defining)
-			const duchampImagesArray = [];
+			const arrayOfRandomImages = [];
 			const randomIndexArray = [];
 
 			// for loop to grab 6 random artworks with relevant info from our call to the AIC API
@@ -39,7 +37,8 @@ function Featured() {
 				if (
 					randomIndexArray.includes(randomIndex) ||
 					!randomArtwork.image_id ||
-					randomArtwork.artist_title !== "Marcel Duchamp"
+					(randomArtwork.artist_title !== selectedArtist.name &&
+						randomArtwork.artist_title !== selectedArtist.name + " (Emmanuel Radnitzky)")
 				) {
 					// if doesn't meet criteria, decrement i
 					i--;
@@ -47,26 +46,28 @@ function Featured() {
 					randomIndexArray.push(randomIndex);
 					// otherwise, make URL and push to array
 					// Concatenate the random artwork image id with the iiif url to get the image url
-					const randomArtWorkImageURL =
+					const randomArtworkImageURL =
 						data.config.iiif_url +
 						"/" +
 						randomArtwork.image_id +
 						"/full/843,/0/default.jpg";
-					// console.log(randomArtwork.id);
-
-					duchampImagesArray.push({
-						url: randomArtWorkImageURL,
+					console.log(randomArtwork.artist_title);
+					arrayOfRandomImages.push({
+						url: randomArtworkImageURL,
 						title: randomArtwork.title,
-						date: randomArtwork.date_display,
+						date:
+							randomArtwork.date_display === "n.d."
+								? randomArtwork.date_end
+								: randomArtwork.date_display,
 						alt:
 							randomArtwork.thumbnail && randomArtwork.thumbnail.alt_text
 								? randomArtwork.thumbnail.alt_text
-								: "A work entitled " + randomArtwork.title + " by Marcel Duchamp",
+								: "A work entitled " + randomArtwork.title + " by " + selectedArtist.name,
 					});
 				}
 			}
-			// set the state of the featuredArtistImageInfo array to the duchampImagesArray (for asynchronous nature of state defining)
-			setFeaturedArtistImageInfo(duchampImagesArray);
+			// set the state of the featuredArtistImageInfo array to the arrayOfRandomImages (for asynchronous nature of state defining)
+			setFeaturedArtistImageInfo(arrayOfRandomImages);
 		} catch (error) {
 			console.log(error);
 		}
@@ -74,8 +75,52 @@ function Featured() {
 
 	// call function on page load
 	useEffect(() => {
-		fillFeaturedArtistImages();
+		const artistArray = [
+			{
+				name: "Marcel Duchamp",
+				src: "/images/PortraitofMarcelDuchampManRay.jpg",
+				alt: "Man Ray's Portrait of Marcel Duchamp, 1920-1921",
+			},
+			{
+				name: "Man Ray",
+				src: "/images/ManRayInParis.jpg",
+				alt: "Man Ray in Paris, 1934",
+			},
+			{
+				name: "Francis Picabia",
+				src: "/images/ExcerptofFrancisPicabiaInsideDansedeSaint-Guy.jpg",
+				alt: "Excerpt of Francis Picabia's Inside Danse de Saint-Guy, 1923",
+			},
+			{
+				name: "Kurt Schwitters",
+				src: "/images/KurtSchwittersPortraitYale.jpg",
+				alt: "Studio portrait of Kurt Schwitters in his thirties. Dreier archive, Yale University.",
+			},
+			{
+				name: "Jean (Hans) Arp",
+				src: "/images/JeanArpinthe60s.jpg",
+				alt: "Jean Arp, c. 1960.",
+			},
+			{
+				name: "Max Ernst",
+				src: "/images/MaxErnstExcerptPunchingBallOrTheImmortalityOfBuonarroti.jpeg",
+				alt: "Excerpt from Punching Ball Or The Immortality Of Buonarroti by Max Ernst, 1920",
+			},
+		];
+
+		// randomizer to select artist from array
+		const artistIndex = Math.floor(Math.random() * artistArray.length);
+		setSelectedArtist(artistArray[artistIndex]);
 	}, []);
+
+	// call function on selectedArtist defined
+	useEffect(() => {
+		if (!selectedArtist.name) {
+			return;
+		}
+		console.log(selectedArtist);
+		fillFeaturedArtistImages();
+	}, [selectedArtist]);
 
 	// use effect for setting loading state to false once featuredArtistImageInfo array is filled
 	useEffect(() => {
@@ -97,117 +142,124 @@ function Featured() {
 	// 	getMetTestResponse();
 	// }, []);
 
-	const scrollBoxRef = useRef(null);
-	const [scrollDirection, setScrollDirection] = useState({
-		left: false,
-		right: false,
-		up: false,
-		down: true,
-	});
+	// const scrollBoxRef = useRef(null);
+	// const [scrollDirection, setScrollDirection] = useState({
+	// 	left: false,
+	// 	right: false,
+	// 	up: false,
+	// 	down: true,
+	// });
 
-	// if check to see window size and set scrollDirection accordingly
-	useEffect(() => {
-		if (window.innerWidth < 992) {
-			setScrollDirection({
-				left: false,
-				right: true,
-				up: false,
-				down: false,
-			});
-		}
-	}, [loading]);
+	// // if check to see window size and set scrollDirection accordingly
+	// useEffect(() => {
+	// 	if (window.innerWidth < 992) {
+	// 		setScrollDirection({
+	// 			left: false,
+	// 			right: true,
+	// 			up: false,
+	// 			down: false,
+	// 		});
+	// 	}
+	// }, [loading]);
 
-	useEffect(() => {
-		const scrollBox = scrollBoxRef.current;
-		// const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
+	// useEffect(() => {
+	// 	const scrollBox = scrollBoxRef.current;
+	// 	// const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
 
-		const handleScroll = () => {
-			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+	// 	const handleScroll = () => {
+	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
 
-			setScrollDirection({
-				left: scrollBox.scrollLeft > 0 && isScrollableX,
-				right:
-					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-					isScrollableX,
-				up: scrollBox.scrollTop > 0 && isScrollableY,
-				down:
-					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-					isScrollableY,
-			});
-		};
+	// 		setScrollDirection({
+	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
+	// 			right:
+	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+	// 				isScrollableX,
+	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
+	// 			down:
+	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+	// 				isScrollableY,
+	// 		});
+	// 	};
 
-		scrollBox.addEventListener("scroll", handleScroll);
-		window.addEventListener("resize", handleScroll);
+	// 	scrollBox.addEventListener("scroll", handleScroll);
+	// 	window.addEventListener("resize", handleScroll);
 
-		return () => {
-			scrollBox.removeEventListener("scroll", handleScroll);
-			window.removeEventListener("resize", handleScroll);
-		};
-	}, [loading]);
+	// 	return () => {
+	// 		scrollBox.removeEventListener("scroll", handleScroll);
+	// 		window.removeEventListener("resize", handleScroll);
+	// 	};
+	// }, [loading]);
 
-	useEffect(() => {
-		console.log(scrollDirection);
-	}, [scrollDirection]);
+	// useEffect(() => {
+	// 	console.log(scrollDirection);
+	// }, [scrollDirection]);
 
 	return (
-		<Box minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box mb={{ base: 4, lg: 12 }} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
-				height={{ base: "auto", lg: "50vw" }}
+				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 0, md: 8, lg: 16 }}
 			>
-				<Flex width="100%" direction="column" align="center" justify="space-evenly">
+				<Flex
+					width="100%"
+					direction="column"
+					align="center"
+					justify="space-evenly"
+					mt={{ base: 8, lg: 0 }}
+				>
 					<Box width="100%" alignSelf="flex-start">
 						<Heading variant="section-heading" fontSize="2.25em" textAlign="center">
 							Featured Artist
 						</Heading>
 						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
 					</Box>
-					<Flex
-						justify="center"
-						width={{ base: "50%", md: "45%", lg: "70%" }}
-						position="relative"
-					>
-						<Image
-							src="/images/PortraitofMarcelDuchampManRay.jpg"
-							alt="Man Ray's Portrait of Marcel Duchamp, 1920-1921"
-							width="100%"
-						/>
-						<Box
-							padding=".5em .5em"
-							textStyle="playfairBold"
-							fontSize={{
-								sm: "22px",
-								lg: "24px",
-								xl: "28px",
-							}}
-							letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
-							textAlign="center"
-							display="inline-block"
-							position="absolute"
-							bottom={6}
-							maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
-							style={{
-								backgroundColor: "rgba(200, 200, 200, 0.5)",
-								color: "white",
-								backdropFilter: "blur(1.5px)",
-								WebkitBackdropFilter: "blur(1.5px)",
-							}}
-						>
-							Marcel Duchamp
-						</Box>
-					</Flex>
+					{loading ? (
+						<Box>Loading...</Box>
+					) : (
+						<>
+							<Flex
+								justify="center"
+								width={{ base: "40%", md: "35%", lg: "70%" }}
+								position="relative"
+							>
+								<Image src={selectedArtist.src} alt={selectedArtist.alt} />
+								<Box
+									padding=".5em .5em"
+									textStyle="playfairBold"
+									fontSize={{
+										sm: "22px",
+										lg: "24px",
+										xl: "28px",
+									}}
+									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+									textAlign="center"
+									position="absolute"
+									bottom={6}
+									maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
+									bgColor="rgba(200, 200, 200, 0.5)"
+									color="white"
+									style={{
+										backdropFilter: "blur(3px)",
+										WebkitBackdropFilter: "blur(3px)",
+									}}
+								>
+									{selectedArtist.name}
+								</Box>
+							</Flex>
+						</>
+					)}
 				</Flex>
 				<Box
-					ref={scrollBoxRef}
+					// ref={scrollBoxRef}
 					overflowY={{ base: "hidden", lg: "scroll" }}
 					overflowX={{ base: "scroll", lg: "hidden" }}
 					position="relative"
 					width="100%"
 					mt={{ base: 4, lg: 12 }}
 				>
-					<Box pointerEvents="none" width="100%" height="100%" position="absolute">
+					{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
 						{scrollDirection.left && (
 							<Box position="absolute" height="100%" left="0" zIndex="1">
 								Left
@@ -228,7 +280,7 @@ function Featured() {
 								Down
 							</Box>
 						)}
-					</Box>
+					</Box> */}
 					{loading ? (
 						<Box>Loading...</Box>
 					) : (
@@ -268,54 +320,6 @@ function Featured() {
 							})}
 						</Flex>
 					)}
-					{/* // <FeaturedImage
-								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
-								// 	title={featuredArtistImageInfo[0].title}
-								// 	date={featuredArtistImageInfo[0].date_display}
-								// 	url={featuredArtistImageInfo[0].url}
-								// 	alt={featuredArtistImageInfo[0].alt_text}
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column", lg: "row" }}
-								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column", lg: "row" }}
-								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column", lg: "row" }}
-								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// /> */}
 				</Box>
 			</Grid>
 		</Box>
