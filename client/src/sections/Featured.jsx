@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Heading, Image, SimpleGrid } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import FeaturedImage from "../components/FeaturedImage";
 
@@ -7,17 +7,13 @@ function Featured() {
 	// establish states for the featured artist
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [selectedArtist, setSelectedArtist] = useState("Marcel Duchamp");
-	const [imageOfSelectedArtist, setImageOfSelectedArtist] = useState({
-		src: "/images/PortraitofMarcelDuchampManRay.jpg",
-		alt: "Man Ray's Portrait of Marcel Duchamp, 1920-1921",
-	});
+	const [selectedArtist, setSelectedArtist] = useState({});
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
 		try {
 			// fetch request to AIC api for featured artist
-			const featuredArtist = selectedArtist
+			const featuredArtist = selectedArtist.name
 				.toLowerCase()
 				.replace(" ", "-")
 				.replace("(hans) ", "");
@@ -25,7 +21,6 @@ function Featured() {
 				method: "GET",
 			});
 			const data = await response.json();
-			console.log(data);
 
 			// check length of featuredArtistImageInfo array and reset if it's greater than 6
 			if (featuredArtistImageInfo.length >= 6) {
@@ -33,7 +28,7 @@ function Featured() {
 			}
 
 			// set up array to hold random images (to deal for asynchronous nature of state defining)
-			const duchampImagesArray = [];
+			const arrayOfRandomImages = [];
 			const randomIndexArray = [];
 
 			// for loop to grab 6 random artworks with relevant info from our call to the AIC API
@@ -46,8 +41,8 @@ function Featured() {
 				if (
 					randomIndexArray.includes(randomIndex) ||
 					!randomArtwork.image_id ||
-					(randomArtwork.artist_title !== selectedArtist &&
-						randomArtwork.artist_title !== selectedArtist + " (Emmanuel Radnitzky)")
+					(randomArtwork.artist_title !== selectedArtist.name &&
+						randomArtwork.artist_title !== selectedArtist.name + " (Emmanuel Radnitzky)")
 				) {
 					// if doesn't meet criteria, decrement i
 					i--;
@@ -55,14 +50,14 @@ function Featured() {
 					randomIndexArray.push(randomIndex);
 					// otherwise, make URL and push to array
 					// Concatenate the random artwork image id with the iiif url to get the image url
-					const randomArtWorkImageURL =
+					const randomArtworkImageURL =
 						data.config.iiif_url +
 						"/" +
 						randomArtwork.image_id +
 						"/full/843,/0/default.jpg";
-
-					duchampImagesArray.push({
-						url: randomArtWorkImageURL,
+					console.log(randomArtwork.artist_title);
+					arrayOfRandomImages.push({
+						url: randomArtworkImageURL,
 						title: randomArtwork.title,
 						date:
 							randomArtwork.date_display === "n.d."
@@ -71,12 +66,12 @@ function Featured() {
 						alt:
 							randomArtwork.thumbnail && randomArtwork.thumbnail.alt_text
 								? randomArtwork.thumbnail.alt_text
-								: "A work entitled " + randomArtwork.title + " by " + selectedArtist,
+								: "A work entitled " + randomArtwork.title + " by " + selectedArtist.name,
 					});
 				}
 			}
-			// set the state of the featuredArtistImageInfo array to the duchampImagesArray (for asynchronous nature of state defining)
-			setFeaturedArtistImageInfo(duchampImagesArray);
+			// set the state of the featuredArtistImageInfo array to the arrayOfRandomImages (for asynchronous nature of state defining)
+			setFeaturedArtistImageInfo(arrayOfRandomImages);
 		} catch (error) {
 			console.log(error);
 		}
@@ -85,33 +80,33 @@ function Featured() {
 	// call function on page load
 	useEffect(() => {
 		const artistArray = [
-			"Marcel Duchamp",
-			"Man Ray",
-			"Francis Picabia",
-			"Kurt Schwitters",
-			"Jean (Hans) Arp",
-			"Max Ernst",
-		];
-
-		const imageArray = [
 			{
+				name: "Marcel Duchamp",
 				src: "/images/PortraitofMarcelDuchampManRay.jpg",
 				alt: "Man Ray's Portrait of Marcel Duchamp, 1920-1921",
 			},
-			{ src: "/images/ManRayInParis.jpg", alt: "Man Ray in Paris, 1934" },
 			{
+				name: "Man Ray",
+				src: "/images/ManRayInParis.jpg",
+				alt: "Man Ray in Paris, 1934",
+			},
+			{
+				name: "Francis Picabia",
 				src: "/images/ExcerptofFrancisPicabiaInsideDansedeSaint-Guy.jpg",
 				alt: "Excerpt of Francis Picabia's Inside Danse de Saint-Guy, 1923",
 			},
 			{
+				name: "Kurt Schwitters",
 				src: "/images/KurtSchwittersPortraitYale.jpg",
 				alt: "Studio portrait of Kurt Schwitters in his thirties. Dreier archive, Yale University.",
 			},
 			{
+				name: "Jean (Hans) Arp",
 				src: "/images/JeanArpinthe60s.jpg",
 				alt: "Jean Arp, c. 1960.",
 			},
 			{
+				name: "Max Ernst",
 				src: "/images/MaxErnstExcerptPunchingBallOrTheImmortalityOfBuonarroti.jpeg",
 				alt: "Excerpt from Punching Ball Or The Immortality Of Buonarroti by Max Ernst, 1920",
 			},
@@ -120,13 +115,16 @@ function Featured() {
 		// randomizer to select artist from array
 		const artistIndex = Math.floor(Math.random() * artistArray.length);
 		setSelectedArtist(artistArray[artistIndex]);
-		setImageOfSelectedArtist(imageArray[artistIndex]);
 	}, []);
 
 	// call function on selectedArtist defined
 	useEffect(() => {
+		if (!selectedArtist.name) {
+			return;
+		}
+		console.log(selectedArtist);
 		fillFeaturedArtistImages();
-	}, [selectedArtist, imageOfSelectedArtist]);
+	}, [selectedArtist]);
 
 	// use effect for setting loading state to false once featuredArtistImageInfo array is filled
 	useEffect(() => {
@@ -224,11 +222,7 @@ function Featured() {
 							<Box>Loading...</Box>
 						) : (
 							<>
-								<Image
-									src={imageOfSelectedArtist.src}
-									alt={imageOfSelectedArtist.alt}
-									width="100%"
-								/>
+								<Image src={selectedArtist.src} alt={selectedArtist.alt} width="100%" />
 								<Box
 									padding=".5em .5em"
 									textStyle="playfairBold"
@@ -250,7 +244,7 @@ function Featured() {
 										WebkitBackdropFilter: "blur(3px)",
 									}}
 								>
-									{selectedArtist}
+									{selectedArtist.name}
 								</Box>
 							</>
 						)}
@@ -325,54 +319,6 @@ function Featured() {
 							})}
 						</Flex>
 					)}
-					{/* // <FeaturedImage
-								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
-								// 	title={featuredArtistImageInfo[0].title}
-								// 	date={featuredArtistImageInfo[0].date_display}
-								// 	url={featuredArtistImageInfo[0].url}
-								// 	alt={featuredArtistImageInfo[0].alt_text}
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column", lg: "row" }}
-								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column", lg: "row" }}
-								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column-reverse", lg: "row-reverse" }}
-								// 	alignment={{ base: "flex-start", lg: "flex-end" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// />
-								// <FeaturedImage
-								// 	flexDirection={{ base: "column", lg: "row" }}
-								// 	alignment={{ base: "flex-end", lg: "flex-start" }}
-								// 	title="The Fountain"
-								// 	date="1917"
-								// 	url="/images/Duchamp.jpeg"
-								// 	alt="Duchamp"
-								// /> */}
 				</Box>
 			</Grid>
 		</Box>
