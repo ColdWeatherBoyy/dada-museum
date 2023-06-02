@@ -15,17 +15,14 @@ function LinkCard({ textOne, textTwo, textThree }) {
 				<Stack divider={<StackDivider borderColor="gray.300" />} spacing="4">
 					<CardLinks
 						// destination=""
-						justification="flex-start"
 						text={textOne}
 					/>
 					<CardLinks
 						// destination=""
-						justification="flex-end"
 						text={textTwo}
 					/>
 					<CardLinks
 						// destination=""
-						justification="flex-start"
 						text={textThree}
 					/>
 				</Stack>
