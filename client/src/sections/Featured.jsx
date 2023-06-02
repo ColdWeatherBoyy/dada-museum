@@ -74,8 +74,7 @@ function Featured() {
 		}
 	};
 
-	// call function on page load
-	useEffect(() => {
+	const selectRandomArtist = () => {
 		const artistArray = [
 			{
 				name: "Marcel Duchamp",
@@ -112,6 +111,10 @@ function Featured() {
 		// randomizer to select artist from array
 		const artistIndex = Math.floor(Math.random() * artistArray.length);
 		setSelectedArtist(artistArray[artistIndex]);
+	};
+	// call function on page load
+	useEffect(() => {
+		selectRandomArtist();
 	}, []);
 
 	// call function on selectedArtist defined
@@ -130,6 +133,11 @@ function Featured() {
 			setLoading(false);
 		}
 	}, [featuredArtistImageInfo]);
+
+	const handleClick = () => {
+		setLoading(true);
+		selectRandomArtist();
+	};
 
 	// async function getMetTestResponse() {
 	// 	const response = await fetch("/api/met/", {
@@ -275,6 +283,9 @@ function Featured() {
 										sm: "14px",
 										md: "16px",
 										lg: "18px",
+									}}
+									onClick={() => {
+										handleClick();
 									}}
 								>
 									Random Artist
