@@ -56,7 +56,7 @@ function Collage() {
 				justifyContent="space-between"
 				mx={{ sm: 8, md: 8, lg: 16 }}
 			>
-				<Card bgColor="white" w="60%" minH="90vh" p="0" ref={collageBoundary}>
+				<Card bgColor="white" w="40%" maxH="60vh" p="0" ref={collageBoundary}>
 					{collageElements.map((element, index) => {
 						return (
 							<CollageElement
@@ -70,50 +70,65 @@ function Collage() {
 				</Card>
 				<Card
 					bgColor="white"
-					w="30%"
-					minH="90vh"
+					w="55%"
+					minH="60vh"
 					display="flex"
 					flexDirection="column"
 					justifyContent="space-around"
 					alignItems="center"
 				>
-					<RadioGroup onChange={setTextValue} value={textValue}>
-						<Stack direction="row">
-							<Radio value="D">D</Radio>
-							<Radio value="A">A</Radio>
-							<Radio value="d">d</Radio>
-							<Radio value="a">a</Radio>
-						</Stack>
-						<Stack direction="row">
-							<Radio value="!">!</Radio>
-							<Radio value="?">?</Radio>
-						</Stack>
-					</RadioGroup>
-					<RadioGroup onChange={setFontValue} value={fontValue}>
-						<Stack direction="column">
-							<Radio value="serif">Serif</Radio>
-							<Radio value="sans-serif">Sans-Serif</Radio>
-						</Stack>
-					</RadioGroup>
-					<RadioGroup onChange={setFontSize} value={fontSize}>
-						<Stack direction="column">
-							<Radio value="small">Small</Radio>
-							<Radio value="medium">Medium</Radio>
-							<Radio value="large">Large</Radio>
-						</Stack>
-					</RadioGroup>
 					<Box
-						bgColor="gray.100"
-						w="250px"
-						aspectRatio="1 / 1"
 						display="flex"
-						flexDirection="column"
-						justifyContent="center"
-						alignItems="center"
+						flexDirection="row"
+						justifyContent="space-around"
+						w="100%"
 					>
-						<CollagePreview classText={fontValue + " " + fontSize} text={textValue} />
+						<Box
+							display="flex"
+							flexDirection="column"
+							justifyContent="space-around"
+						>
+							<RadioGroup onChange={setTextValue} value={textValue}>
+								<Stack direction="row">
+									<Radio value="D">D</Radio>
+									<Radio value="A">A</Radio>
+									<Radio value="d">d</Radio>
+									<Radio value="a">a</Radio>
+								</Stack>
+								<Stack direction="row">
+									<Radio value="!">!</Radio>
+									<Radio value="?">?</Radio>
+								</Stack>
+							</RadioGroup>
+							<RadioGroup onChange={setFontValue} value={fontValue}>
+								<Stack direction="column">
+									<Radio value="serif">Serif</Radio>
+									<Radio value="sans-serif">Sans-Serif</Radio>
+								</Stack>
+							</RadioGroup>
+							<RadioGroup onChange={setFontSize} value={fontSize}>
+								<Stack direction="column">
+									<Radio value="small">Small</Radio>
+									<Radio value="medium">Medium</Radio>
+									<Radio value="large">Large</Radio>
+								</Stack>
+							</RadioGroup>
+						</Box>
+						<Box
+							bgColor="gray.100"
+							w="250px"
+							aspectRatio="1 / 1"
+							display="flex"
+							flexDirection="column"
+							justifyContent="center"
+							alignItems="center"
+						>
+							<CollagePreview classText={fontValue + " " + fontSize} text={textValue} />
+						</Box>
 					</Box>
-					<Button onClick={addShape}>Add</Button>
+					<Button onClick={addShape()}>
+						Add
+					</Button>
 				</Card>
 			</Box>
 		</Box>

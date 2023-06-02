@@ -9,6 +9,8 @@ function Visit() {
 
 	const determineStatus = async () => {
 		const current = new Date();
+		console.log(current.getDay());
+		console.log(current.getHours());
 		switch(current.getDay()) {
 			case 0:
 				if (current.getHours() > 11 && current.getHours() < 16) {
