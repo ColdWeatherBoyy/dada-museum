@@ -35,7 +35,7 @@ function Collage() {
 	}, []);
 
 	return (
-		<Box paddingY={16} w="100%" minH="90vh">
+		<Box paddingY={16} w="100%" minH="90vh" backgroundColor="gray.100">
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
 				spacingX={{ sm: 0, md: 8, lg: 16 }}
@@ -53,11 +53,12 @@ function Collage() {
 			</SimpleGrid>
 			<Box
 				display="flex"
-				flexDirection="row"
+				flexDirection={{base: "column", md: "row"}}
 				justifyContent="space-between"
+				alignItems={{base: "center", md: "left"}}
 				mx={{ sm: 8, md: 8, lg: 16 }}
 			>
-				<Card bgColor="white" w="60%" minH="90vh" p="0" ref={collageBoundary}>
+				<Card bgColor="white" w={{base: "80%", md: "60%"}} minH={{base: "60vh", md: "40vh"}} p="0" ref={collageBoundary}>
 					{collageElements.map((element, index) => {
 						return (
 							<CollageElement
