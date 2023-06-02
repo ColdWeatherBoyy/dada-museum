@@ -7,7 +7,7 @@ function Button({ buttonText }) {
 			<CardBody textStyle="playfairBold">
 				<ExhibitCardLinks
 					// destination=""
-					justification="flex-start"
+					justification="center"
 					text={buttonText}
 				/>
 			</CardBody>

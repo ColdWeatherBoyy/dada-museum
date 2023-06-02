@@ -215,41 +215,40 @@ function Featured() {
 						</Heading>
 						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
 					</Box>
-
 					{loading ? (
 						<Box>Loading...</Box>
 					) : (
-						<Flex
-							justify="center"
-							width={{ base: "40%", md: "35%", lg: "70%" }}
-							position="relative"
-						>
-							<Image src={selectedArtist.src} alt={selectedArtist.alt} />
-							<Box
-								padding=".5em .5em"
-								textStyle="playfairBold"
-								fontSize={{
-									sm: "22px",
-									lg: "24px",
-									xl: "28px",
-								}}
-								letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
-								textAlign="center"
-								display="inline-block"
-								position="absolute"
-								bottom={6}
-								maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
-								style={{
-									backgroundColor: "rgba(200, 200, 200, 0.5)",
-									color: "white",
-									backdropFilter: "blur(3px)",
-									WebkitBackdropFilter: "blur(3px)",
-								}}
+						<>
+							<Flex
+								justify="center"
+								width={{ base: "40%", md: "35%", lg: "70%" }}
+								position="relative"
 							>
-								{selectedArtist.name}
-							</Box>
-							<Button>Hello</Button>
-						</Flex>
+								<Image src={selectedArtist.src} alt={selectedArtist.alt} />
+								<Box
+									padding=".5em .5em"
+									textStyle="playfairBold"
+									fontSize={{
+										sm: "22px",
+										lg: "24px",
+										xl: "28px",
+									}}
+									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+									textAlign="center"
+									position="absolute"
+									bottom={6}
+									maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
+									bgColor="rgba(200, 200, 200, 0.5)"
+									color="white"
+									style={{
+										backdropFilter: "blur(3px)",
+										WebkitBackdropFilter: "blur(3px)",
+									}}
+								>
+									{selectedArtist.name}
+								</Box>
+							</Flex>
+						</>
 					)}
 				</Flex>
 				<Box

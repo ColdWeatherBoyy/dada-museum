@@ -18,7 +18,11 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 				>
 					{title}
 				</Box>
-				<Box textStyle="battambang" fontSize={{ base: "12px", sm: "13px", md: "16px" }}>
+				<Box
+					textStyle="battambang"
+					fontSize={{ base: "12px", sm: "13px", md: "16px" }}
+					textAlign={textAlign}
+				>
 					{date}
 				</Box>
 			</Flex>
