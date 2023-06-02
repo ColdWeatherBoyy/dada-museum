@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, Heading, Image } from "@chakra-ui/react";
 import Button from "../components/Button.jsx";
 import { useEffect, useState } from "react";
-
+import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
 
 function Featured() {
@@ -196,11 +196,13 @@ function Featured() {
 	// }, [scrollDirection]);
 
 	return (
-		<Box mb={{ base: 4, lg: 12 }} mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
+			<SectionHeader headerText="Featured Artist" />
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
 				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 0, md: 8, lg: 16 }}
+				mx="5%"
 			>
 				<Flex
 					width="100%"
@@ -209,12 +211,6 @@ function Featured() {
 					justify="space-evenly"
 					mt={{ base: 8, lg: 0 }}
 				>
-					<Box width="100%" alignSelf="flex-start">
-						<Heading variant="section-heading" fontSize="2.25em" textAlign="center">
-							Featured Artist
-						</Heading>
-						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
-					</Box>
 					{loading ? (
 						<Box>Loading...</Box>
 					) : (

@@ -1,22 +1,21 @@
 import { Box, SimpleGrid, Flex, Heading } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import SectionHeader from "../components/SectionHeader";
 import VisitComponent from "../components/VisitComponent.jsx";
 import VisitCard from "../components/VisitCard.jsx";
-import { useEffect, useState } from "react";
 
 function Visit() {
-
 	const [status, setStatus] = useState("Open Test");
 
 	const determineStatus = async () => {
 		const current = new Date();
 		console.log(current.getDay());
 		console.log(current.getHours());
-		switch(current.getDay()) {
+		switch (current.getDay()) {
 			case 0:
 				if (current.getHours() > 11 && current.getHours() < 16) {
 					setStatus("Open");
-				}
-				else {
+				} else {
 					setStatus("Closed");
 				}
 				break;
@@ -26,83 +25,75 @@ function Visit() {
 			case 2:
 				if (current.getHours() > 9 && current.getHours() < 17) {
 					setStatus("Open");
-				}
-				else {
+				} else {
 					setStatus("Closed");
 				}
 				break;
 			case 3:
 				if (current.getHours() > 9 && current.getHours() < 17) {
 					setStatus("Open");
-				}
-				else {
+				} else {
 					setStatus("Closed");
 				}
 				break;
 			case 4:
 				if (current.getHours() > 9 && current.getHours() < 17) {
 					setStatus("Open");
-				}
-				else {
+				} else {
 					setStatus("Closed");
 				}
 				break;
 			case 5:
 				if (current.getHours() > 9 && current.getHours() < 19) {
 					setStatus("Open");
-				}
-				else {
+				} else {
 					setStatus("Closed");
 				}
 				break;
 			case 6:
 				if (current.getHours() > 9 && current.getHours() < 19) {
 					setStatus("Open");
-				}
-				else {
+				} else {
 					setStatus("Closed");
 				}
 				break;
 			default:
 				setStatus("Open");
 		}
-	}
+	};
 
 	useEffect(() => {
 		determineStatus();
 	}, []);
 
 	return (
-		<Box w="100%" bgColor="gray.100">
-			<SimpleGrid
-				columns={{ sm: 1, md: 2 }}
-				spacingX={{ sm: 0, md: 8, lg: 16 }}
-				spacingY={20}
-				mx={{ sm: 8, md: 8, lg: 16 }}
-				justifyContent="center"
-			>
-				<Flex direction="column" align="start" justify="space-around" height="100%">
-					<Box width="100%" alignSelf="flex-start">
-						<Heading variant="section-heading" fontSize="2.25em">
-							Visit Us
-						</Heading>
-						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
-					</Box>
-					<VisitComponent
-						headingText="Hours:"
-						contentArray={[
-							"Mon: Closed",
-							"Tues-Thurs: 10am-5pm",
-							"Fri-Sat: 10am-7pm",
-							"Sun: 12pm-4pm",
-						]}
-					/>
-					<VisitComponent headingText="Museum Status:" contentArray={[status]} />
-				</Flex>
-				<Flex direction="column" align="start" justify="space-around" height="100%">
-					<VisitCard />
-				</Flex>
-			</SimpleGrid>
+		<Box py={6} w="100%" bgColor="gray.100">
+			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
+				<SectionHeader headerText="Visit Us" />
+				<SimpleGrid
+					columns={{ sm: 1, md: 2 }}
+					spacingX={{ sm: 0, md: 8, lg: 16 }}
+					spacingY={20}
+					justifyContent="center"
+					mx="5%"
+				>
+					<Flex direction="column" align="start" justify="space-around" height="100%">
+						<VisitComponent
+							headingText="Hours:"
+							contentArray={[
+								"Mon: Closed",
+								"Tues-Thurs: 10am-5pm",
+								"Fri-Sat: 10am-7pm",
+								"Sun: 12pm-4pm",
+							]}
+						/>
+						<VisitComponent headingText="Museum Status:" contentArray={[status]} />
+					</Flex>
+					<Flex direction="column" align="start" justify="space-around" height="100%">
+						<VisitCard />
+					</Flex>
+				</SimpleGrid>
+			</Box>
 		</Box>
 	);
 }
