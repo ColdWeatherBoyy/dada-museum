@@ -76,7 +76,7 @@ function Collage() {
 				alignItems={{base: "center", md: "left"}}
 				mx={{ sm: 8, md: 8, lg: 16 }}
 			>
-				<Card bgColor="white" w={{base: "80%", md: "60%"}} minH={{base: "60vh", md: "40vh"}} p="0" ref={collageBoundary}>
+				<Card bgColor="white" w={{base: "80%", md: "40%"}} minH={{base: "40vh", md: "50vh"}} p="0" my={{base: "5%", md: "0%"}} ref={collageBoundary}>
 					{collageElements.map((element, index) => {
 						return (
 							<CollageElement
@@ -90,7 +90,7 @@ function Collage() {
 				</Card>
 				<Card
 					bgColor="white"
-					w="55%"
+					w={{base: "80%", md: "55%"}}
 					minH="60vh"
 					display="flex"
 					flexDirection="column"
@@ -108,14 +108,16 @@ function Collage() {
 					</Heading>
 					<Box
 						display="flex"
-						flexDirection="row"
+						flexDirection={{base: "column", md: "row"}}
 						justifyContent="space-around"
 						w="100%"
+						px={{base: "5%", md: "0%"}}
 					>
 						<Box
 							display="flex"
 							flexDirection="column"
 							justifyContent="space-around"
+							alignItems="center"
 						>
 							<RadioGroup onChange={setTextValue} value={textValue} textStyle="battambang">
 								<Stack direction="row">
@@ -150,6 +152,7 @@ function Collage() {
 							display="flex"
 							flexDirection="column"
 							justifyContent="center"
+							alignSelf="center"
 							alignItems="center"
 						>
 							<CollagePreview classText={fontValue + " " + fontSize} text={textValue} />
@@ -157,7 +160,7 @@ function Collage() {
 					</Box>
 					<Box
 						display="flex"
-						flexDirection="row"
+						flexDirection={{base: "column", md: "row"}}
 						w="60%"
 						justifyContent="space-between"
 					>
