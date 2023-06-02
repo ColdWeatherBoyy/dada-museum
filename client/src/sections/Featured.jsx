@@ -1,4 +1,5 @@
-import { Box, Flex, Grid, Heading, Image, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, Image } from "@chakra-ui/react";
+import Button from "../components/Button.jsx";
 import { useEffect, useState } from "react";
 
 import FeaturedImage from "../components/FeaturedImage";
@@ -21,11 +22,6 @@ function Featured() {
 				method: "GET",
 			});
 			const data = await response.json();
-
-			// check length of featuredArtistImageInfo array and reset if it's greater than 6
-			if (featuredArtistImageInfo.length >= 6) {
-				setFeaturedArtistImageInfo([]);
-			}
 
 			// set up array to hold random images (to deal for asynchronous nature of state defining)
 			const arrayOfRandomImages = [];
@@ -200,55 +196,61 @@ function Featured() {
 	// }, [scrollDirection]);
 
 	return (
-		<Box minH="90vh" mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box mb={{ base: 4, lg: 12 }} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
-				height={{ base: "auto", lg: "50vw" }}
+				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 0, md: 8, lg: 16 }}
 			>
-				<Flex width="100%" direction="column" align="center" justify="space-evenly">
+				<Flex
+					width="100%"
+					direction="column"
+					align="center"
+					justify="space-evenly"
+					mt={{ base: 8, lg: 0 }}
+				>
 					<Box width="100%" alignSelf="flex-start">
 						<Heading variant="section-heading" fontSize="2.25em" textAlign="center">
 							Featured Artist
 						</Heading>
 						<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="5%" />
 					</Box>
-					<Flex
-						justify="center"
-						width={{ base: "50%", md: "45%", lg: "70%" }}
-						position="relative"
-					>
-						{loading ? (
-							<Box>Loading...</Box>
-						) : (
-							<>
-								<Image src={selectedArtist.src} alt={selectedArtist.alt} width="100%" />
-								<Box
-									padding=".5em .5em"
-									textStyle="playfairBold"
-									fontSize={{
-										sm: "22px",
-										lg: "24px",
-										xl: "28px",
-									}}
-									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
-									textAlign="center"
-									display="inline-block"
-									position="absolute"
-									bottom={6}
-									maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
-									style={{
-										backgroundColor: "rgba(200, 200, 200, 0.5)",
-										color: "white",
-										backdropFilter: "blur(3px)",
-										WebkitBackdropFilter: "blur(3px)",
-									}}
-								>
-									{selectedArtist.name}
-								</Box>
-							</>
-						)}
-					</Flex>
+
+					{loading ? (
+						<Box>Loading...</Box>
+					) : (
+						<Flex
+							justify="center"
+							width={{ base: "40%", md: "35%", lg: "70%" }}
+							position="relative"
+						>
+							<Image src={selectedArtist.src} alt={selectedArtist.alt} />
+							<Box
+								padding=".5em .5em"
+								textStyle="playfairBold"
+								fontSize={{
+									sm: "22px",
+									lg: "24px",
+									xl: "28px",
+								}}
+								letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+								textAlign="center"
+								display="inline-block"
+								position="absolute"
+								bottom={6}
+								maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
+								style={{
+									backgroundColor: "rgba(200, 200, 200, 0.5)",
+									color: "white",
+									backdropFilter: "blur(3px)",
+									WebkitBackdropFilter: "blur(3px)",
+								}}
+							>
+								{selectedArtist.name}
+							</Box>
+							<Button>Hello</Button>
+						</Flex>
+					)}
 				</Flex>
 				<Box
 					// ref={scrollBoxRef}
