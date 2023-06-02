@@ -1,12 +1,18 @@
 import { Card, CardBody } from "@chakra-ui/card";
-import { Stack, StackDivider, Flex } from "@chakra-ui/layout";
+import { Stack, StackDivider } from "@chakra-ui/layout";
 import ExhibitCardLinks from "./ExhibitCardLinks";
 
 function ExhibitCard() {
 	return (
-		<Card width="90%">
+		<Card
+			width="50%"
+			height="fit-content"
+			variant="outline"
+			borderColor="gray.300"
+			boxShadow="3px 3px 3px 3px rgba(0, 0, 0, 0.2)"
+		>
 			<CardBody textStyle="playfairBold">
-				<Stack divider={<StackDivider />} spacing="4">
+				<Stack divider={<StackDivider borderColor="gray.300" />} spacing="4">
 					<ExhibitCardLinks
 						// destination=""
 						justification="flex-start"

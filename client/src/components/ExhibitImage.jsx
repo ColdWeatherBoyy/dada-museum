@@ -5,17 +5,13 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 	const [isActive, setIsActive] = useState(false);
 
 	return (
-		<Box
-			position="relative"
-			display="inline-block"
-			marginBottom={{ sm: "5%", md: "10%", lg: "15%" }}
-		>
+		<Box position="relative" maxW="100%">
 			<Link destination={destination}>
-				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.25em" pb={0}>
+				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.3em" pb={0}>
 					{headingOne}
 				</Heading>
 			</Link>
-			<Heading variant="exhibit-heading" textAlign="left" fontSize="1.25em" pb={2}>
+			<Heading variant="exhibit-heading" textAlign="left" fontSize="1.3em" pb={2}>
 				{headingTwo}
 			</Heading>
 			<Box
@@ -25,12 +21,7 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 				onMouseLeave={() => setIsActive(false)}
 				onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
 			>
-				<Image
-					src={src}
-					alt={alt}
-					borderRadius="sm"
-					style={{ maxWidth: "100%", height: "auto" }}
-				/>
+				<Image src={src} alt={alt} />
 				<Box
 					position="absolute"
 					bottom={0}
@@ -40,7 +31,6 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 					opacity={isActive ? 1 : 0}
 					transition="opacity 0.3s"
 					bgGradient="linear(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,.8) 100%)"
-					borderRadius="sm"
 					p={3}
 					textStyle="battambang"
 				>
