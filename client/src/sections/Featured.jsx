@@ -220,16 +220,22 @@ function Featured() {
 								width={{ base: "40%", md: "35%", lg: "70%" }}
 								position="relative"
 							>
-								<Image src={selectedArtist.src} alt={selectedArtist.alt} />
+								<Image
+									src={selectedArtist.src}
+									alt={selectedArtist.alt}
+									borderRadius="md"
+								/>
 								<Box
-									padding=".5em .5em"
+									padding="5px"
 									textStyle="playfairBold"
 									fontSize={{
-										sm: "22px",
-										lg: "24px",
-										xl: "28px",
+										sm: "16px",
+										md: "18px",
+										lg: "20px",
+										xl: "26px",
 									}}
 									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+									borderRadius="md"
 									textAlign="center"
 									position="absolute"
 									bottom={6}
@@ -254,6 +260,7 @@ function Featured() {
 					position="relative"
 					width="100%"
 					mt={{ base: 4, lg: 12 }}
+					borderRadius="md"
 				>
 					{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
 						{scrollDirection.left && (

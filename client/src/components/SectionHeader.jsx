@@ -7,7 +7,7 @@ function SectionHeader({ headerText }) {
 				{headerText}
 			</Heading>
 
-			<Box borderBottom="2px solid #B1BAC1" marginBottom={4} borderRadius={2} />
+			<Box borderBottom="2px solid #B1BAC1" marginBottom={4} borderRadius="md" />
 		</Flex>
 	);
 }
