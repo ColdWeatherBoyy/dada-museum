@@ -2,7 +2,7 @@ import { Box, SimpleGrid, Heading, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
 import ExhibitImage from "../components/ExhibitImage";
-import ExhibitCard from "../components/ExhibitCard";
+import LinkCard from "../components/LinkCard";
 
 function CurrentExhibits() {
 	// Old logic for detecting window width for responsive design
@@ -53,7 +53,11 @@ function CurrentExhibits() {
 						alt="Marcel Duchamp and his most well-known Readymade The Fountain"
 						hoverText="Ordinary objects presented in extraordinary places. A term coined by the titular artist in th 1910s, Readymades test the art worlds willingness to open its definition of 'art.' "
 					/>
-					<ExhibitCard />
+					<LinkCard
+						textOne="Permanent Exhibit"
+						textTwo="Upcoming Exhibits"
+						textThree="Previous Exhibits"
+					/>
 				</SimpleGrid>
 			</Box>
 		</Box>
