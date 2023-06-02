@@ -18,7 +18,7 @@ function CurrentExhibits() {
 	// }, [window.innerWidth]);
 
 	return (
-		<Box py={6} width="90%">
+		<Box py={6} width="100%">
 			<SectionHeader headerText="Current Exhibits" />
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}

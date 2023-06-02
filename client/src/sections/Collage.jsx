@@ -9,6 +9,7 @@ import {
 	Card,
 } from "@chakra-ui/react";
 import { useRef, useState, useEffect } from "react";
+import SectionHeader from "../components/SectionHeader";
 import CollageElement from "../components/CollageElement";
 import CollagePreview from "../components/CollagePreview";
 
@@ -54,21 +55,14 @@ function Collage() {
 
 	return (
 		<Box paddingY={16} w="100%" minH="90vh" backgroundColor="gray.100">
+			<SectionHeader headerText="Make a Collage" />
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
 				spacingX={{ sm: 0, md: 8, lg: 16 }}
 				spacingY={20}
 				mx={{ sm: 8, md: 8, lg: 16 }}
 				justifyContent="center"
-			>
-				<Box width="100%" alignSelf="flex-start">
-					<Heading textAlign="center" variant="section-heading" fontSize="3.15em">
-						Make a<br />
-						Collage
-					</Heading>
-					<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
-				</Box>
-			</SimpleGrid>
+			></SimpleGrid>
 			<Box
 				display="flex"
 				flexDirection={{ base: "column", md: "row" }}
