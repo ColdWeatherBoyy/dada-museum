@@ -1,8 +1,77 @@
 import { Box, SimpleGrid, Flex, Heading } from "@chakra-ui/react";
 import VisitComponent from "../components/VisitComponent.jsx";
 import VisitCard from "../components/VisitCard.jsx";
+import { useEffect, useState } from "react";
 
 function Visit() {
+
+	const [status, setStatus] = useState("Open Test");
+
+	const determineStatus = async () => {
+		const current = new Date();
+		console.log(current.getDay());
+		console.log(current.getHours());
+		switch(current.getDay()) {
+			case 0:
+				if (current.getHours() > 11 && current.getHours() < 16) {
+					setStatus("Open");
+				}
+				else {
+					setStatus("Closed");
+				}
+				break;
+			case 1:
+				setStatus("Closed");
+				break;
+			case 2:
+				if (current.getHours() > 9 && current.getHours() < 17) {
+					setStatus("Open");
+				}
+				else {
+					setStatus("Closed");
+				}
+				break;
+			case 3:
+				if (current.getHours() > 9 && current.getHours() < 17) {
+					setStatus("Open");
+				}
+				else {
+					setStatus("Closed");
+				}
+				break;
+			case 4:
+				if (current.getHours() > 9 && current.getHours() < 17) {
+					setStatus("Open");
+				}
+				else {
+					setStatus("Closed");
+				}
+				break;
+			case 5:
+				if (current.getHours() > 9 && current.getHours() < 19) {
+					setStatus("Open");
+				}
+				else {
+					setStatus("Closed");
+				}
+				break;
+			case 6:
+				if (current.getHours() > 9 && current.getHours() < 19) {
+					setStatus("Open");
+				}
+				else {
+					setStatus("Closed");
+				}
+				break;
+			default:
+				setStatus("Open");
+		}
+	}
+
+	useEffect(() => {
+		determineStatus();
+	}, []);
+
 	return (
 		<Box w="100%" bgColor="gray.100">
 			<SimpleGrid
@@ -25,10 +94,10 @@ function Visit() {
 							"Mon: Closed",
 							"Tues-Thurs: 10am-5pm",
 							"Fri-Sat: 10am-7pm",
-							"Sun: 12pm",
+							"Sun: 12pm-4pm",
 						]}
 					/>
-					<VisitComponent headingText="Museum Status:" contentArray={["Open"]} />
+					<VisitComponent headingText="Museum Status:" contentArray={[status]} />
 				</Flex>
 				<Flex direction="column" align="start" justify="space-around" height="100%">
 					<VisitCard />
