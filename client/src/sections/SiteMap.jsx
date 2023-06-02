@@ -35,8 +35,8 @@ function SiteMap() {
                      justifyContent="space-around"
                 >
                     <VisitComponent headingText="Site Map" contentArray={["Home Page", "Dada", "About the Museum", "Displays", "Admissions"]} />
-                    <VisitComponent headingText="Elias Spector-Zabusky" contentArray={["Email", "Github", "LinkedIN"]} />
-                    <VisitComponent headingText="David Keim" contentArray={["Email", "Github", "LinkedIN"]} />
+                    <VisitComponent headingText="Elias Spector-Zabusky" contentArray={["Github", "LinkedIN"]} />
+                    <VisitComponent headingText="David Keim" contentArray={["Github", "LinkedIN"]} />
                 </Box>
 			</SimpleGrid>
             <Box
