@@ -1,5 +1,5 @@
-import { Box, Flex, Grid, Heading, Image } from "@chakra-ui/react";
-import Button from "../components/Button.jsx";
+import { Box, Flex, Grid, Button, Image } from "@chakra-ui/react";
+// import Button from "../components/Button.jsx";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
@@ -9,6 +9,7 @@ function Featured() {
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [selectedArtist, setSelectedArtist] = useState({});
+	const [buttonActive, setButtonActive] = useState(false);
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
@@ -216,39 +217,68 @@ function Featured() {
 					) : (
 						<>
 							<Flex
-								justify="center"
-								width={{ base: "40%", md: "35%", lg: "70%" }}
-								position="relative"
+								direction="column"
+								justify="space-between"
+								align="center"
+								height="80%"
 							>
-								<Image
-									src={selectedArtist.src}
-									alt={selectedArtist.alt}
-									borderRadius="md"
-								/>
-								<Box
-									padding="5px"
-									textStyle="playfairBold"
-									fontSize={{
-										sm: "16px",
-										md: "18px",
-										lg: "20px",
-										xl: "26px",
+								<Flex
+									justify="center"
+									width={{ base: "40%", md: "35%", lg: "70%" }}
+									position="relative"
+								>
+									<Image
+										src={selectedArtist.src}
+										alt={selectedArtist.alt}
+										borderRadius="md"
+									/>
+									<Box
+										padding="5px"
+										textStyle="playfairBold"
+										fontSize={{
+											sm: "16px",
+											md: "18px",
+											lg: "20px",
+											xl: "26px",
+										}}
+										letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+										borderRadius="md"
+										textAlign="center"
+										position="absolute"
+										bottom={6}
+										maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
+										bgColor="rgba(200, 200, 200, 0.5)"
+										color="white"
+										style={{
+											backdropFilter: "blur(3px)",
+											WebkitBackdropFilter: "blur(3px)",
+										}}
+									>
+										{selectedArtist.name}
+									</Box>
+								</Flex>
+								<Button
+									borderRadius="50px"
+									width={{ base: "20%", md: "17.5%", lg: "35%" }}
+									textStyle="battambang"
+									border="1px solid #B1BAC1"
+									bg="gray.100"
+									color="#53443D"
+									_hover={{
+										bg: "#53443D",
+										color: "gray.100",
+										boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
+										transform: "scale(1.05) translate(-2px, -2px)",
 									}}
-									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
-									borderRadius="md"
-									textAlign="center"
-									position="absolute"
-									bottom={6}
-									maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
-									bgColor="rgba(200, 200, 200, 0.5)"
-									color="white"
-									style={{
-										backdropFilter: "blur(3px)",
-										WebkitBackdropFilter: "blur(3px)",
+									py={2}
+									fontSize={{
+										sm: "14px",
+										md: "16px",
+										lg: "18px",
 									}}
 								>
-									{selectedArtist.name}
-								</Box>
+									Random Artist
+								</Button>
 							</Flex>
 						</>
 					)}
