@@ -2,7 +2,7 @@ import { Text, Flex } from "@chakra-ui/layout";
 import { Link } from "@chakra-ui/react";
 import { useState } from "react";
 
-function ExhibitCardLinks({ destination, justification, text }) {
+function CardLinks({ destination, justification, text }) {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
@@ -29,4 +29,4 @@ function ExhibitCardLinks({ destination, justification, text }) {
 	);
 }
 
-export default ExhibitCardLinks;
+export default CardLinks;

@@ -1,32 +1,32 @@
 import { Card, CardBody } from "@chakra-ui/card";
 import { Stack, StackDivider } from "@chakra-ui/layout";
-import ExhibitCardLinks from "./ExhibitCardLinks";
+import CardLinks from "./CardLinks";
 
-function ExhibitCard() {
+function LinkCard({ textOne, textTwo, textThree }) {
 	return (
 		<Card
 			width="50%"
 			height="fit-content"
 			variant="outline"
 			borderColor="gray.300"
-			boxShadow="3px 3px 3px 3px rgba(0, 0, 0, 0.2)"
+			boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
 		>
 			<CardBody textStyle="playfairBold">
 				<Stack divider={<StackDivider borderColor="gray.300" />} spacing="4">
-					<ExhibitCardLinks
+					<CardLinks
 						// destination=""
 						justification="flex-start"
-						text="Permanent Exhibits"
+						text={textOne}
 					/>
-					<ExhibitCardLinks
+					<CardLinks
 						// destination=""
 						justification="flex-end"
-						text="Upcoming Exhibits"
+						text={textTwo}
 					/>
-					<ExhibitCardLinks
+					<CardLinks
 						// destination=""
 						justification="flex-start"
-						text="Previous Exhibits"
+						text={textThree}
 					/>
 				</Stack>
 			</CardBody>
@@ -34,4 +34,4 @@ function ExhibitCard() {
 	);
 }
 
-export default ExhibitCard;
+export default LinkCard;

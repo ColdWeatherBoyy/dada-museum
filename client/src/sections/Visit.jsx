@@ -1,8 +1,8 @@
-import { Box, SimpleGrid, Flex, Heading } from "@chakra-ui/react";
+import { Box, SimpleGrid, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import VisitComponent from "../components/VisitComponent.jsx";
-import VisitCard from "../components/VisitCard.jsx";
+import LinkCard from "../components/LinkCard";
 
 function Visit() {
 	const [status, setStatus] = useState("Open Test");
@@ -90,7 +90,11 @@ function Visit() {
 						<VisitComponent headingText="Museum Status:" contentArray={[status]} />
 					</Flex>
 					<Flex direction="column" align="start" justify="space-around" height="100%">
-						<VisitCard />
+						<LinkCard
+							textOne="Buy Tickets"
+							textTwo="Become a Member"
+							textThree="Join Email List"
+						/>
 					</Flex>
 				</SimpleGrid>
 			</Box>
