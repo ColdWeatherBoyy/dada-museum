@@ -14,7 +14,7 @@ const sectionHeading = defineStyle({
 	fontFamily: "Playfair Display, serif",
 	letterSpacing: "0.35em",
 	lineHeight: "1.5em",
-	textAlign: "center",
+	textAlign: { base: "center", lg: "left" },
 });
 
 const firstD = defineStyle({
