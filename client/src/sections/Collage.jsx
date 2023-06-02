@@ -18,6 +18,9 @@ function Collage() {
 	const [textValue, setTextValue] = useState("D");
 	const [fontValue, setFontValue] = useState("serif");
 	const [fontSize, setFontSize] = useState("small");
+	const textOptions = ["D", "A", "d", "a", "!", "?"];
+	const fontOptions = ["serif", "sans-serif"];
+	const sizeOptions = ["small", "medium", "large"];
 
 	const addShape = () => {
 		console.log("submitted");
