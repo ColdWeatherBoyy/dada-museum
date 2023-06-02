@@ -220,16 +220,17 @@ function Featured() {
 					justify="space-evenly"
 					mt={{ base: 8, lg: 0 }}
 				>
-					{loading ? (
-						<Box>Loading...</Box>
-					) : (
-						<>
-							<Flex
-								direction="column"
-								justify="space-between"
-								align="center"
-								height="80%"
-							>
+					<Flex
+						direction="column"
+						justify="space-between"
+						align="center"
+						width="100%"
+						height="80%"
+					>
+						{loading ? (
+							<Box>Loading...</Box>
+						) : (
+							<>
 								<Flex
 									justify="center"
 									width={{ base: "40%", md: "35%", lg: "70%" }}
@@ -265,34 +266,34 @@ function Featured() {
 										{selectedArtist.name}
 									</Box>
 								</Flex>
-								<Button
-									borderRadius="50px"
-									width={{ base: "20%", md: "17.5%", lg: "35%" }}
-									textStyle="battambang"
-									border="1px solid #B1BAC1"
-									bg="gray.100"
-									color="#53443D"
-									_hover={{
-										bg: "#53443D",
-										color: "gray.100",
-										boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
-										transform: "scale(1.05) translate(-2px, -2px)",
-									}}
-									py={2}
-									fontSize={{
-										sm: "14px",
-										md: "16px",
-										lg: "18px",
-									}}
-									onClick={() => {
-										handleClick();
-									}}
-								>
-									Random Artist
-								</Button>
-							</Flex>
-						</>
-					)}
+							</>
+						)}
+						<Button
+							borderRadius="50px"
+							width={{ base: "20%", md: "17.5%", lg: "35%" }}
+							textStyle="battambang"
+							border="1px solid #B1BAC1"
+							bg="gray.100"
+							color="#53443D"
+							_hover={{
+								bg: "#53443D",
+								color: "gray.100",
+								boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
+								transform: "scale(1.05) translate(-2px, -2px)",
+							}}
+							py={2}
+							fontSize={{
+								sm: "14px",
+								md: "16px",
+								lg: "18px",
+							}}
+							onClick={() => {
+								handleClick();
+							}}
+						>
+							Random Artist
+						</Button>
+					</Flex>
 				</Flex>
 				<Box
 					// ref={scrollBoxRef}
