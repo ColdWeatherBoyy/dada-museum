@@ -18,9 +18,6 @@ function Collage() {
 	const [textValue, setTextValue] = useState("D");
 	const [fontValue, setFontValue] = useState("serif");
 	const [fontSize, setFontSize] = useState("small");
-	const textOptions = ["D", "A", "d", "a", "!", "?"];
-	const fontOptions = ["serif", "sans-serif"];
-	const sizeOptions = ["small", "medium", "large"];
 
 	const addShape = () => {
 		console.log("submitted");
@@ -56,7 +53,7 @@ function Collage() {
 	}
 
 	return (
-		<Box paddingY={6} w="100%" bgColor="gray.100">
+		<Box paddingY={16} w="100%" minH="90vh" backgroundColor="gray.100">
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}
 				spacingX={{ sm: 0, md: 8, lg: 16 }}
@@ -65,19 +62,21 @@ function Collage() {
 				justifyContent="center"
 			>
 				<Box width="100%" alignSelf="flex-start">
-					<Heading variant="section-heading" fontSize="2.25em">
-						Make a Collage
+					<Heading textAlign="center" variant="section-heading" fontSize="3.15em">
+						Make a<br />
+						Collage
 					</Heading>
 					<Box width="100%" borderBottom="5px solid #D17B7B" marginBottom="10%" />
 				</Box>
 			</SimpleGrid>
 			<Box
 				display="flex"
-				flexDirection="row"
+				flexDirection={{base: "column", md: "row"}}
 				justifyContent="space-between"
+				alignItems={{base: "center", md: "left"}}
 				mx={{ sm: 8, md: 8, lg: 16 }}
 			>
-				<Card bgColor="white" w="40%" maxH="60vh" p="0" ref={collageBoundary}>
+				<Card bgColor="white" w={{base: "80%", md: "60%"}} minH={{base: "60vh", md: "40vh"}} p="0" ref={collageBoundary}>
 					{collageElements.map((element, index) => {
 						return (
 							<CollageElement
