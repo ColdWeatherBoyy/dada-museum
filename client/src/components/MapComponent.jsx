@@ -23,7 +23,13 @@ function MapComponent({ headingText, contentArray }) {
 				onMouseLeave={() => setIsActive(false)}
 				onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
 			>
-				<Box width="100%" height="100%" borderRadius="sm" textStyle="battambang">
+				<Box
+					color="gray.100"
+					width="100%"
+					height="100%"
+					borderRadius="sm"
+					textStyle="battambang"
+				>
 					{contentArray.map((contentLine, index) => {
 						return (
 							<Link key={index} destination="">

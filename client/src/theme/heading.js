@@ -20,7 +20,7 @@ const exhibitHeading = defineStyle({
 
 const sectionHeading = defineStyle({
 	fontFamily: "Playfair Display, serif",
-	letterSpacing: "0.35em",
+	letterSpacing: "0.20em",
 	lineHeight: "1.5em",
 	textAlign: { base: "center", lg: "left" },
 });

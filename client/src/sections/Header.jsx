@@ -13,7 +13,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 function Header() {
 	return (
 		<Box
-			bgColor="red.300"
+			bgColor="#53443D"
 			w="100%"
 			// height="18vh"
 			minH="10vh"
@@ -23,17 +23,42 @@ function Header() {
 			justifyContent="space-between"
 			px={{ sm: 8, md: 8, lg: 10 }}
 		>
-			<Box display="flex" flexDirection={{base: "column", lg: "row"}} alignItems={{base: "start", lg: "center"}} marginLeft="2vw">
+			<Box
+				display="flex"
+				flexDirection={{ base: "column", lg: "row" }}
+				alignItems={{ base: "start", lg: "center" }}
+				marginLeft="2vw"
+				color="gray.100"
+			>
 				<Box display="flex" alignItems="center">
-					<Heading mt={{base: "2", lg: "2"}} variant={{base: "first-d-small", lg: "first-d"}}>D</Heading>
-					<Heading variant={{base: "first-a-small", lg: "first-a"}}>A</Heading>
-					<Heading mt={{base: "1", lg: "2"}} size="2xl" variant={{base: "second-d-small", lg: "second-d"}}>
+					<Heading
+						mt={{ base: "2", lg: "2" }}
+						variant={{ base: "first-d-small", lg: "first-d" }}
+					>
 						D
 					</Heading>
-					<Heading mb={{base: "0.5" , lg: "2"}} variant={{base: "second-a-small", lg: "second-a"}}>A</Heading>
+					<Heading variant={{ base: "first-a-small", lg: "first-a" }}>A</Heading>
+					<Heading
+						mt={{ base: "1", lg: "2" }}
+						size="2xl"
+						variant={{ base: "second-d-small", lg: "second-d" }}
+					>
+						D
+					</Heading>
+					<Heading
+						mb={{ base: "0.5", lg: "2" }}
+						variant={{ base: "second-a-small", lg: "second-a" }}
+					>
+						A
+					</Heading>
 					<Heading>&nbsp;&nbsp;</Heading>
 				</Box>
-				<Heading mt="0.5" variant={{base: "art-museum-font-small", lg: "art-museum-font"}}>Art Museum</Heading>
+				<Heading
+					mt="0.5"
+					variant={{ base: "art-museum-font-small", lg: "art-museum-font" }}
+				>
+					Art Museum
+				</Heading>
 			</Box>
 			<Menu>
 				<MenuButton
@@ -42,6 +67,7 @@ function Header() {
 					aria-label="Options"
 					icon={<HamburgerIcon boxSize={12} />}
 					bg="transparent"
+					color="gray.100"
 				/>
 				<MenuList>
 					<MenuItem>
