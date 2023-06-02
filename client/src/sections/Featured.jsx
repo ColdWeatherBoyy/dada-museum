@@ -202,6 +202,7 @@ function Featured() {
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
 				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 0, md: 8, lg: 16 }}
+				mx="5%"
 			>
 				<Flex
 					width="100%"

@@ -6,7 +6,7 @@ function SiteMap() {
 	return (
 		<Box backgroundColor="red.300" pt={6}>
 			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
-				<SectionHeader headerText="Current Exhibits" />
+				<SectionHeader headerText="Site Map" />
 				<SimpleGrid
 					columns={{ sm: 1, md: 2 }}
 					spacingX={{ sm: 0, md: 8, lg: 16 }}
@@ -14,7 +14,7 @@ function SiteMap() {
 					display="flex"
 					flexDirection="column"
 					justifyContent="space-between"
-					mx={{ sm: 8, md: 8, lg: 16 }}
+					mx="5%"
 				></SimpleGrid>
 				<SimpleGrid
 					columns={{ sm: 1, md: 2 }}
