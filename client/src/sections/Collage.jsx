@@ -30,9 +30,27 @@ function Collage() {
 		setCollageElements(newArray);
 	};
 
+	const addRandom = () => {
+		console.log("submitted");
+		const textRand = Math.floor((Math.random() * textOptions.length));
+		const fontRand = Math.floor((Math.random() * fontOptions.length));
+		const sizeRand = Math.floor((Math.random() * sizeOptions.length));
+		const newShape = {
+			text: textOptions[textRand],
+			font: fontOptions[fontRand],
+			size: sizeOptions[sizeRand],
+		};
+		const newArray = [...collageElements, newShape];
+		setCollageElements(newArray);
+	};
+
 	useEffect(() => {
 		// console.log(collageElements);
 	}, []);
+
+	const clearCanvas = () => {
+		setCollageElements([]);
+	}
 
 	return (
 		<Box paddingY={16} w="100%" minH="90vh" backgroundColor="gray.100">
