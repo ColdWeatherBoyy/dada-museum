@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
 import Button2 from "../components/Button2";
-// import Loader from "../components/Loader";
+import Loader from "../components/Loader";
 
 function Featured() {
 	// establish states for the featured artist
@@ -238,7 +238,9 @@ function Featured() {
 						height="80%"
 					>
 						{loadingArtist ? (
-							<Box height="80%">Loading...</Box>
+							<Flex justify="center" height="90%" align="center">
+								<Loader />
+							</Flex>
 						) : (
 							<>
 								<Flex
@@ -282,7 +284,6 @@ function Featured() {
 						<Flex direction="row" justify="space-between" gap={3}>
 							<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
 							<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
-							{/* <Loader /> */}
 						</Flex>
 					</Flex>
 				</Flex>
@@ -318,7 +319,9 @@ function Featured() {
 						)}
 					</Box> */}
 					{loadingArt ? (
-						<Box>Loading...</Box>
+						<Flex justify="center" height="80%" align="center">
+							<Loader />
+						</Flex>
 					) : (
 						<Flex
 							direction={{ base: "row", lg: "column" }}
