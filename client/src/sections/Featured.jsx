@@ -3,13 +3,14 @@ import { Box, Flex, Grid, Button, Image } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
+import Button2 from "../components/Button2";
 
 function Featured() {
 	// establish states for the featured artist
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [loadingArtist, setLoadingArtist] = useState(true);
+	const [loadingArt, setLoadingArt] = useState(true);
 	const [selectedArtist, setSelectedArtist] = useState({});
-	const [buttonActive, setButtonActive] = useState(false);
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
@@ -112,6 +113,7 @@ function Featured() {
 		const artistIndex = Math.floor(Math.random() * artistArray.length);
 		setSelectedArtist(artistArray[artistIndex]);
 	};
+
 	// call function on page load
 	useEffect(() => {
 		selectRandomArtist();
@@ -130,13 +132,20 @@ function Featured() {
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
 			// console.log(featuredArtistImageInfo);
-			setLoading(false);
+			setLoadingArtist(false);
+			setLoadingArt(false);
 		}
 	}, [featuredArtistImageInfo]);
 
-	const handleClick = () => {
-		setLoading(true);
+	const handleClickArtist = () => {
+		setLoadingArtist(true);
+		setLoadingArt(true);
 		selectRandomArtist();
+	};
+
+	const handleClickArt = () => {
+		setLoadingArt(true);
+		fillFeaturedArtistImages();
 	};
 
 	// async function getMetTestResponse() {
@@ -210,15 +219,15 @@ function Featured() {
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
 				height={{ base: "auto", lg: "40vw" }}
-				gap={{ sm: 0, md: 8, lg: 16 }}
+				gap={{ sm: 4, md: 8, lg: 16 }}
 				mx="5%"
 			>
 				<Flex
+					mb={{ base: 4, sm: 0 }}
 					width="100%"
 					direction="column"
 					align="center"
-					justify="space-evenly"
-					mt={{ base: 8, lg: 0 }}
+					justify="space-around"
 				>
 					<Flex
 						direction="column"
@@ -227,14 +236,15 @@ function Featured() {
 						width="100%"
 						height="80%"
 					>
-						{loading ? (
-							<Box>Loading...</Box>
+						{loadingArtist ? (
+							<Box height="80%">Loading...</Box>
 						) : (
 							<>
 								<Flex
 									justify="center"
 									width={{ base: "40%", md: "35%", lg: "70%" }}
 									position="relative"
+									mb={4}
 								>
 									<Image
 										src={selectedArtist.src}
@@ -255,7 +265,7 @@ function Featured() {
 										textAlign="center"
 										position="absolute"
 										bottom={6}
-										maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
+										maxWidth={{ base: "70%", md: "75%", "2xl": "100%" }}
 										bgColor="rgba(200, 200, 200, 0.5)"
 										color="white"
 										style={{
@@ -268,31 +278,10 @@ function Featured() {
 								</Flex>
 							</>
 						)}
-						<Button
-							borderRadius="50px"
-							width={{ base: "20%", md: "17.5%", lg: "35%" }}
-							textStyle="battambang"
-							border="1px solid #B1BAC1"
-							bg="gray.100"
-							color="#53443D"
-							_hover={{
-								bg: "#53443D",
-								color: "gray.100",
-								boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
-								transform: "scale(1.05) translate(-2px, -2px)",
-							}}
-							py={2}
-							fontSize={{
-								sm: "14px",
-								md: "16px",
-								lg: "18px",
-							}}
-							onClick={() => {
-								handleClick();
-							}}
-						>
-							Random Artist
-						</Button>
+						<Flex direction="row" justify="space-between" gap={3}>
+							<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
+							<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
+						</Flex>
 					</Flex>
 				</Flex>
 				<Box
@@ -326,7 +315,7 @@ function Featured() {
 							</Box>
 						)}
 					</Box> */}
-					{loading ? (
+					{loadingArt ? (
 						<Box>Loading...</Box>
 					) : (
 						<Flex
