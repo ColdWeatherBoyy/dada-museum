@@ -1,13 +1,16 @@
-import { Box, Flex, Grid, Heading, Image } from "@chakra-ui/react";
-import Button from "../components/Button.jsx";
+import { Box, Flex, Grid, Button, Image } from "@chakra-ui/react";
+// import Button from "../components/Button.jsx";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
+import Button2 from "../components/Button2";
+// import Loader from "../components/Loader";
 
 function Featured() {
 	// establish states for the featured artist
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [loadingArtist, setLoadingArtist] = useState(true);
+	const [loadingArt, setLoadingArt] = useState(true);
 	const [selectedArtist, setSelectedArtist] = useState({});
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
@@ -73,8 +76,7 @@ function Featured() {
 		}
 	};
 
-	// call function on page load
-	useEffect(() => {
+	const selectRandomArtist = () => {
 		const artistArray = [
 			{
 				name: "Marcel Duchamp",
@@ -111,6 +113,11 @@ function Featured() {
 		// randomizer to select artist from array
 		const artistIndex = Math.floor(Math.random() * artistArray.length);
 		setSelectedArtist(artistArray[artistIndex]);
+	};
+
+	// call function on page load
+	useEffect(() => {
+		selectRandomArtist();
 	}, []);
 
 	// call function on selectedArtist defined
@@ -126,9 +133,21 @@ function Featured() {
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
 			// console.log(featuredArtistImageInfo);
-			setLoading(false);
+			setLoadingArtist(false);
+			setLoadingArt(false);
 		}
 	}, [featuredArtistImageInfo]);
+
+	const handleClickArtist = () => {
+		setLoadingArtist(true);
+		setLoadingArt(true);
+		selectRandomArtist();
+	};
+
+	const handleClickArt = () => {
+		setLoadingArt(true);
+		fillFeaturedArtistImages();
+	};
 
 	// async function getMetTestResponse() {
 	// 	const response = await fetch("/api/met/", {
@@ -201,57 +220,71 @@ function Featured() {
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
 				height={{ base: "auto", lg: "40vw" }}
-				gap={{ sm: 0, md: 8, lg: 16 }}
+				gap={{ sm: 4, md: 8, lg: 16 }}
 				mx="5%"
 			>
 				<Flex
+					mb={{ base: 4, sm: 0 }}
 					width="100%"
 					direction="column"
 					align="center"
-					justify="space-evenly"
-					mt={{ base: 8, lg: 0 }}
+					justify="space-around"
 				>
-					{loading ? (
-						<Box>Loading...</Box>
-					) : (
-						<>
-							<Flex
-								justify="center"
-								width={{ base: "40%", md: "35%", lg: "70%" }}
-								position="relative"
-							>
-								<Image
-									src={selectedArtist.src}
-									alt={selectedArtist.alt}
-									borderRadius="md"
-								/>
-								<Box
-									padding="5px"
-									textStyle="playfairBold"
-									fontSize={{
-										sm: "16px",
-										md: "18px",
-										lg: "20px",
-										xl: "26px",
-									}}
-									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
-									borderRadius="md"
-									textAlign="center"
-									position="absolute"
-									bottom={6}
-									maxWidth={{ base: "70%", md: "70%", "2xl": "100%" }}
-									bgColor="rgba(200, 200, 200, 0.5)"
-									color="white"
-									style={{
-										backdropFilter: "blur(3px)",
-										WebkitBackdropFilter: "blur(3px)",
-									}}
+					<Flex
+						direction="column"
+						justify="space-between"
+						align="center"
+						width="100%"
+						height="80%"
+					>
+						{loadingArtist ? (
+							<Box height="80%">Loading...</Box>
+						) : (
+							<>
+								<Flex
+									justify="center"
+									width={{ base: "40%", md: "35%", lg: "70%" }}
+									position="relative"
+									mb={4}
 								>
-									{selectedArtist.name}
-								</Box>
-							</Flex>
-						</>
-					)}
+									<Image
+										src={selectedArtist.src}
+										alt={selectedArtist.alt}
+										borderRadius="md"
+									/>
+									<Box
+										padding="5px"
+										textStyle="playfairBold"
+										fontSize={{
+											sm: "16px",
+											md: "18px",
+											lg: "20px",
+											xl: "26px",
+										}}
+										letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+										borderRadius="md"
+										textAlign="center"
+										position="absolute"
+										bottom={6}
+										maxWidth={{ base: "70%", md: "75%", "2xl": "100%" }}
+										bgColor="rgba(200, 200, 200, 0.5)"
+										color="white"
+										style={{
+											backdropFilter: "blur(3px)",
+											WebkitBackdropFilter: "blur(3px)",
+										}}
+									>
+										{selectedArtist.name}
+									</Box>
+								</Flex>
+							</>
+						)}
+						<Flex direction="row" justify="space-between" gap={3}>
+							<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
+							<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
+							{/* <Loader /> */}
+						</Flex>
+					</Flex>
 				</Flex>
 				<Box
 					// ref={scrollBoxRef}
@@ -284,7 +317,7 @@ function Featured() {
 							</Box>
 						)}
 					</Box> */}
-					{loading ? (
+					{loadingArt ? (
 						<Box>Loading...</Box>
 					) : (
 						<Flex
