@@ -1,10 +1,9 @@
-import { Box, Flex, Grid, Button, Image } from "@chakra-ui/react";
-// import Button from "../components/Button.jsx";
+import { Box, Flex, Grid, Image, Divider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
 import Button2 from "../components/Button2";
-// import Loader from "../components/Loader";
+import Loader from "../components/Loader";
 
 function Featured() {
 	// establish states for the featured artist
@@ -218,7 +217,7 @@ function Featured() {
 		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
-				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
+				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
 				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 4, md: 8, lg: 16 }}
 				mx="5%"
@@ -238,7 +237,9 @@ function Featured() {
 						height="80%"
 					>
 						{loadingArtist ? (
-							<Box height="80%">Loading...</Box>
+							<Flex justify="center" height="90%" align="center">
+								<Loader />
+							</Flex>
 						) : (
 							<>
 								<Flex
@@ -282,10 +283,10 @@ function Featured() {
 						<Flex direction="row" justify="space-between" gap={3}>
 							<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
 							<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
-							{/* <Loader /> */}
 						</Flex>
 					</Flex>
 				</Flex>
+				<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
 				<Box
 					// ref={scrollBoxRef}
 					overflowY={{ base: "hidden", lg: "scroll" }}
@@ -318,7 +319,9 @@ function Featured() {
 						)}
 					</Box> */}
 					{loadingArt ? (
-						<Box>Loading...</Box>
+						<Flex justify="center" height="80%" align="center">
+							<Loader />
+						</Flex>
 					) : (
 						<Flex
 							direction={{ base: "row", lg: "column" }}
