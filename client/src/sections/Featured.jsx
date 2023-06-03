@@ -1,5 +1,4 @@
-import { Box, Flex, Grid, Button, Image } from "@chakra-ui/react";
-// import Button from "../components/Button.jsx";
+import { Box, Flex, Grid, Image, Divider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
@@ -218,7 +217,7 @@ function Featured() {
 		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
-				templateColumns={{ base: "1fr", lg: "2fr 3fr" }}
+				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
 				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 4, md: 8, lg: 16 }}
 				mx="5%"
@@ -287,6 +286,7 @@ function Featured() {
 						</Flex>
 					</Flex>
 				</Flex>
+				<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
 				<Box
 					// ref={scrollBoxRef}
 					overflowY={{ base: "hidden", lg: "scroll" }}
