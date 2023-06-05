@@ -9,6 +9,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 function Header() {
 	return (
@@ -71,22 +72,30 @@ function Header() {
 					_hover={{ bg: 'transparent' }}
 				/>
 				<MenuList>
-					<MenuItem>
-						<Box textStyle="dropdownFirstD" mb={1.5}>D</Box>
-						<Text textStyle="battambang">ada</Text>
-					</MenuItem>
-					<MenuItem>
-						<Box textStyle="dropdownFirstA" mb={3.5}>A</Box>
-						<Text textStyle="battambang">bout the Museum</Text>
-					</MenuItem>
-					<MenuItem>
-						<Box textStyle="dropdownSecondD" mb={2}>D</Box>
-						<Text textStyle="battambang">isplays</Text>
-					</MenuItem>
-					<MenuItem>
-						<Box textStyle="dropdownSecondA" mb={4}>A</Box>
-						<Text textStyle="battambang">dmissions</Text>
-					</MenuItem>
+					<Link to={`/link`}>
+						<MenuItem>
+								<Box textStyle="dropdownFirstD" mb={1.5}>D</Box>
+								<Text textStyle="robotoSlab">ada</Text>
+						</MenuItem>
+					</Link>
+					<Link to={`/link`}>
+						<MenuItem>
+							<Box textStyle="dropdownFirstA" mb={3.5}>A</Box>
+							<Text textStyle="robotoSlab">bout the Museum</Text>
+						</MenuItem>
+					</Link>
+					<Link to={`/link`}>
+						<MenuItem>
+							<Box textStyle="dropdownSecondD" mb={2}>D</Box>
+							<Text textStyle="robotoSlab">isplays</Text>
+						</MenuItem>
+					</Link>
+					<Link to={`/link`}>
+						<MenuItem>
+							<Box textStyle="dropdownSecondA" mb={4}>A</Box>
+							<Text textStyle="robotoSlab">dmissions</Text>
+						</MenuItem>
+					</Link>
 				</MenuList>
 			</Menu>
 		</Box>
