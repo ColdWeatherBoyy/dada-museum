@@ -14,6 +14,7 @@ function VisitComponent({ headingText, contentArray }) {
 				variant="outline"
 				borderColor="gray.300"
 				boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
+				my={{base: "3", md: "0"}}
 			>
 				<CardBody textStyle="playfairBold">
 					<Stack divider={<StackDivider borderColor="gray.300" />} spacing="4">

@@ -8,6 +8,7 @@ function ButtonArray({ links, padding }) {
 			flexDirection="column"
 			h="100%"
 			py={padding}
+			alignItems="center"
 		>
 			{links.map((link, index) => {
 				return <ButtonLink key={index} buttonText={link.text} link={link.link} />;

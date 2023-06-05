@@ -69,7 +69,7 @@ function CurrentExhibits() {
 				/>
 				<ButtonArray
 					links={links}
-					padding={16}
+					padding={{base: 3, md: 16}}
 				/>
 			</SimpleGrid>
 		</Box>

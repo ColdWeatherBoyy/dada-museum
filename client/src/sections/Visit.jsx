@@ -85,7 +85,7 @@ function Visit() {
 		<Box py={6} width="100%" bgColor="gray.100">
 			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
 				<SectionHeader headerText="Visit Us" />
-				<Flex direction="row" justify="space-between" wrap="no-wrap" mx="10%">
+				<Flex direction={{base: "column", md: "row"}} justify="space-between" align={{base: "center", md: "start"}} wrap="no-wrap" mx="10%">
 					<VisitComponent
 						headingText="Hours:"
 						contentArray={[
