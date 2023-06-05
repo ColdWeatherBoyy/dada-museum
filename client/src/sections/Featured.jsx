@@ -142,8 +142,10 @@ function Featured() {
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
 			// console.log(featuredArtistImageInfo);
-			// setLoadingArtist(false);
-			// setLoadingArt(false);
+			const timeout = setTimeout(() => {
+				setLoadingArtist(false);
+				setLoadingArt(false);
+			}, 3000);
 		}
 	}, [featuredArtistImageInfo]);
 
@@ -228,22 +230,29 @@ function Featured() {
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
-				height={{ base: "40vw", lg: "40vw" }}
+				// templateRows={{ base: "1fr .00001fr 1fr", lg: "1fr" }}
+				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 4, md: 8, lg: 16 }}
 				mx="5%"
 			>
-				<Flex
-					mb={{ base: 4, sm: 0 }}
-					width="100%"
-					direction="column"
-					align="center"
-					justify="space-around"
-				>
-					{loadingArtist ? (
-						<Flex justify="center" direction="column" height="100%" align="center">
-							<Loader />
-						</Flex>
-					) : (
+				{loadingArtist ? (
+					<Flex
+						justify="center"
+						direction="column"
+						width="100%"
+						height="100%"
+						align="center"
+					>
+						<Loader />
+					</Flex>
+				) : (
+					<Flex
+						mb={{ base: 4, sm: 0 }}
+						width="100%"
+						direction="column"
+						align="center"
+						justify="space-around"
+					>
 						<Flex
 							direction="column"
 							justify="space-between"
@@ -287,21 +296,33 @@ function Featured() {
 									{selectedArtist.name}
 								</Box>
 							</Flex>
+
 							<Flex direction="row" justify="space-between" gap={3}>
 								<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
 								<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
 							</Flex>
 						</Flex>
-					)}
-				</Flex>
+					</Flex>
+				)}
 				{windowWidth >= 992 ? (
 					<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
 				) : (
-					<Divider borderColor="#B1BAC1" orientation="horizontal" />
+					<Divider
+						mt={12}
+						borderColor="#B1BAC1"
+						orientation="horizontal"
+						justifySelf="center"
+					/>
 				)}
 				{loadingArt ? (
-					<Flex justify="center" height="100%" align="center">
-						<Loader />
+					<Flex
+						direction="column"
+						justify="center"
+						width="100%"
+						height="100%"
+						align="center"
+					>
+						<Loader number={{ base: 20, lg: 0 }} />
 					</Flex>
 				) : (
 					<Box
