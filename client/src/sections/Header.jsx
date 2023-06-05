@@ -68,23 +68,24 @@ function Header() {
 					icon={<HamburgerIcon boxSize={12} />}
 					bg="transparent"
 					color="gray.100"
+					_hover={{ bg: 'transparent' }}
 				/>
 				<MenuList>
 					<MenuItem>
-						<Box textStyle="dropdownFirstD">D</Box>
-						<Text>ada</Text>
+						<Box textStyle="dropdownFirstD" mb={1.5}>D</Box>
+						<Text textStyle="battambang">ada</Text>
 					</MenuItem>
 					<MenuItem>
-						<Box textStyle="dropdownFirstA">A</Box>
-						<Text>bout the Museum</Text>
+						<Box textStyle="dropdownFirstA" mb={3.5}>A</Box>
+						<Text textStyle="battambang">bout the Museum</Text>
 					</MenuItem>
 					<MenuItem>
-						<Box textStyle="dropdownSecondD">D</Box>
-						<Text>isplays</Text>
+						<Box textStyle="dropdownSecondD" mb={2}>D</Box>
+						<Text textStyle="battambang">isplays</Text>
 					</MenuItem>
 					<MenuItem>
-						<Box textStyle="dropdownSecondA">A</Box>
-						<Text>dmissions</Text>
+						<Box textStyle="dropdownSecondA" mb={4}>A</Box>
+						<Text textStyle="battambang">dmissions</Text>
 					</MenuItem>
 				</MenuList>
 			</Menu>
