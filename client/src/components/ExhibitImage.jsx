@@ -1,4 +1,5 @@
-import { Box, Image, Text, Heading, Link } from "@chakra-ui/react";
+import { Box, Image, Text, Heading } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText }) {
@@ -6,7 +7,7 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 
 	return (
 		<Box position="relative" maxW="100%">
-			<Link destination={destination}>
+			<Link to="/link">
 				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.3em" pb={0}>
 					{headingOne}
 				</Heading>

@@ -8,15 +8,15 @@ function CurrentExhibits() {
 	const links = [
 		{
 			text: "Permanent Exhibits",
-			link: "www.google.com",
+			link: "/link",
 		},
 		{
 			text: "Upcoming Exhibits",
-			link: "www.google.com",
+			link: "/link",
 		},
 		{
 			text: "Previous Exhibits",
-			link: "www.google.com",
+			link: "/link",
 		},
 	];
 

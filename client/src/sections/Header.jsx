@@ -75,25 +75,25 @@ function Header() {
 					<Link to={`/link`}>
 						<MenuItem>
 								<Box textStyle="dropdownFirstD" mb={1.5}>D</Box>
-								<Text textStyle="battambang">ada</Text>
+								<Text textStyle="robotoSlab">ada</Text>
 						</MenuItem>
 					</Link>
 					<Link to={`/link`}>
 						<MenuItem>
 							<Box textStyle="dropdownFirstA" mb={3.5}>A</Box>
-							<Text textStyle="battambang">bout the Museum</Text>
+							<Text textStyle="robotoSlab">bout the Museum</Text>
 						</MenuItem>
 					</Link>
 					<Link to={`/link`}>
 						<MenuItem>
 							<Box textStyle="dropdownSecondD" mb={2}>D</Box>
-							<Text textStyle="battambang">isplays</Text>
+							<Text textStyle="robotoSlab">isplays</Text>
 						</MenuItem>
 					</Link>
 					<Link to={`/link`}>
 						<MenuItem>
 							<Box textStyle="dropdownSecondA" mb={4}>A</Box>
-							<Text textStyle="battambang">dmissions</Text>
+							<Text textStyle="robotoSlab">dmissions</Text>
 						</MenuItem>
 					</Link>
 				</MenuList>

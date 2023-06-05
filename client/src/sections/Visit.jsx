@@ -10,15 +10,15 @@ function Visit() {
 	const links = [
 		{
 			text: "Buy Tickets",
-			link: "www.google.com",
+			link: "/link",
 		},
 		{
 			text: "Become a Member",
-			link: "www.google.com",
+			link: "/link",
 		},
 		{
 			text: "Join Email List",
-			link: "www.google.com",
+			link: "/link",
 		},
 	];
 

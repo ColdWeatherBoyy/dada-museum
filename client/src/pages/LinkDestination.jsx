@@ -22,7 +22,7 @@ function LinkDestination() {
 				justifyContent="center"
 				alignItems="center"
 			>
-				<Text >
+				<Text textStyle="robotoSlab">
 					This website is a demo of an imaginary museum homepage intended as a portfolio item, so the links don't lead anywhere. Click the button below to return to the homepage.
 				</Text>
 				<ButtonLink buttonText="Return to Homepage" link="/" />

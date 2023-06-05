@@ -1,6 +1,7 @@
-import { Box, Image, Text, Heading, Link } from "@chakra-ui/react";
+import { Box, Image, Text, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import VisitTextItem from "./VisitTextItem";
+import { Link } from "react-router-dom";
 
 function MapComponent({ headingText, contentArray }) {
 	const [isActive, setIsActive] = useState(false);
@@ -32,9 +33,9 @@ function MapComponent({ headingText, contentArray }) {
 				>
 					{contentArray.map((contentLine, index) => {
 						return (
-							<Link key={index} destination="">
+							<Box key={index} as="a" href="/link" >
 								<VisitTextItem key={index} contentText={contentLine} />
-							</Link>
+							</Box>
 						);
 					})}
 				</Box>
