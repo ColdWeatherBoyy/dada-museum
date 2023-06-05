@@ -72,7 +72,7 @@ function Collage() {
 						w={{ base: "80%", md: "40%" }}
 						minH={{ base: "40vh", md: "50vh" }}
 						p="0"
-						my={{ base: "5%", md: "0%" }}
+						my={{ base: 3, md: 0 }}
 						ref={collageBoundary}
 					>
 						{collageElements.map((element, index) => {
@@ -90,6 +90,7 @@ function Collage() {
 						bgColor="white"
 						w={{ base: "80%", md: "55%" }}
 						minH="60vh"
+						my={{base: 3, md: 0}}
 						display="flex"
 						flexDirection="column"
 						justifyContent="space-around"
@@ -121,8 +122,9 @@ function Collage() {
 									onChange={setTextValue}
 									value={textValue}
 									textStyle="battambang"
+									my={3}
 								>
-									<Stack direction="row">
+									<Stack direction="row" >
 										<Radio value="D">D</Radio>
 										<Radio value="A">A</Radio>
 										<Radio value="d">d</Radio>
@@ -137,6 +139,7 @@ function Collage() {
 									onChange={setFontValue}
 									value={fontValue}
 									textStyle="battambang"
+									my={3}
 								>
 									<Stack direction="column">
 										<Radio value="serif">Serif</Radio>
@@ -147,6 +150,7 @@ function Collage() {
 									onChange={setFontSize}
 									value={fontSize}
 									textStyle="battambang"
+									my={3}
 								>
 									<Stack direction="column">
 										<Radio value="small">Small</Radio>
@@ -164,6 +168,7 @@ function Collage() {
 								justifyContent="center"
 								alignSelf="center"
 								alignItems="center"
+								my={3}
 							>
 								<CollagePreview classText={fontValue + " " + fontSize} text={textValue} />
 							</Box>
@@ -171,16 +176,16 @@ function Collage() {
 						<Box
 							display="flex"
 							flexDirection={{ base: "column", md: "row" }}
-							w="60%"
+							w="80%"
 							justifyContent="space-between"
 						>
-							<Button onClick={addShape} textStyle="battambang">
+							<Button onClick={addShape} textStyle="battambang" my={3} mx={{base: 0, md: 3}}>
 								Add Selected
 							</Button>
-							<Button onClick={addRandom} textStyle="battambang">
+							<Button onClick={addRandom} textStyle="battambang" my={3} mx={{base: 0, md: 3}}>
 								Add Random
 							</Button>
-							<Button onClick={clearCanvas} textStyle="battambang">
+							<Button onClick={clearCanvas} textStyle="battambang" my={3} mx={{base: 0, md: 3}}>
 								Clear
 							</Button>
 						</Box>

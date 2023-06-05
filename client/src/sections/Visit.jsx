@@ -2,10 +2,25 @@ import { Box, SimpleGrid, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import VisitComponent from "../components/VisitComponent.jsx";
-import LinkCard from "../components/LinkCard";
+import ButtonArray from "../components/ButtonArray";
 
 function Visit() {
 	const [status, setStatus] = useState("Open Test");
+
+	const links = [
+		{
+			text: "Buy Tickets",
+			link:  "www.google.com"
+		},
+		{
+			text: "Become a Member",
+			link:  "www.google.com"
+		},
+		{
+			text: "Join Email List",
+			link:  "www.google.com"
+		},
+	];
 
 	const determineStatus = async () => {
 		const current = new Date();
@@ -70,7 +85,7 @@ function Visit() {
 		<Box py={6} width="100%" bgColor="gray.100">
 			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
 				<SectionHeader headerText="Visit Us" />
-				<Flex direction="row" justify="space-between" wrap="no-wrap" mx="10%">
+				<Flex direction={{base: "column", md: "row"}} justify="space-between" align={{base: "center", md: "start"}} wrap="no-wrap" mx="10%">
 					<VisitComponent
 						headingText="Hours:"
 						contentArray={[
@@ -81,11 +96,7 @@ function Visit() {
 						]}
 					/>
 					<VisitComponent headingText="Museum Status:" contentArray={[status]} />
-					<LinkCard
-						textOne="Buy Tickets"
-						textTwo="Become a Member"
-						textThree="Join Email List"
-					/>
+					<ButtonArray links={links} padding={0}/>
 				</Flex>
 			</Box>
 		</Box>
