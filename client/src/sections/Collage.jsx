@@ -3,10 +3,10 @@ import {
 	Radio,
 	RadioGroup,
 	Stack,
-	Button,
 	Heading,
-	SimpleGrid,
 	Card,
+	Flex,
+	Grid,
 } from "@chakra-ui/react";
 import { useRef, useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
@@ -70,7 +70,7 @@ function Collage() {
 				>
 					<Card
 						bgColor="white"
-						w={{ base: "80%", md: "40%" }}
+						w={{ base: "100%", md: "40%" }}
 						minH={{ base: "40vh", md: "50vh" }}
 						p="0"
 						my={{ base: 3, md: 0 }}
@@ -89,9 +89,9 @@ function Collage() {
 					</Card>
 					<Card
 						bgColor="white"
-						w={{ base: "80%", md: "55%" }}
-						minH="60vh"
+						w={{ base: "100%", md: "55%" }}
 						my={{ base: 3, md: 0 }}
+						minH={{ base: "40vh", md: "50vh" }}
 						display="flex"
 						flexDirection="column"
 						justifyContent="space-around"
@@ -106,47 +106,43 @@ function Collage() {
 						>
 							Collage Elements:
 						</Heading>
-						<Box
-							display="flex"
-							flexDirection={{ base: "column", md: "row" }}
-							justifyContent="space-around"
-							w="100%"
-							px={{ base: "5%", md: "0%" }}
+						<Flex
+							width={{ base: "90%", sm: "100%" }}
+							justify={{ base: "space-evenly", sm: "center" }}
 						>
-							<Box
-								display="flex"
-								flexDirection="column"
-								justifyContent="space-around"
-								alignItems="center"
-							>
+							<Box display="flex" flexDirection="column" w="50%" px="3%">
 								<RadioGroup
 									onChange={setTextValue}
 									value={textValue}
 									textStyle="robotoSlab"
 									my={3}
 								>
-									<Stack direction="row">
-										<Radio size="lg" value="D">
-											D
-										</Radio>
-										<Radio size="lg" value="A">
-											A
-										</Radio>
-										<Radio size="lg" value="d">
-											d
-										</Radio>
-										<Radio size="lg" value="a">
-											a
-										</Radio>
-									</Stack>
-									<Stack direction="row">
-										<Radio size="lg" value="!">
-											!
-										</Radio>
-										<Radio size="lg" value="?">
-											?
-										</Radio>
-									</Stack>
+									<Grid templateColumns="repeat(3, 1fr)" gap={4} width="60%">
+										<Stack direction="column">
+											<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="D">
+												D
+											</Radio>
+											<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="A">
+												A
+											</Radio>
+										</Stack>
+										<Stack direction="column">
+											<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="d">
+												d
+											</Radio>
+											<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="a">
+												a
+											</Radio>
+										</Stack>
+										<Stack direction="column">
+											<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="!">
+												!
+											</Radio>
+											<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="?">
+												?
+											</Radio>
+										</Stack>
+									</Grid>
 								</RadioGroup>
 								<RadioGroup
 									onChange={setFontValue}
@@ -155,10 +151,10 @@ function Collage() {
 									my={3}
 								>
 									<Stack direction="column">
-										<Radio size="lg" value="serif">
+										<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="serif">
 											Serif
 										</Radio>
-										<Radio size="lg" value="sans-serif">
+										<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="sans-serif">
 											Sans-Serif
 										</Radio>
 									</Stack>
@@ -170,13 +166,13 @@ function Collage() {
 									my={3}
 								>
 									<Stack direction="column">
-										<Radio size="lg" value="small">
+										<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="small">
 											Small
 										</Radio>
-										<Radio size="lg" value="medium">
+										<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="medium">
 											Medium
 										</Radio>
-										<Radio size="lg" value="large">
+										<Radio size={{ base: "sm", md: "md", lg: "lg" }} value="large">
 											Large
 										</Radio>
 									</Stack>
@@ -184,27 +180,30 @@ function Collage() {
 							</Box>
 							<Box
 								bgColor="gray.100"
-								w="250px"
+								w={{ sm: "50%", md: "40%", lg: "35%" }}
 								aspectRatio="1 / 1"
 								display="flex"
 								flexDirection="column"
 								justifyContent="center"
 								alignSelf="center"
 								alignItems="center"
-								my={3}
+								borderRadius="5px"
+								mx="3%"
 							>
 								<CollagePreview classText={fontValue + " " + fontSize} text={textValue} />
 							</Box>
-						</Box>
+						</Flex>
 						<Box
 							display="flex"
-							flexDirection={{ base: "column", md: "row" }}
-							w="80%"
-							justifyContent="space-between"
+							flexDirection="row"
+							w="100%"
+							px={{ base: 0, md: 8 }}
+							justifyContent="space-evenly"
+							pb={{ base: 4, md: 0 }}
 						>
-							<BrandButton functionCall={addShape} buttonText="Add Selected" />
-							<BrandButton functionCall={addRandom} buttonText="Add Random" />
 							<BrandButton functionCall={clearCanvas} buttonText="Clear" />
+							<BrandButton functionCall={addRandom} buttonText="Add Random" />
+							<BrandButton functionCall={addShape} buttonText="Add Selected" />
 						</Box>
 					</Card>
 				</Box>

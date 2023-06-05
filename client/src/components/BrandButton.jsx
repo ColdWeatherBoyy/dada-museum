@@ -21,9 +21,10 @@ function BrandButton({ buttonText, functionCall }) {
 				boxShadow: "inset 2px 2px 2px 2px rgba(0, 0, 0, 0.2)",
 				transform: "scale(1) translate(0px, 0px)",
 			}}
-			py={4}
+			py={{ base: 2, md: 4 }}
+			px={{ base: 2, md: 4 }}
 			fontSize={{
-				sm: "16px",
+				sm: "14px",
 				md: "18px",
 				lg: "20px",
 			}}
