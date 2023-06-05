@@ -10,7 +10,7 @@ function VisitComponent({ headingText, contentArray }) {
 		<Box position="relative" display="inline-block" whiteSpace="nowrap">
 			<Card
 				width="fit-content"
-				height="fit-content"
+				height="100%"
 				variant="outline"
 				borderColor="gray.300"
 				boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"

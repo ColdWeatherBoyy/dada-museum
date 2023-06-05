@@ -2,10 +2,25 @@ import { Box, SimpleGrid, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import VisitComponent from "../components/VisitComponent.jsx";
-import LinkCard from "../components/LinkCard";
+import ButtonArray from "../components/ButtonArray";
 
 function Visit() {
 	const [status, setStatus] = useState("Open Test");
+
+	const links = [
+		{
+			text: "Buy Tickets",
+			link:  "www.google.com"
+		},
+		{
+			text: "Become a Member",
+			link:  "www.google.com"
+		},
+		{
+			text: "Join Email List",
+			link:  "www.google.com"
+		},
+	];
 
 	const determineStatus = async () => {
 		const current = new Date();
@@ -81,11 +96,7 @@ function Visit() {
 						]}
 					/>
 					<VisitComponent headingText="Museum Status:" contentArray={[status]} />
-					<LinkCard
-						textOne="Buy Tickets"
-						textTwo="Become a Member"
-						textThree="Join Email List"
-					/>
+					<ButtonArray links={links}/>
 				</Flex>
 			</Box>
 		</Box>
