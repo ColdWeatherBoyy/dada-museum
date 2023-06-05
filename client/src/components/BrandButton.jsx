@@ -21,11 +21,11 @@ function BrandButton({ buttonText, functionCall }) {
 				boxShadow: "inset 2px 2px 2px 2px rgba(0, 0, 0, 0.2)",
 				transform: "scale(1) translate(0px, 0px)",
 			}}
-			py={2}
+			py={4}
 			fontSize={{
-				sm: "12px",
-				md: "16px",
-				lg: "18px",
+				sm: "16px",
+				md: "18px",
+				lg: "20px",
 			}}
 			onClick={() => {
 				{

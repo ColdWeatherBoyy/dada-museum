@@ -6,7 +6,7 @@ function ButtonLink({ buttonText, link }) {
 			as="a"
 			my={3}
 			borderRadius="50px"
-			width="fit-content"
+			width={{ base: "100%", lg: "125%" }}
 			textStyle="robotoSlab"
 			border="1px solid #B1BAC1"
 			bg="gray.100"
@@ -23,11 +23,11 @@ function ButtonLink({ buttonText, link }) {
 				boxShadow: "inset 2px 2px 2px 2px rgba(0, 0, 0, 0.2)",
 				transform: "scale(1) translate(0px, 0px)",
 			}}
-			py={2}
+			py={{ base: 4, lg: 6 }}
 			fontSize={{
-				sm: "12px",
-				md: "16px",
-				lg: "18px",
+				sm: "16px",
+				md: "18px",
+				lg: "20px",
 			}}
 			href={link}
 		>

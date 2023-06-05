@@ -262,7 +262,7 @@ function Featured() {
 						>
 							<Flex
 								justify="center"
-								width={{ base: "40%", md: "35%", lg: "70%" }}
+								width={{ base: "40%", md: "35%", lg: "65%" }}
 								position="relative"
 								mb={4}
 							>
