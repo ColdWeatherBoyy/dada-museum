@@ -11,6 +11,16 @@ function Featured() {
 	const [loadingArtist, setLoadingArtist] = useState(true);
 	const [loadingArt, setLoadingArt] = useState(true);
 	const [selectedArtist, setSelectedArtist] = useState({});
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+			// console.log(windowWidth);
+		};
+
+		window.addEventListener("resize", handleResize);
+	}, [window.innerWidth]);
 
 	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
@@ -132,8 +142,10 @@ function Featured() {
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
 			// console.log(featuredArtistImageInfo);
-			setLoadingArtist(false);
-			setLoadingArt(false);
+			const timeout = setTimeout(() => {
+				setLoadingArtist(false);
+				setLoadingArt(false);
+			}, 3000);
 		}
 	}, [featuredArtistImageInfo]);
 
@@ -218,85 +230,111 @@ function Featured() {
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
+				// templateRows={{ base: "1fr .00001fr 1fr", lg: "1fr" }}
 				height={{ base: "auto", lg: "40vw" }}
 				gap={{ sm: 4, md: 8, lg: 16 }}
 				mx="5%"
 			>
-				<Flex
-					mb={{ base: 4, sm: 0 }}
-					width="100%"
-					direction="column"
-					align="center"
-					justify="space-around"
-				>
+				{loadingArtist ? (
 					<Flex
+						justify="center"
 						direction="column"
-						justify="space-between"
-						align="center"
 						width="100%"
-						height="80%"
+						height="100%"
+						align="center"
 					>
-						{loadingArtist ? (
-							<Flex justify="center" height="90%" align="center">
-								<Loader />
-							</Flex>
-						) : (
-							<>
-								<Flex
-									justify="center"
-									width={{ base: "40%", md: "35%", lg: "70%" }}
-									position="relative"
-									mb={4}
+						<Loader />
+					</Flex>
+				) : (
+					<Flex
+						mb={{ base: 4, sm: 0 }}
+						width="100%"
+						direction="column"
+						align="center"
+						justify="space-around"
+					>
+						<Flex
+							direction="column"
+							justify="space-between"
+							align="center"
+							width="100%"
+							height="80%"
+						>
+							<Flex
+								justify="center"
+								width={{ base: "40%", md: "35%", lg: "70%" }}
+								position="relative"
+								mb={4}
+							>
+								<Image
+									src={selectedArtist.src}
+									alt={selectedArtist.alt}
+									borderRadius="md"
+								/>
+								<Box
+									padding="5px"
+									textStyle="playfairBold"
+									fontSize={{
+										sm: "16px",
+										md: "18px",
+										lg: "20px",
+										xl: "26px",
+									}}
+									letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
+									borderRadius="md"
+									textAlign="center"
+									position="absolute"
+									bottom={6}
+									maxWidth={{ base: "70%", md: "75%", "2xl": "100%" }}
+									bgColor="rgba(200, 200, 200, 0.5)"
+									color="white"
+									style={{
+										backdropFilter: "blur(3px)",
+										WebkitBackdropFilter: "blur(3px)",
+									}}
 								>
-									<Image
-										src={selectedArtist.src}
-										alt={selectedArtist.alt}
-										borderRadius="md"
-									/>
-									<Box
-										padding="5px"
-										textStyle="playfairBold"
-										fontSize={{
-											sm: "16px",
-											md: "18px",
-											lg: "20px",
-											xl: "26px",
-										}}
-										letterSpacing={{ sm: "0.1em", md: "0.15em", lg: "0.2em" }}
-										borderRadius="md"
-										textAlign="center"
-										position="absolute"
-										bottom={6}
-										maxWidth={{ base: "70%", md: "75%", "2xl": "100%" }}
-										bgColor="rgba(200, 200, 200, 0.5)"
-										color="white"
-										style={{
-											backdropFilter: "blur(3px)",
-											WebkitBackdropFilter: "blur(3px)",
-										}}
-									>
-										{selectedArtist.name}
-									</Box>
-								</Flex>
-							</>
-						)}
-						<Flex direction="row" justify="space-between" gap={3}>
-							<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
-							<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
+									{selectedArtist.name}
+								</Box>
+							</Flex>
+
+							<Flex direction="row" justify="space-between" gap={3}>
+								<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
+								<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
+							</Flex>
 						</Flex>
 					</Flex>
-				</Flex>
-				<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
-				<Box
-					// ref={scrollBoxRef}
-					overflowY={{ base: "hidden", lg: "scroll" }}
-					overflowX={{ base: "scroll", lg: "hidden" }}
-					position="relative"
-					width="100%"
-					mt={{ base: 4, lg: 12 }}
-					borderRadius="md"
-				>
-					{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
+				)}
+				{windowWidth >= 992 ? (
+					<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
+				) : (
+					<Divider
+						mt={12}
+						borderColor="#B1BAC1"
+						orientation="horizontal"
+						justifySelf="center"
+					/>
+				)}
+				{loadingArt ? (
+					<Flex
+						direction="column"
+						justify="center"
+						width="100%"
+						height="100%"
+						align="center"
+					>
+						<Loader number={{ base: 20, lg: 0 }} />
+					</Flex>
+				) : (
+					<Box
+						// ref={scrollBoxRef}
+						overflowY={{ base: "hidden", lg: "scroll" }}
+						overflowX={{ base: "scroll", lg: "hidden" }}
+						position="relative"
+						width="100%"
+						mt={{ base: 4, lg: 12 }}
+						borderRadius="md"
+					>
+						{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
 						{scrollDirection.left && (
 							<Box position="absolute" height="100%" left="0" zIndex="1">
 								Left
@@ -318,11 +356,6 @@ function Featured() {
 							</Box>
 						)}
 					</Box> */}
-					{loadingArt ? (
-						<Flex justify="center" height="80%" align="center">
-							<Loader />
-						</Flex>
-					) : (
 						<Flex
 							direction={{ base: "row", lg: "column" }}
 							my={{ base: 4, lg: 0 }}
@@ -358,8 +391,8 @@ function Featured() {
 								);
 							})}
 						</Flex>
-					)}
-				</Box>
+					</Box>
+				)}
 			</Grid>
 		</Box>
 	);

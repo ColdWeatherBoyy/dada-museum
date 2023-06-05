@@ -10,15 +10,15 @@ function Visit() {
 	const links = [
 		{
 			text: "Buy Tickets",
-			link:  "www.google.com"
+			link: "www.google.com",
 		},
 		{
 			text: "Become a Member",
-			link:  "www.google.com"
+			link: "www.google.com",
 		},
 		{
 			text: "Join Email List",
-			link:  "www.google.com"
+			link: "www.google.com",
 		},
 	];
 
@@ -85,7 +85,13 @@ function Visit() {
 		<Box py={6} width="100%" bgColor="gray.100">
 			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
 				<SectionHeader headerText="Visit Us" />
-				<Flex direction={{base: "column", md: "row"}} justify="space-between" align={{base: "center", md: "start"}} wrap="no-wrap" mx="10%">
+				<Flex
+					direction={{ base: "column", md: "row" }}
+					justify="space-between"
+					align={{ base: "center", md: "start" }}
+					wrap="no-wrap"
+					mx="10%"
+				>
 					<VisitComponent
 						headingText="Hours:"
 						contentArray={[
@@ -95,8 +101,11 @@ function Visit() {
 							"Sun: 12pm-4pm",
 						]}
 					/>
-					<VisitComponent headingText="Museum Status:" contentArray={[status]} />
-					<ButtonArray links={links} padding={0}/>
+					<VisitComponent
+						headingText="The Museum is currently:"
+						contentArray={[status]}
+					/>
+					<ButtonArray links={links} padding={0} />
 				</Flex>
 			</Box>
 		</Box>

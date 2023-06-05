@@ -1,8 +1,8 @@
 import { CircularProgress, Flex, Box } from "@chakra-ui/react";
 
-const Loader = () => {
+function Loader({ number }) {
 	return (
-		<Box position="relative">
+		<Box position="relative" width="100px" height="100px" mb={number}>
 			<CircularProgress
 				capIsRound
 				isIndeterminate
@@ -49,6 +49,6 @@ const Loader = () => {
 			/>
 		</Box>
 	);
-};
+}
 
 export default Loader;
