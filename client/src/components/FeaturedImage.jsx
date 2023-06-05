@@ -12,14 +12,14 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 		>
 			<Flex direction="column" align={alignment} width={{ base: "75%", lg: "30%" }}>
 				<Box
-					textStyle="battambang"
+					textStyle="robotoSlab"
 					fontSize={{ base: "14px", sm: "15px", md: "18px" }}
 					textAlign={textAlign}
 				>
 					{title}
 				</Box>
 				<Box
-					textStyle="battambang"
+					textStyle="robotoSlab"
 					fontSize={{ base: "12px", sm: "13px", md: "16px" }}
 					textAlign={textAlign}
 				>

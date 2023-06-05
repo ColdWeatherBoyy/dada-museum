@@ -52,7 +52,7 @@ function SiteMap() {
 					flexDirection="row"
 					justifyContent="center"
 					textAlign="center"
-					textStyle="battambang"
+					textStyle="robotoSlab"
 					bgColor="53443D"
 					w="100%"
 				>

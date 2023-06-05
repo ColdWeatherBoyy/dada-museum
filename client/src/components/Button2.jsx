@@ -5,7 +5,7 @@ function Button2({ buttonText, functionCall }) {
 		<Button
 			borderRadius="50px"
 			width="fit-content"
-			textStyle="battambang"
+			textStyle="robotoSlab"
 			border="1px solid #B1BAC1"
 			bg="gray.100"
 			color="#53443D"
