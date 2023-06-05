@@ -5,32 +5,20 @@ import ExhibitImage from "../components/ExhibitImage";
 import ButtonArray from "../components/ButtonArray";
 
 function CurrentExhibits() {
-	// Old logic for detecting window width for responsive design
-	// const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-	// useEffect(() => {
-	// 	const handleResize = () => {
-	// 		setWindowWidth(window.innerWidth);
-	// 		// console.log(windowWidth);
-	// 	};
-
-	// 	window.addEventListener("resize", handleResize);
-	// }, [window.innerWidth]);
-
 	const links = [
 		{
 			text: "Permanent Exhibits",
-			link: "www.google.com"
+			link: "www.google.com",
 		},
 		{
 			text: "Upcoming Exhibits",
-			link: "www.google.com"
+			link: "www.google.com",
 		},
 		{
 			text: "Previous Exhibits",
-			link: "www.google.com"
+			link: "www.google.com",
 		},
-	]
+	];
 
 	return (
 		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
@@ -67,10 +55,7 @@ function CurrentExhibits() {
 					alt="Marcel Duchamp and his most well-known Readymade The Fountain"
 					hoverText="Ordinary objects presented in extraordinary places. A term coined by the titular artist in th 1910s, Readymades test the art worlds willingness to open its definition of 'art.' "
 				/>
-				<ButtonArray
-					links={links}
-					padding={{base: 3, md: 16}}
-				/>
+				<ButtonArray links={links} padding={{ base: 3, md: 16 }} />
 			</SimpleGrid>
 		</Box>
 	);

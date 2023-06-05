@@ -101,7 +101,10 @@ function Visit() {
 							"Sun: 12pm-4pm",
 						]}
 					/>
-					<VisitComponent headingText="The Museum is:" contentArray={[status]} />
+					<VisitComponent
+						headingText="The Museum is currently:"
+						contentArray={[status]}
+					/>
 					<ButtonArray links={links} padding={0} />
 				</Flex>
 			</Box>
