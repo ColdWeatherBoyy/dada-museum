@@ -19,8 +19,8 @@ const theme = extendTheme({
 		playfair: {
 			fontFamily: "Playfair Display, serif",
 		},
-		battambang: {
-			fontFamily: "Battambang, serif",
+		robotoSlab: {
+			fontFamily: "Roboto Slab, serif",
 		},
 		dropdownFirstD: {
 			fontFamily: "Oi, sans-serif",

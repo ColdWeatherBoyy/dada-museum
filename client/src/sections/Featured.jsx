@@ -145,7 +145,7 @@ function Featured() {
 			const timeout = setTimeout(() => {
 				setLoadingArtist(false);
 				setLoadingArt(false);
-			}, 3000);
+			}, 1000);
 		}
 	}, [featuredArtistImageInfo]);
 

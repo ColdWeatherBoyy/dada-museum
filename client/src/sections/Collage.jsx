@@ -90,7 +90,7 @@ function Collage() {
 						bgColor="white"
 						w={{ base: "80%", md: "55%" }}
 						minH="60vh"
-						my={{base: 3, md: 0}}
+						my={{ base: 3, md: 0 }}
 						display="flex"
 						flexDirection="column"
 						justifyContent="space-around"
@@ -121,10 +121,10 @@ function Collage() {
 								<RadioGroup
 									onChange={setTextValue}
 									value={textValue}
-									textStyle="battambang"
+									textStyle="robotoSlab"
 									my={3}
 								>
-									<Stack direction="row" >
+									<Stack direction="row">
 										<Radio value="D">D</Radio>
 										<Radio value="A">A</Radio>
 										<Radio value="d">d</Radio>
@@ -138,7 +138,7 @@ function Collage() {
 								<RadioGroup
 									onChange={setFontValue}
 									value={fontValue}
-									textStyle="battambang"
+									textStyle="robotoSlab"
 									my={3}
 								>
 									<Stack direction="column">
@@ -149,7 +149,7 @@ function Collage() {
 								<RadioGroup
 									onChange={setFontSize}
 									value={fontSize}
-									textStyle="battambang"
+									textStyle="robotoSlab"
 									my={3}
 								>
 									<Stack direction="column">
@@ -179,13 +179,28 @@ function Collage() {
 							w="80%"
 							justifyContent="space-between"
 						>
-							<Button onClick={addShape} textStyle="battambang" my={3} mx={{base: 0, md: 3}}>
+							<Button
+								onClick={addShape}
+								textStyle="robotoSlab"
+								my={3}
+								mx={{ base: 0, md: 3 }}
+							>
 								Add Selected
 							</Button>
-							<Button onClick={addRandom} textStyle="battambang" my={3} mx={{base: 0, md: 3}}>
+							<Button
+								onClick={addRandom}
+								textStyle="robotoSlab"
+								my={3}
+								mx={{ base: 0, md: 3 }}
+							>
 								Add Random
 							</Button>
-							<Button onClick={clearCanvas} textStyle="battambang" my={3} mx={{base: 0, md: 3}}>
+							<Button
+								onClick={clearCanvas}
+								textStyle="robotoSlab"
+								my={3}
+								mx={{ base: 0, md: 3 }}
+							>
 								Clear
 							</Button>
 						</Box>

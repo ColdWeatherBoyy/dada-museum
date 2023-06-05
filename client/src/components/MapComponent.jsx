@@ -28,7 +28,7 @@ function MapComponent({ headingText, contentArray }) {
 					width="100%"
 					height="100%"
 					borderRadius="sm"
-					textStyle="battambang"
+					textStyle="robotoSlab"
 				>
 					{contentArray.map((contentLine, index) => {
 						return (

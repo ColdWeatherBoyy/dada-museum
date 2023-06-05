@@ -32,7 +32,7 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 					transition="opacity 0.3s"
 					bgGradient="linear(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,.8) 100%)"
 					p={3}
-					textStyle="battambang"
+					textStyle="robotoSlab"
 					borderRadius="md"
 				>
 					<Text
