@@ -96,7 +96,7 @@ function Visit() {
 						]}
 					/>
 					<VisitComponent headingText="Museum Status:" contentArray={[status]} />
-					<ButtonArray links={links}/>
+					<ButtonArray links={links} padding={0}/>
 				</Flex>
 			</Box>
 		</Box>

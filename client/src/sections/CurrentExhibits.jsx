@@ -2,7 +2,7 @@ import { Box, SimpleGrid, Heading, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
 import ExhibitImage from "../components/ExhibitImage";
-import LinkCard from "../components/LinkCard";
+import ButtonArray from "../components/ButtonArray";
 
 function CurrentExhibits() {
 	// Old logic for detecting window width for responsive design
@@ -16,6 +16,21 @@ function CurrentExhibits() {
 
 	// 	window.addEventListener("resize", handleResize);
 	// }, [window.innerWidth]);
+
+	const links = [
+		{
+			text: "Permanent Exhibits",
+			link: "www.google.com"
+		},
+		{
+			text: "Upcoming Exhibits",
+			link: "www.google.com"
+		},
+		{
+			text: "Previous Exhibits",
+			link: "www.google.com"
+		},
+	]
 
 	return (
 		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
@@ -52,10 +67,9 @@ function CurrentExhibits() {
 					alt="Marcel Duchamp and his most well-known Readymade The Fountain"
 					hoverText="Ordinary objects presented in extraordinary places. A term coined by the titular artist in th 1910s, Readymades test the art worlds willingness to open its definition of 'art.' "
 				/>
-				<LinkCard
-					textOne="Permanent Exhibit"
-					textTwo="Upcoming Exhibits"
-					textThree="Previous Exhibits"
+				<ButtonArray
+					links={links}
+					padding={16}
 				/>
 			</SimpleGrid>
 		</Box>
