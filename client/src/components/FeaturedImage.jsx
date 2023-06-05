@@ -5,7 +5,7 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 		<Flex
 			direction={flexDirection}
 			align={{ base: "auto", lg: "center" }}
-			justify={{ base: "space-between", lg: "space-evenly" }}
+			justify="space-evenly"
 			mb={{ base: 0, lg: 8 }}
 			mx={{ base: 4, lg: 0 }}
 			height={{ base: "55vw", lg: "auto" }}
