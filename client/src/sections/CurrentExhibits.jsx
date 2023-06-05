@@ -55,7 +55,9 @@ function CurrentExhibits() {
 					alt="Marcel Duchamp and his most well-known Readymade The Fountain"
 					hoverText="Ordinary objects presented in extraordinary places. A term coined by the titular artist in th 1910s, Readymades test the art worlds willingness to open its definition of 'art.' "
 				/>
-				<ButtonArray links={links} padding={{ base: 3, md: 16 }} />
+				<Flex>
+					<ButtonArray links={links} padding={{ base: 3, md: 16 }} />
+				</Flex>
 			</SimpleGrid>
 		</Box>
 	);

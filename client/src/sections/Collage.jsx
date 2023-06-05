@@ -12,6 +12,7 @@ import { useRef, useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader";
 import CollageElement from "../components/CollageElement";
 import CollagePreview from "../components/CollagePreview";
+import BrandButton from "../components/BrandButton";
 
 function Collage() {
 	const collageBoundary = useRef();
@@ -179,30 +180,9 @@ function Collage() {
 							w="80%"
 							justifyContent="space-between"
 						>
-							<Button
-								onClick={addShape}
-								textStyle="robotoSlab"
-								my={3}
-								mx={{ base: 0, md: 3 }}
-							>
-								Add Selected
-							</Button>
-							<Button
-								onClick={addRandom}
-								textStyle="robotoSlab"
-								my={3}
-								mx={{ base: 0, md: 3 }}
-							>
-								Add Random
-							</Button>
-							<Button
-								onClick={clearCanvas}
-								textStyle="robotoSlab"
-								my={3}
-								mx={{ base: 0, md: 3 }}
-							>
-								Clear
-							</Button>
+							<BrandButton functionCall={addShape} buttonText="Add Selected" />
+							<BrandButton functionCall={addRandom} buttonText="Add Random" />
+							<BrandButton functionCall={clearCanvas} buttonText="Clear" />
 						</Box>
 					</Card>
 				</Box>
