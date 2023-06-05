@@ -2,7 +2,7 @@ import { Box, Flex, Grid, Image, Divider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
-import Button2 from "../components/Button2";
+import BrandButton from "../components/BrandButton";
 import Loader from "../components/Loader";
 
 function Featured() {
@@ -298,8 +298,11 @@ function Featured() {
 							</Flex>
 
 							<Flex direction="row" justify="space-between" gap={3}>
-								<Button2 buttonText="Randomize Artist" functionCall={handleClickArtist} />
-								<Button2 buttonText="Randomize Art" functionCall={handleClickArt} />
+								<BrandButton
+									buttonText="Randomize Artist"
+									functionCall={handleClickArtist}
+								/>
+								<BrandButton buttonText="Randomize Art" functionCall={handleClickArt} />
 							</Flex>
 						</Flex>
 					</Flex>

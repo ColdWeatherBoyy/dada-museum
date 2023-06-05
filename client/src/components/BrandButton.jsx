@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function Button2({ buttonText, functionCall }) {
+function BrandButton({ buttonText, functionCall }) {
 	return (
 		<Button
 			borderRadius="50px"
@@ -38,4 +38,4 @@ function Button2({ buttonText, functionCall }) {
 	);
 }
 
-export default Button2;
+export default BrandButton;
