@@ -286,7 +286,7 @@ function Featured() {
 									position="absolute"
 									bottom={6}
 									maxWidth={{ base: "70%", md: "75%", "2xl": "100%" }}
-									bgColor="rgba(200, 200, 200, 0.5)"
+									bgColor="rgba(83, 68, 61, 0.5)"
 									color="white"
 									style={{
 										backdropFilter: "blur(3px)",
