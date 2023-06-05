@@ -126,14 +126,26 @@ function Collage() {
 									my={3}
 								>
 									<Stack direction="row">
-										<Radio value="D">D</Radio>
-										<Radio value="A">A</Radio>
-										<Radio value="d">d</Radio>
-										<Radio value="a">a</Radio>
+										<Radio size="lg" value="D">
+											D
+										</Radio>
+										<Radio size="lg" value="A">
+											A
+										</Radio>
+										<Radio size="lg" value="d">
+											d
+										</Radio>
+										<Radio size="lg" value="a">
+											a
+										</Radio>
 									</Stack>
 									<Stack direction="row">
-										<Radio value="!">!</Radio>
-										<Radio value="?">?</Radio>
+										<Radio size="lg" value="!">
+											!
+										</Radio>
+										<Radio size="lg" value="?">
+											?
+										</Radio>
 									</Stack>
 								</RadioGroup>
 								<RadioGroup
@@ -143,8 +155,12 @@ function Collage() {
 									my={3}
 								>
 									<Stack direction="column">
-										<Radio value="serif">Serif</Radio>
-										<Radio value="sans-serif">Sans-Serif</Radio>
+										<Radio size="lg" value="serif">
+											Serif
+										</Radio>
+										<Radio size="lg" value="sans-serif">
+											Sans-Serif
+										</Radio>
 									</Stack>
 								</RadioGroup>
 								<RadioGroup
@@ -154,9 +170,15 @@ function Collage() {
 									my={3}
 								>
 									<Stack direction="column">
-										<Radio value="small">Small</Radio>
-										<Radio value="medium">Medium</Radio>
-										<Radio value="large">Large</Radio>
+										<Radio size="lg" value="small">
+											Small
+										</Radio>
+										<Radio size="lg" value="medium">
+											Medium
+										</Radio>
+										<Radio size="lg" value="large">
+											Large
+										</Radio>
 									</Stack>
 								</RadioGroup>
 							</Box>
