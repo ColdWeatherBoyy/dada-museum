@@ -30,7 +30,11 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 					height="100%"
 					opacity={isActive ? 1 : 0}
 					transition="opacity 0.3s"
-					bgGradient="linear(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,.8) 100%)"
+					bgGradient={{
+						base: "linear(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,.8) 100%)",
+						md: "linear(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,.8) 100%)",
+						lg: "linear(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.2) 20%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,.8) 100%)",
+					}}
 					p={3}
 					textStyle="robotoSlab"
 					borderRadius="md"
@@ -42,7 +46,7 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 						bottom={4}
 						left={4}
 						pr={{ sm: "10%", md: "10%", lg: "10%" }}
-						fontSize={{ sm: "17px", md: "15px", lgm: "18px" }}
+						fontSize={{ sm: "17px", md: "14.5px", lgm: "18px" }}
 					>
 						{hoverText}
 					</Text>
