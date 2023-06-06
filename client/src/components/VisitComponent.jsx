@@ -7,16 +7,15 @@ function VisitComponent({ headingText, contentArray }) {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
-		<Box position="relative" display="inline-block" whiteSpace="nowrap">
+		<Box position="relative" display="inline-block" whiteSpace="nowrap" h="100%">
 			<Card
-				width="fit-content"
-				height="100%"
+				h="100%"
 				variant="outline"
 				borderColor="gray.300"
 				boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
 				my={{ base: "3", md: "0" }}
 			>
-				<CardBody textStyle="playfairBold">
+				<CardBody textStyle="playfairBold" h="100%">
 					<Stack divider={<StackDivider borderColor="gray.300" />} spacing="4">
 						<Heading
 							variant="exhibit-heading"

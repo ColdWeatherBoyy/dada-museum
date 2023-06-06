@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Flex } from "@chakra-ui/react";
+import { Box, SimpleGrid, Flex, Card, CardBody, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import VisitComponent from "../components/VisitComponent.jsx";
@@ -29,51 +29,51 @@ function Visit() {
 		switch (current.getDay()) {
 			case 0:
 				if (current.getHours() > 11 && current.getHours() < 16) {
-					setStatus("Open");
+					setStatus("OPEN");
 				} else {
-					setStatus("Closed");
+					setStatus("CLOSED");
 				}
 				break;
 			case 1:
-				setStatus("Closed");
+				setStatus("CLOSED");
 				break;
 			case 2:
 				if (current.getHours() > 9 && current.getHours() < 17) {
-					setStatus("Open");
+					setStatus("OPEN");
 				} else {
-					setStatus("Closed");
+					setStatus("CLOSED");
 				}
 				break;
 			case 3:
 				if (current.getHours() > 9 && current.getHours() < 17) {
-					setStatus("Open");
+					setStatus("OPEN");
 				} else {
-					setStatus("Closed");
+					setStatus("CLOSED");
 				}
 				break;
 			case 4:
 				if (current.getHours() > 9 && current.getHours() < 17) {
-					setStatus("Open");
+					setStatus("OPEN");
 				} else {
-					setStatus("Closed");
+					setStatus("CLOSED");
 				}
 				break;
 			case 5:
 				if (current.getHours() > 9 && current.getHours() < 19) {
-					setStatus("Open");
+					setStatus("OPEN");
 				} else {
-					setStatus("Closed");
+					setStatus("CLOSED");
 				}
 				break;
 			case 6:
 				if (current.getHours() > 9 && current.getHours() < 19) {
-					setStatus("Open");
+					setStatus("OPEN");
 				} else {
-					setStatus("Closed");
+					setStatus("CLOSED");
 				}
 				break;
 			default:
-				setStatus("Open");
+				setStatus("OPEN");
 		}
 	};
 
@@ -87,10 +87,11 @@ function Visit() {
 				<SectionHeader headerText="Visit Us" />
 				<Flex
 					direction={{ base: "column", md: "row" }}
-					justify="space-between"
-					align={{ base: "center", md: "start" }}
+					justify={{base: "space-between", md: "space-around"}}
+					align={{ base: "center", md: "center" }}
 					wrap="no-wrap"
 					mx="10%"
+					h="100%"
 				>
 					<VisitComponent
 						headingText="Hours:"
@@ -101,11 +102,36 @@ function Visit() {
 							"Sun: 12pm-4pm",
 						]}
 					/>
-					<VisitComponent
-						headingText="The Museum is currently:"
-						contentArray={[status]}
-					/>
-					<ButtonArray links={links} padding={0} />
+					<Box
+						display="flex"
+						flexDirection="column"
+						justifyContent="space-between"
+						w="60%"
+					>
+						<Card
+							w="100%"
+							height="100%"
+							variant="outline"
+							borderColor="gray.300"
+							boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
+							alignSelf="center"
+							mb={{ base: "3", md: "3" }}
+							py={{ base: "3", md: "3"}}
+						>
+							<CardBody textStyle="playfairBold">
+							<Heading
+								variant="exhibit-heading"
+								textAlign="center"
+								fontSize="1.25em"
+								// pb={0}
+								// mb="1em"
+							>
+								{"The museum is currently " + status}
+							</Heading>
+							</CardBody>
+						</Card>
+						<ButtonArray links={links} padding={0} />
+					</Box>
 				</Flex>
 			</Box>
 		</Box>

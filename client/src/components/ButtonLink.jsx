@@ -6,7 +6,7 @@ function ButtonLink({ buttonText, link }) {
 			as="a"
 			my={3}
 			borderRadius="50px"
-			width={{ base: "100%", lg: "125%" }}
+			width={{ base: "100%", lg: "100%" }}
 			textStyle="robotoSlab"
 			border="1px solid #B1BAC1"
 			bg="gray.100"
