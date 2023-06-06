@@ -8,7 +8,7 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 	return (
 		<Box position="relative" maxW="100%">
 			<Link to="/link">
-				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.3em" pb={0}>
+				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.3em" pb={0} _hover={{textDecorationLine: "underline", color: "#B1BAC1"}}>
 					{headingOne}
 				</Heading>
 			</Link>
