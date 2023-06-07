@@ -160,53 +160,59 @@ function Featured() {
 		fillFeaturedArtistImages();
 	};
 
-	// const scrollBoxRef = useRef(null);
+	const [scrollDirection, setScrollDirection] = useState({
+		left: false,
+		right: false,
+		up: false,
+		down: true,
+	});
+	const scrollBoxRef = useRef(null);
 
-	// useEffect(() => {
-	// 	const scrollBox = scrollBoxRef.current;
+	useEffect(() => {
+		const scrollBox = scrollBoxRef.current;
 
-	// 	// if check to see window size and set scrollDirection accordingly
-	// 	if (window.innerWidth < 992) {
-	// 		setScrollDirection({
-	// 			left: false,
-	// 			right: true,
-	// 			up: false,
-	// 			down: false,
-	// 		});
-	// 	}
+		// if check to see window size and set scrollDirection accordingly
+		if (window.innerWidth < 992) {
+			setScrollDirection({
+				left: false,
+				right: true,
+				up: false,
+				down: false,
+			});
+		}
 
-	// 	if (!scrollBox) {
-	// 		return;
-	// 	}
+		if (!scrollBox) {
+			return;
+		}
 
-	// 	const handleScroll = () => {
-	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+		const handleScroll = () => {
+			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
 
-	// 		setScrollDirection({
-	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
-	// 			right:
-	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-	// 				isScrollableX,
-	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
-	// 			down:
-	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-	// 				isScrollableY,
-	// 		});
-	// 	};
+			setScrollDirection({
+				left: scrollBox.scrollLeft > 0 && isScrollableX,
+				right:
+					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+					isScrollableX,
+				up: scrollBox.scrollTop > 0 && isScrollableY,
+				down:
+					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+					isScrollableY,
+			});
+		};
 
-	// 	scrollBox.addEventListener("scroll", handleScroll);
-	// 	window.addEventListener("resize", handleScroll);
+		scrollBox.addEventListener("scroll", handleScroll);
+		window.addEventListener("resize", handleScroll);
 
-	// 	return () => {
-	// 		scrollBox.removeEventListener("scroll", handleScroll);
-	// 		window.removeEventListener("resize", handleScroll);
-	// 	};
-	// }, [loadingArt]);
+		return () => {
+			scrollBox.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("resize", handleScroll);
+		};
+	}, [loadingArt]);
 
-	// useEffect(() => {
-	// 	console.log(scrollDirection);
-	// }, [scrollDirection]);
+	useEffect(() => {
+		console.log(scrollDirection);
+	}, [scrollDirection]);
 
 	return (
 		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
@@ -288,36 +294,36 @@ function Featured() {
 					</Flex>
 				) : (
 					<Box
-						// ref={scrollBoxRef}
-						overflowY={{ base: "auto", lg: "scroll" }}
+						ref={scrollBoxRef}
+						overflowY={{ base: "hidden", lg: "scroll" }}
 						overflowX={{ base: "scroll", lg: "hidden" }}
 						position="relative"
 						width="100%"
 						height={{ base: "fit-content", lg: "auto" }}
 						borderRadius="md"
 					>
-						{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
-							{scrollDirection.left && (
-								<Box position="absolute" height="100%" left="0" zIndex="1">
-									Left
-								</Box>
-							)}
-							{scrollDirection.right && (
-								<Box position="absolute" height="100%" right="0" zIndex="1">
-									Right
-								</Box>
-							)}
-							{scrollDirection.up && (
-								<Box position="absolute" width="100%" top="0" zIndex="1">
-									Up
-								</Box>
-							)}
-							{scrollDirection.down && (
-								<Box position="absolute" width="100%" bottom="0" zIndex="1">
-									Down
-								</Box>
-							)}
-						</Box> */}
+						{scrollDirection.left && (
+							<Box
+								position="sticky"
+								pointerEvents="none"
+								width="20px"
+								height="60vh"
+								left="0"
+								zIndex="1"
+								bg="gray.800"
+							/>
+						)}
+						{scrollDirection.up && (
+							<Box
+								position="sticky"
+								pointerEvents="none"
+								width="100%"
+								height="20px"
+								top="0"
+								zIndex="1"
+								bg="blue.800"
+							/>
+						)}
 						<Flex
 							direction={{ base: "row", lg: "column" }}
 							width={{ base: "330%", md: "270%", lg: "auto" }}
@@ -351,6 +357,27 @@ function Featured() {
 								);
 							})}
 						</Flex>
+						{scrollDirection.right && (
+							<Box
+								position="sticky"
+								width="20px"
+								height="60vh"
+								right="0"
+								zIndex="1"
+								bg="green.800"
+							></Box>
+						)}
+						{scrollDirection.down && (
+							<Box
+								position="sticky"
+								pointerEvents="none"
+								width="100%"
+								height="20px"
+								bottom="0"
+								zIndex="1"
+								bg="pink.800"
+							/>
+						)}
 					</Box>
 				)}
 			</Grid>
