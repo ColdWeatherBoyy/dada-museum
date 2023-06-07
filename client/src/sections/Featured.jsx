@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Image, Divider } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
 import BrandButton from "../components/BrandButton";
@@ -160,28 +160,12 @@ function Featured() {
 		fillFeaturedArtistImages();
 	};
 
-	// async function getMetTestResponse() {
-	// 	const response = await fetch("/api/met/", {
-	// 		method: "GET",
-	// 	});
-	// 	const data = await response.json();
-	// 	console.log(data);
-	// }
-
-	// useEffect(() => {
-	// 	getMetTestResponse();
-	// }, []);
-
 	// const scrollBoxRef = useRef(null);
-	// const [scrollDirection, setScrollDirection] = useState({
-	// 	left: false,
-	// 	right: false,
-	// 	up: false,
-	// 	down: true,
-	// });
 
-	// // if check to see window size and set scrollDirection accordingly
 	// useEffect(() => {
+	// 	const scrollBox = scrollBoxRef.current;
+
+	// 	// if check to see window size and set scrollDirection accordingly
 	// 	if (window.innerWidth < 992) {
 	// 		setScrollDirection({
 	// 			left: false,
@@ -190,11 +174,10 @@ function Featured() {
 	// 			down: false,
 	// 		});
 	// 	}
-	// }, [loading]);
 
-	// useEffect(() => {
-	// 	const scrollBox = scrollBoxRef.current;
-	// 	// const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
+	// 	if (!scrollBox) {
+	// 		return;
+	// 	}
 
 	// 	const handleScroll = () => {
 	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
@@ -219,7 +202,7 @@ function Featured() {
 	// 		scrollBox.removeEventListener("scroll", handleScroll);
 	// 		window.removeEventListener("resize", handleScroll);
 	// 	};
-	// }, [loading]);
+	// }, [loadingArt]);
 
 	// useEffect(() => {
 	// 	console.log(scrollDirection);
@@ -230,28 +213,22 @@ function Featured() {
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
-				height={{ base: "auto", lg: "40vw" }}
-				mx={{ base: "0", lg: "5%" }}
-				gap="5%"
+				height={{ base: "fit-content", lg: "40vw" }}
+				mx="5%"
+				gap={{ base: "0%", lg: "5%" }}
 			>
 				{loadingArtist ? (
 					<Flex justify="center" align="center" mb={{ base: 6, lg: 0 }}>
 						<Loader />
 					</Flex>
 				) : (
-					<Flex
-						mb={{ base: 4, sm: 0 }}
-						width="100%"
-						direction="column"
-						align="center"
-						justify="space-around"
-					>
+					<Flex width="100%" direction="column" align="center" justify="space-around">
 						<Flex
 							direction="column"
-							justify="space-between"
+							justify="space-around"
 							align="center"
 							width="100%"
-							height="90%"
+							height="100%"
 						>
 							<Flex
 								justify="center"
@@ -303,7 +280,7 @@ function Featured() {
 				{windowWidth >= 992 ? (
 					<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
 				) : (
-					<Divider borderColor="#B1BAC1" orientation="horizontal" />
+					<Divider mt={10} mb={4} borderColor="#B1BAC1" orientation="horizontal" />
 				)}
 				{loadingArt ? (
 					<Flex justify="center" align="center" my={{ base: 6, lg: 0 }}>
@@ -312,39 +289,37 @@ function Featured() {
 				) : (
 					<Box
 						// ref={scrollBoxRef}
-						overflowY={{ base: "hidden", lg: "scroll" }}
+						overflowY={{ base: "auto", lg: "scroll" }}
 						overflowX={{ base: "scroll", lg: "hidden" }}
 						position="relative"
 						width="100%"
-						mt={{ base: 4, lg: 12 }}
+						height={{ base: "fit-content", lg: "auto" }}
 						borderRadius="md"
 					>
 						{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
-						{scrollDirection.left && (
-							<Box position="absolute" height="100%" left="0" zIndex="1">
-								Left
-							</Box>
-						)}
-						{scrollDirection.right && (
-							<Box position="absolute" height="100%" right="0" zIndex="1">
-								Right
-							</Box>
-						)}
-						{scrollDirection.up && (
-							<Box position="absolute" width="100%" top="0" zIndex="1">
-								Up
-							</Box>
-						)}
-						{scrollDirection.down && (
-							<Box position="absolute" width="100%" bottom="0" zIndex="1">
-								Down
-							</Box>
-						)}
-					</Box> */}
+							{scrollDirection.left && (
+								<Box position="absolute" height="100%" left="0" zIndex="1">
+									Left
+								</Box>
+							)}
+							{scrollDirection.right && (
+								<Box position="absolute" height="100%" right="0" zIndex="1">
+									Right
+								</Box>
+							)}
+							{scrollDirection.up && (
+								<Box position="absolute" width="100%" top="0" zIndex="1">
+									Up
+								</Box>
+							)}
+							{scrollDirection.down && (
+								<Box position="absolute" width="100%" bottom="0" zIndex="1">
+									Down
+								</Box>
+							)}
+						</Box> */}
 						<Flex
 							direction={{ base: "row", lg: "column" }}
-							my={{ base: 4, lg: 0 }}
-							position="relative"
 							width={{ base: "330%", md: "270%", lg: "auto" }}
 							justify="space-around"
 						>

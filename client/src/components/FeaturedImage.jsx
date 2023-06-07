@@ -8,7 +8,7 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 			justify="space-evenly"
 			mb={{ base: 0, lg: 8 }}
 			mx={{ base: 4, lg: 0 }}
-			height={{ base: "55vw", lg: "auto" }}
+			height={{ base: "45vh", lg: "auto" }}
 		>
 			<Flex direction="column" align={alignment} width={{ base: "75%", lg: "30%" }}>
 				<Box
