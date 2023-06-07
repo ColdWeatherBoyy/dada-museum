@@ -230,19 +230,12 @@ function Featured() {
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
-				// templateRows={{ base: "1fr .00001fr 1fr", lg: "1fr" }}
 				height={{ base: "auto", lg: "40vw" }}
-				gap={{ sm: 4, md: 8, lg: 16 }}
-				mx="5%"
+				mx={{ base: "0", lg: "5%" }}
+				gap="5%"
 			>
 				{loadingArtist ? (
-					<Flex
-						justify="center"
-						direction="column"
-						width="100%"
-						height="100%"
-						align="center"
-					>
+					<Flex justify="center" align="center" mb={{ base: 6, lg: 0 }}>
 						<Loader />
 					</Flex>
 				) : (
@@ -258,7 +251,7 @@ function Featured() {
 							justify="space-between"
 							align="center"
 							width="100%"
-							height="80%"
+							height="90%"
 						>
 							<Flex
 								justify="center"
@@ -310,22 +303,11 @@ function Featured() {
 				{windowWidth >= 992 ? (
 					<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
 				) : (
-					<Divider
-						mt={12}
-						borderColor="#B1BAC1"
-						orientation="horizontal"
-						justifySelf="center"
-					/>
+					<Divider borderColor="#B1BAC1" orientation="horizontal" />
 				)}
 				{loadingArt ? (
-					<Flex
-						direction="column"
-						justify="center"
-						width="100%"
-						height="100%"
-						align="center"
-					>
-						<Loader number={{ base: 20, lg: 0 }} />
+					<Flex justify="center" align="center" my={{ base: 6, lg: 0 }}>
+						<Loader />
 					</Flex>
 				) : (
 					<Box

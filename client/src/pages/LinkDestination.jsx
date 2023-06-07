@@ -27,7 +27,7 @@ function LinkDestination() {
 					item, so the links don't lead anywhere. Click the button below to return to the
 					homepage.
 				</Text>
-				<Box width="25%">
+				<Box width="50%">
 					<ButtonLink buttonText="Return to Homepage" link="/" />
 				</Box>
 			</Box>
