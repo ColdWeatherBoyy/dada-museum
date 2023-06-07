@@ -69,30 +69,50 @@ function Header() {
 					icon={<HamburgerIcon boxSize={12} />}
 					bg="transparent"
 					color="gray.100"
-					_hover={{ bg: 'transparent' }}
+					_hover={{
+						transform: "scale(1.2)",
+						color: "gray.100",
+					}}
+					_active={{
+						transform: "scale(0.9)",
+					}}
+					_expanded={{
+						color: "#53443D",
+						bg: "gray.100",
+						transform: "scale(1)",
+					}}
+					transition="transform 0.3s ease, color 0.3s ease, bg 0.3s ease"
 				/>
 				<MenuList>
 					<Link to={`/link`}>
 						<MenuItem>
-								<Box textStyle="dropdownFirstD" mb={1.5}>D</Box>
-								<Text textStyle="robotoSlab">ada</Text>
+							<Box textStyle="dropdownFirstD" mb={1.5}>
+								D
+							</Box>
+							<Text textStyle="robotoSlab">ada</Text>
 						</MenuItem>
 					</Link>
 					<Link to={`/link`}>
 						<MenuItem>
-							<Box textStyle="dropdownFirstA" mb={3.5}>A</Box>
+							<Box textStyle="dropdownFirstA" mb={3.5}>
+								A
+							</Box>
 							<Text textStyle="robotoSlab">bout the Museum</Text>
 						</MenuItem>
 					</Link>
 					<Link to={`/link`}>
 						<MenuItem>
-							<Box textStyle="dropdownSecondD" mb={2}>D</Box>
+							<Box textStyle="dropdownSecondD" mb={2}>
+								D
+							</Box>
 							<Text textStyle="robotoSlab">isplays</Text>
 						</MenuItem>
 					</Link>
 					<Link to={`/link`}>
 						<MenuItem>
-							<Box textStyle="dropdownSecondA" mb={4}>A</Box>
+							<Box textStyle="dropdownSecondA" mb={4}>
+								A
+							</Box>
 							<Text textStyle="robotoSlab">dmissions</Text>
 						</MenuItem>
 					</Link>
