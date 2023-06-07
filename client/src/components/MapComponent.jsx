@@ -3,7 +3,7 @@ import { useState } from "react";
 import VisitTextItem from "./VisitTextItem";
 import { Link } from "react-router-dom";
 
-function MapComponent({ headingText, contentArray }) {
+function MapComponent({ headingText, contentArray, links }) {
 	const [isActive, setIsActive] = useState(false);
 
 	return (
@@ -33,7 +33,7 @@ function MapComponent({ headingText, contentArray }) {
 				>
 					{contentArray.map((contentLine, index) => {
 						return (
-							<Box key={index} as="a" href="/link" >
+							<Box key={index} as="a" href={links[index]} _hover={{textDecorationLine: "underline"}}>
 								<VisitTextItem key={index} contentText={contentLine} />
 							</Box>
 						);

@@ -36,14 +36,30 @@ function SiteMap() {
 								"Displays",
 								"Admissions",
 							]}
+							links={[
+								"/",
+								"/link",
+								"/link",
+								"/link",
+								"/link",
+							]}
 						/>
 						<MapComponent
 							headingText="Elias Spector-Zabusky"
-							contentArray={["Github", "LinkedIN"]}
+							contentArray={["GitHub", "LinkedIn"]}
+							links={[
+								"https://github.com/ColdWeatherBoyy",
+								"https://www.linkedin.com/in/elias-sz/",
+							]}
 						/>
 						<MapComponent
 							headingText="David Keim"
-							contentArray={["Github", "LinkedIN"]}
+							contentArray={["GitHub", "LinkedIn", "Portfolio"]}
+							links={[
+								"https://github.com/keimdm",
+								"https://www.linkedin.com/in/keimdavid/",
+								"https://keimdm.github.io/portfolio/",
+							]}
 						/>
 					</Box>
 				</SimpleGrid>
