@@ -1,14 +1,7 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 function CollagePreview({ classText, text }) {
-
-    return (
-            <motion.div 
-                className={classText}
-            >
-                {text}
-            </motion.div>
-    );
+	return <motion.div className={classText}>{text}</motion.div>;
 }
 
 export default CollagePreview;

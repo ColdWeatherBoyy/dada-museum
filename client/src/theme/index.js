@@ -10,7 +10,36 @@ const theme = extendTheme({
 		xl: "80em", // 1280px
 		"2xl": "96em", // 1536px
 	},
-	components: { Heading: headingTheme },
+	colors: {
+		brand: {
+			brown: "#53443D",
+			gray: "#B1BAC1",
+			300: "#CBD5E0",
+		},
+	},
+	components: {
+		Heading: headingTheme,
+		Radio: {
+			variants: {
+				primary: ({ colorScheme = "brand" }) => ({
+					color: `${colorScheme}.brown`,
+					control: {
+						border: "1px solid",
+						borderColor: "#CBD5E0",
+						borderRadius: "full",
+						_checked: {
+							bg: "brand.gray",
+							color: "brand.brown",
+						},
+					},
+				}),
+			},
+			defaultProps: {
+				variant: "primary",
+				colorScheme: "primary",
+			},
+		},
+	},
 	textStyles: {
 		playfairBold: {
 			fontFamily: "Playfair Display, serif",
