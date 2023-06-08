@@ -21,7 +21,7 @@ function CurrentExhibits() {
 	];
 
 	return (
-		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box pt={6} pb={12} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<SectionHeader headerText="Current Exhibits" />
 			<SimpleGrid
 				columns={{ sm: 1, md: 2 }}

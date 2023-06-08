@@ -83,7 +83,8 @@ function Visit() {
 
 	return (
 		<Box
-			py={6}
+			pt={6}
+			pb={12}
 			width="100%"
 			bgColor="gray.100"
 			boxShadow="inset 4px 4px 10px rgba(0, 0, 0, 0.2), inset -4px -4px 10px rgba(0, 0, 0, 0.2)"
@@ -118,7 +119,7 @@ function Visit() {
 							height="100%"
 							variant="outline"
 							borderColor="gray.300"
-							boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
+							boxShadow="dark-lg"
 							alignSelf="center"
 							mb={{ base: "3", md: "3" }}
 							py={{ base: "3", md: "3" }}

@@ -9,7 +9,7 @@ function BrandButton({ buttonText, functionCall }) {
 			border="1px solid #B1BAC1"
 			bg="gray.100"
 			color="#53443D"
-			boxShadow="md"
+			boxShadow="lg"
 			_hover={{
 				bg: "#53443D",
 				color: "gray.100",

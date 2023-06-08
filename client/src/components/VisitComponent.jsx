@@ -12,7 +12,7 @@ function VisitComponent({ headingText, contentArray }) {
 				h="100%"
 				variant="outline"
 				borderColor="gray.300"
-				boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
+				boxShadow="dark-lg"
 				my={{ base: "3", md: "0" }}
 			>
 				<CardBody textStyle="playfairBold" h="100%">
