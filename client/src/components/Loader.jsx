@@ -1,8 +1,8 @@
-import { CircularProgress, Flex, Box } from "@chakra-ui/react";
+import { CircularProgress, Flex } from "@chakra-ui/react";
 
-function Loader({ number }) {
+function Loader({ marginBottom }) {
 	return (
-		<Box position="relative" width="100px" height="100px" mb={number}>
+		<Flex justify="center" align="center" width="100px" height="100px" mb={marginBottom}>
 			<CircularProgress
 				capIsRound
 				isIndeterminate
@@ -12,7 +12,6 @@ function Loader({ number }) {
 				trackColor="gray.100"
 				position="absolute"
 				transform="scale(2)"
-				bottom={0}
 			/>
 			<CircularProgress
 				capIsRound
@@ -23,7 +22,6 @@ function Loader({ number }) {
 				trackColor="gray.100"
 				position="absolute"
 				transform="scale(1.5) scaleX(-1) rotate(-60deg)"
-				bottom={0}
 			/>
 			<CircularProgress
 				capIsRound
@@ -33,7 +31,6 @@ function Loader({ number }) {
 				color="#53443D"
 				trackColor="gray.100"
 				position="absolute"
-				bottom={0}
 				transform="scale(1)"
 			/>
 			<CircularProgress
@@ -44,10 +41,9 @@ function Loader({ number }) {
 				color="#B1BAC1"
 				trackColor="gray.100"
 				position="absolute"
-				bottom={0}
 				transform="scale(.5) scaleX(-1) rotate(-60deg)"
 			/>
-		</Box>
+		</Flex>
 	);
 }
 

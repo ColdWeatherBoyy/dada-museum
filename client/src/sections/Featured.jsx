@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Image, Divider } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
 import BrandButton from "../components/BrandButton";
@@ -160,105 +160,81 @@ function Featured() {
 		fillFeaturedArtistImages();
 	};
 
-	// async function getMetTestResponse() {
-	// 	const response = await fetch("/api/met/", {
-	// 		method: "GET",
-	// 	});
-	// 	const data = await response.json();
-	// 	console.log(data);
-	// }
+	const [scrollDirection, setScrollDirection] = useState({
+		left: false,
+		right: false,
+		up: false,
+		down: true,
+	});
+	const scrollBoxRef = useRef(null);
 
-	// useEffect(() => {
-	// 	getMetTestResponse();
-	// }, []);
+	useEffect(() => {
+		const scrollBox = scrollBoxRef.current;
 
-	// const scrollBoxRef = useRef(null);
-	// const [scrollDirection, setScrollDirection] = useState({
-	// 	left: false,
-	// 	right: false,
-	// 	up: false,
-	// 	down: true,
-	// });
+		// if check to see window size and set scrollDirection accordingly
+		if (window.innerWidth < 992) {
+			setScrollDirection({
+				left: false,
+				right: true,
+				up: false,
+				down: false,
+			});
+		}
 
-	// // if check to see window size and set scrollDirection accordingly
-	// useEffect(() => {
-	// 	if (window.innerWidth < 992) {
-	// 		setScrollDirection({
-	// 			left: false,
-	// 			right: true,
-	// 			up: false,
-	// 			down: false,
-	// 		});
-	// 	}
-	// }, [loading]);
+		if (!scrollBox) {
+			return;
+		}
 
-	// useEffect(() => {
-	// 	const scrollBox = scrollBoxRef.current;
-	// 	// const isScrollable = scrollBox.scrollWidth > scrollBox.clientWidth;
+		const handleScroll = () => {
+			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
 
-	// 	const handleScroll = () => {
-	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+			setScrollDirection({
+				left: scrollBox.scrollLeft > 0 && isScrollableX,
+				right:
+					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+					isScrollableX,
+				up: scrollBox.scrollTop > 0 && isScrollableY,
+				down:
+					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+					isScrollableY,
+			});
+		};
 
-	// 		setScrollDirection({
-	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
-	// 			right:
-	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-	// 				isScrollableX,
-	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
-	// 			down:
-	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-	// 				isScrollableY,
-	// 		});
-	// 	};
+		scrollBox.addEventListener("scroll", handleScroll);
+		window.addEventListener("resize", handleScroll);
 
-	// 	scrollBox.addEventListener("scroll", handleScroll);
-	// 	window.addEventListener("resize", handleScroll);
+		return () => {
+			scrollBox.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("resize", handleScroll);
+		};
+	}, [loadingArt]);
 
-	// 	return () => {
-	// 		scrollBox.removeEventListener("scroll", handleScroll);
-	// 		window.removeEventListener("resize", handleScroll);
-	// 	};
-	// }, [loading]);
-
-	// useEffect(() => {
-	// 	console.log(scrollDirection);
-	// }, [scrollDirection]);
+	useEffect(() => {
+		console.log(scrollDirection);
+	}, [scrollDirection]);
 
 	return (
 		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
 				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
-				// templateRows={{ base: "1fr .00001fr 1fr", lg: "1fr" }}
-				height={{ base: "auto", lg: "40vw" }}
-				gap={{ sm: 4, md: 8, lg: 16 }}
+				height={{ base: "fit-content", lg: "40vw" }}
 				mx="5%"
+				gap={{ base: "0%", lg: "5%" }}
 			>
 				{loadingArtist ? (
-					<Flex
-						justify="center"
-						direction="column"
-						width="100%"
-						height="100%"
-						align="center"
-					>
+					<Flex justify="center" align="center" mb={{ base: 6, lg: 0 }}>
 						<Loader />
 					</Flex>
 				) : (
-					<Flex
-						mb={{ base: 4, sm: 0 }}
-						width="100%"
-						direction="column"
-						align="center"
-						justify="space-around"
-					>
+					<Flex width="100%" direction="column" align="center" justify="space-around">
 						<Flex
 							direction="column"
-							justify="space-between"
+							justify="space-around"
 							align="center"
 							width="100%"
-							height="80%"
+							height="100%"
 						>
 							<Flex
 								justify="center"
@@ -270,6 +246,7 @@ function Featured() {
 									src={selectedArtist.src}
 									alt={selectedArtist.alt}
 									borderRadius="md"
+									boxShadow="dark-lg"
 								/>
 								<Box
 									padding="5px"
@@ -310,59 +287,49 @@ function Featured() {
 				{windowWidth >= 992 ? (
 					<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
 				) : (
-					<Divider
-						mt={12}
-						borderColor="#B1BAC1"
-						orientation="horizontal"
-						justifySelf="center"
-					/>
+					<Divider mt={10} mb={4} borderColor="#B1BAC1" orientation="horizontal" />
 				)}
 				{loadingArt ? (
-					<Flex
-						direction="column"
-						justify="center"
-						width="100%"
-						height="100%"
-						align="center"
-					>
-						<Loader number={{ base: 20, lg: 0 }} />
+					<Flex justify="center" align="center" my={{ base: 6, lg: 0 }}>
+						<Loader />
 					</Flex>
 				) : (
 					<Box
-						// ref={scrollBoxRef}
+						ref={scrollBoxRef}
+						pt={4}
 						overflowY={{ base: "hidden", lg: "scroll" }}
 						overflowX={{ base: "scroll", lg: "hidden" }}
 						position="relative"
 						width="100%"
-						mt={{ base: 4, lg: 12 }}
+						height={{ base: "fit-content", lg: "auto" }}
 						borderRadius="md"
+						boxShadow="inset 1px 1px 6px rgba(0, 0, 0, 0.4)"
 					>
-						{/* <Box pointerEvents="none" width="100%" height="100%" position="absolute">
-						{scrollDirection.left && (
-							<Box position="absolute" height="100%" left="0" zIndex="1">
-								Left
-							</Box>
-						)}
-						{scrollDirection.right && (
-							<Box position="absolute" height="100%" right="0" zIndex="1">
-								Right
-							</Box>
+						{/* {scrollDirection.left && (
+							<Box
+								position="sticky"
+								pointerEvents="none"
+								width="20px"
+								height="60vh"
+								left="0"
+								zIndex="1"
+								bg="gray.800"
+							/>
 						)}
 						{scrollDirection.up && (
-							<Box position="absolute" width="100%" top="0" zIndex="1">
-								Up
-							</Box>
-						)}
-						{scrollDirection.down && (
-							<Box position="absolute" width="100%" bottom="0" zIndex="1">
-								Down
-							</Box>
-						)}
-					</Box> */}
+							<Box
+								position="sticky"
+								pointerEvents="none"
+								width="100%"
+								top="0"
+								height="15%"
+								transition="top 0.5s ease-in-out"
+								zIndex="1"
+								bgGradient="linear(to top, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1))"
+							/>
+						)} */}
 						<Flex
 							direction={{ base: "row", lg: "column" }}
-							my={{ base: 4, lg: 0 }}
-							position="relative"
 							width={{ base: "330%", md: "270%", lg: "auto" }}
 							justify="space-around"
 						>
@@ -394,6 +361,28 @@ function Featured() {
 								);
 							})}
 						</Flex>
+
+						{/* {scrollDirection.right && (
+							<Box
+								position="sticky"
+								width="20px"
+								height="60vh"
+								right="0"
+								zIndex="1"
+								bg="green.800"
+							></Box>
+						)}
+						{scrollDirection.down && (
+							<Box
+								position="sticky"
+								pointerEvents="none"
+								width="100%"
+								height="15%"
+								bottom="-1"
+								zIndex="1"
+								background="linear-gradient(to bottom, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1))"
+							/>
+						)} */}
 					</Box>
 				)}
 			</Grid>

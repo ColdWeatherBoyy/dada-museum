@@ -7,8 +7,14 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 
 	return (
 		<Box position="relative" maxW="100%">
-			<Link to="/link">
-				<Heading variant="exhibit-heading" textAlign="left" fontSize="1.3em" pb={0} _hover={{textDecorationLine: "underline", color: "#B1BAC1"}}>
+			<Link to={destination}>
+				<Heading
+					variant="exhibit-heading"
+					textAlign="left"
+					fontSize="1.3em"
+					pb={0}
+					_hover={{ textDecorationLine: "underline", color: "#B1BAC1" }}
+				>
 					{headingOne}
 				</Heading>
 			</Link>
@@ -22,7 +28,7 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 				onMouseLeave={() => setIsActive(false)}
 				onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
 			>
-				<Image src={src} alt={alt} borderRadius="md" />
+				<Image src={src} alt={alt} borderRadius="md" boxShadow="dark-lg" />
 				<Box
 					position="absolute"
 					bottom={0}

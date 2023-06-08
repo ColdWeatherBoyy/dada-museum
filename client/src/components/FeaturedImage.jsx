@@ -8,7 +8,7 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 			justify="space-evenly"
 			mb={{ base: 0, lg: 8 }}
 			mx={{ base: 4, lg: 0 }}
-			height={{ base: "55vw", lg: "auto" }}
+			height={{ base: "50vh", lg: "auto" }}
 		>
 			<Flex direction="column" align={alignment} width={{ base: "75%", lg: "30%" }}>
 				<Box
@@ -26,7 +26,14 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 					{date}
 				</Box>
 			</Flex>
-			<Image src={url} alt={alt} maxW={{ base: "70%", lg: "35%" }} borderRadius="md" />
+			<Image
+				src={url}
+				alt={alt}
+				maxW={{ base: "70%", lg: "35%" }}
+				borderRadius="md"
+				zIndex="0"
+				boxShadow="1px 3px 6px rgba(0, 0, 0, 0.3)"
+			/>
 		</Flex>
 	);
 }

@@ -58,7 +58,12 @@ function Collage() {
 	};
 
 	return (
-		<Box paddingY={6} w="100%" backgroundColor="gray.100">
+		<Box
+			paddingY={6}
+			w="100%"
+			backgroundColor="gray.100"
+			boxShadow="inset 4px 4px 10px rgba(0, 0, 0, 0.2), inset -4px -8px 10px rgba(0, 0, 0, 0.2)"
+		>
 			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
 				<SectionHeader headerText="Make a Collage" />
 				<Box
