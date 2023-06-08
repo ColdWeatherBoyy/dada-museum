@@ -246,6 +246,7 @@ function Featured() {
 									src={selectedArtist.src}
 									alt={selectedArtist.alt}
 									borderRadius="md"
+									boxShadow="dark-lg"
 								/>
 								<Box
 									padding="5px"
@@ -295,12 +296,14 @@ function Featured() {
 				) : (
 					<Box
 						ref={scrollBoxRef}
+						pt={4}
 						overflowY={{ base: "hidden", lg: "scroll" }}
 						overflowX={{ base: "scroll", lg: "hidden" }}
 						position="relative"
 						width="100%"
 						height={{ base: "fit-content", lg: "auto" }}
 						borderRadius="md"
+						boxShadow="inset 1px 1px 6px rgba(0, 0, 0, 0.4)"
 					>
 						{/* {scrollDirection.left && (
 							<Box

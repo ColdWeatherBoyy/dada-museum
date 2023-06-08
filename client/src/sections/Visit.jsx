@@ -82,12 +82,17 @@ function Visit() {
 	}, []);
 
 	return (
-		<Box py={6} width="100%" bgColor="gray.100">
+		<Box
+			py={6}
+			width="100%"
+			bgColor="gray.100"
+			boxShadow="inset 4px 4px 10px rgba(0, 0, 0, 0.2), inset -4px -4px 10px rgba(0, 0, 0, 0.2)"
+		>
 			<Box mx={{ sm: 8, md: 8, lg: 16 }}>
 				<SectionHeader headerText="Visit Us" />
 				<Flex
 					direction={{ base: "column", md: "row" }}
-					justify={{base: "space-between", md: "space-around"}}
+					justify={{ base: "space-between", md: "space-around" }}
 					align={{ base: "center", md: "center" }}
 					wrap="no-wrap"
 					mx="10%"
@@ -116,18 +121,18 @@ function Visit() {
 							boxShadow="4px 4px 4px 4px rgba(0, 0, 0, 0.2)"
 							alignSelf="center"
 							mb={{ base: "3", md: "3" }}
-							py={{ base: "3", md: "3"}}
+							py={{ base: "3", md: "3" }}
 						>
 							<CardBody textStyle="playfairBold">
-							<Heading
-								variant="exhibit-heading"
-								textAlign="center"
-								fontSize="1.25em"
-								// pb={0}
-								// mb="1em"
-							>
-								{"The museum is currently " + status}
-							</Heading>
+								<Heading
+									variant="exhibit-heading"
+									textAlign="center"
+									fontSize="1.25em"
+									// pb={0}
+									// mb="1em"
+								>
+									{"The museum is currently " + status}
+								</Heading>
 							</CardBody>
 						</Card>
 						<ButtonArray links={links} padding={0} />

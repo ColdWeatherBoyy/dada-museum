@@ -26,7 +26,14 @@ function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, 
 					{date}
 				</Box>
 			</Flex>
-			<Image src={url} alt={alt} maxW={{ base: "70%", lg: "35%" }} borderRadius="md" />
+			<Image
+				src={url}
+				alt={alt}
+				maxW={{ base: "70%", lg: "35%" }}
+				borderRadius="md"
+				zIndex="0"
+				boxShadow="1px 3px 6px rgba(0, 0, 0, 0.3)"
+			/>
 		</Flex>
 	);
 }
