@@ -59,7 +59,8 @@ function Collage() {
 
 	return (
 		<Box
-			paddingY={6}
+			pt={6}
+			pb={12}
 			w="100%"
 			backgroundColor="gray.100"
 			boxShadow="inset 4px 4px 10px rgba(0, 0, 0, 0.2), inset -4px -8px 10px rgba(0, 0, 0, 0.2)"

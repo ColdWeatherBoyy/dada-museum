@@ -160,65 +160,55 @@ function Featured() {
 		fillFeaturedArtistImages();
 	};
 
-	const [scrollDirection, setScrollDirection] = useState({
-		left: false,
-		right: false,
-		up: false,
-		down: true,
-	});
-	const scrollBoxRef = useRef(null);
+	// const [scrollDirection, setScrollDirection] = useState({
+	// 	left: false,
+	// 	right: false,
+	// 	up: false,
+	// 	down: true,
+	// });
+	// const scrollBoxRef = useRef(null);
 
-	useEffect(() => {
-		const scrollBox = scrollBoxRef.current;
+	// useEffect(() => {
+	// 	const scrollBox = scrollBoxRef.current;
 
-		// if check to see window size and set scrollDirection accordingly
-		if (window.innerWidth < 992) {
-			setScrollDirection({
-				left: false,
-				right: true,
-				up: false,
-				down: false,
-			});
-		}
+	// 	if (!scrollBox) {
+	// 		return;
+	// 	}
 
-		if (!scrollBox) {
-			return;
-		}
+	// 	const handleScroll = () => {
+	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
 
-		const handleScroll = () => {
-			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+	// 		setScrollDirection({
+	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
+	// 			right:
+	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+	// 				isScrollableX,
+	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
+	// 			down:
+	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+	// 				isScrollableY,
+	// 		});
+	// 	};
 
-			setScrollDirection({
-				left: scrollBox.scrollLeft > 0 && isScrollableX,
-				right:
-					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-					isScrollableX,
-				up: scrollBox.scrollTop > 0 && isScrollableY,
-				down:
-					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-					isScrollableY,
-			});
-		};
+	// 	scrollBox.addEventListener("scroll", handleScroll);
+	// 	window.addEventListener("resize", handleScroll);
 
-		scrollBox.addEventListener("scroll", handleScroll);
-		window.addEventListener("resize", handleScroll);
+	// 	return () => {
+	// 		scrollBox.removeEventListener("scroll", handleScroll);
+	// 		window.removeEventListener("resize", handleScroll);
+	// 	};
+	// }, [loadingArt]);
 
-		return () => {
-			scrollBox.removeEventListener("scroll", handleScroll);
-			window.removeEventListener("resize", handleScroll);
-		};
-	}, [loadingArt]);
-
-	useEffect(() => {
-		console.log(scrollDirection);
-	}, [scrollDirection]);
+	// useEffect(() => {
+	// 	console.log(scrollDirection);
+	// }, [scrollDirection]);
 
 	return (
-		<Box py={6} mx={{ sm: 8, md: 8, lg: 16 }}>
+		<Box pt={6} pb={12} mx={{ sm: 8, md: 8, lg: 16 }}>
 			<SectionHeader headerText="Featured Artist" />
 			<Grid
-				templateColumns={{ base: "1fr", lg: "2.5fr .25fr 3fr" }}
+				templateColumns={{ base: "1fr", lg: "2.5fr  3fr" }}
 				height={{ base: "fit-content", lg: "40vw" }}
 				mx="5%"
 				gap={{ base: "0%", lg: "5%" }}
@@ -274,7 +264,7 @@ function Featured() {
 								</Box>
 							</Flex>
 
-							<Flex direction="row" justify="space-between" gap={3}>
+							<Flex direction="row" justify="space-between" gap={3} pb={4}>
 								<BrandButton
 									buttonText="Randomize Artist"
 									functionCall={handleClickArtist}
@@ -284,18 +274,13 @@ function Featured() {
 						</Flex>
 					</Flex>
 				)}
-				{windowWidth >= 992 ? (
-					<Divider mt={4} height="90%" borderColor="#B1BAC1" orientation="vertical" />
-				) : (
-					<Divider mt={10} mb={4} borderColor="#B1BAC1" orientation="horizontal" />
-				)}
 				{loadingArt ? (
 					<Flex justify="center" align="center" my={{ base: 6, lg: 0 }}>
 						<Loader />
 					</Flex>
 				) : (
 					<Box
-						ref={scrollBoxRef}
+						// ref={scrollBoxRef}
 						pt={4}
 						overflowY={{ base: "hidden", lg: "scroll" }}
 						overflowX={{ base: "scroll", lg: "hidden" }}
