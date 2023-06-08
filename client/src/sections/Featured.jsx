@@ -302,7 +302,7 @@ function Featured() {
 						height={{ base: "fit-content", lg: "auto" }}
 						borderRadius="md"
 					>
-						{scrollDirection.left && (
+						{/* {scrollDirection.left && (
 							<Box
 								position="sticky"
 								pointerEvents="none"
@@ -318,12 +318,13 @@ function Featured() {
 								position="sticky"
 								pointerEvents="none"
 								width="100%"
-								height="20px"
 								top="0"
+								height="15%"
+								transition="top 0.5s ease-in-out"
 								zIndex="1"
-								bg="blue.800"
+								bgGradient="linear(to top, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1))"
 							/>
-						)}
+						)} */}
 						<Flex
 							direction={{ base: "row", lg: "column" }}
 							width={{ base: "330%", md: "270%", lg: "auto" }}
@@ -357,7 +358,8 @@ function Featured() {
 								);
 							})}
 						</Flex>
-						{scrollDirection.right && (
+
+						{/* {scrollDirection.right && (
 							<Box
 								position="sticky"
 								width="20px"
@@ -372,12 +374,12 @@ function Featured() {
 								position="sticky"
 								pointerEvents="none"
 								width="100%"
-								height="20px"
-								bottom="0"
+								height="15%"
+								bottom="-1"
 								zIndex="1"
-								bg="pink.800"
+								background="linear-gradient(to bottom, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1))"
 							/>
-						)}
+						)} */}
 					</Box>
 				)}
 			</Grid>
