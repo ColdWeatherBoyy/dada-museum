@@ -19,6 +19,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"concurrently": "^8.0.1",
-		"url": "^0.11.0"
+		"url": "^0.11.0",
+		"vite": "^4.3.9"
 	}
 }
