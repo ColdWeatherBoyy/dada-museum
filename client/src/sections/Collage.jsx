@@ -1,3 +1,4 @@
+// Necessary imports from Chakra, React, and other components
 import {
 	Box,
 	Radio,
@@ -15,15 +16,20 @@ import CollagePreview from "../components/CollagePreview";
 import BrandButton from "../components/BrandButton";
 
 function Collage() {
+	// Setting up ref for boundary of collage
 	const collageBoundary = useRef();
+	// State for collage elements selected
 	const [collageElements, setCollageElements] = useState([]);
+	// States for collage elements selecting
 	const [textValue, setTextValue] = useState("D");
 	const [fontValue, setFontValue] = useState("serif");
 	const [fontSize, setFontSize] = useState("small");
+	// Setting up constants
 	const textOptions = ["D", "A", "d", "a", "!", "?"];
 	const fontOptions = ["serif", "sans-serif"];
 	const sizeOptions = ["small", "medium", "large"];
 
+	// Function to handle adding specific shape to collage
 	const addShape = () => {
 		console.log("submitted");
 		const newShape = {
@@ -35,6 +41,7 @@ function Collage() {
 		setCollageElements(newArray);
 	};
 
+	// Function to handle adding random shape to collage
 	const addRandom = () => {
 		console.log("submitted");
 		const textRand = Math.floor(Math.random() * textOptions.length);
@@ -49,10 +56,12 @@ function Collage() {
 		setCollageElements(newArray);
 	};
 
-	useEffect(() => {
-		// console.log(collageElements);
-	}, []);
+	// Use effect for testing purposes
+	// useEffect(() => {
+	// 	// console.log(collageElements);
+	// }, []);
 
+	// Function to handle clearing canvas
 	const clearCanvas = () => {
 		setCollageElements([]);
 	};
@@ -84,6 +93,7 @@ function Collage() {
 					>
 						{collageElements.map((element, index) => {
 							return (
+								// Use of Collage Element component
 								<CollageElement
 									collageBoundary={collageBoundary}
 									classText={element.font + " " + element.size}
@@ -116,6 +126,7 @@ function Collage() {
 							width={{ base: "90%", sm: "100%" }}
 							justify={{ base: "space-evenly", sm: "center" }}
 						>
+							{/* Responsively designed stack/grids with collage options */}
 							<Box display="flex" flexDirection="column" w="50%" px="3%">
 								<RadioGroup
 									onChange={setTextValue}
@@ -207,6 +218,7 @@ function Collage() {
 							justifyContent="space-evenly"
 							pb={{ base: 4, md: 0 }}
 						>
+							{/* Function calls on Brand Button component */}
 							<BrandButton functionCall={clearCanvas} buttonText="Clear" />
 							<BrandButton functionCall={addRandom} buttonText="Add Random" />
 							<BrandButton functionCall={addShape} buttonText="Add Selected" />

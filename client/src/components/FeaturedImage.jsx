@@ -1,5 +1,6 @@
 import { Box, Image, Flex } from "@chakra-ui/react";
 
+// Component for art images in the Featured Artist section, handling for alternating display with different props
 function FeaturedImage({ flexDirection, alignment, textAlign, title, date, url, alt }) {
 	return (
 		<Flex

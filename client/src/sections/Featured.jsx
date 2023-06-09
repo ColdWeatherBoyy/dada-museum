@@ -1,9 +1,44 @@
-import { Box, Flex, Grid, Image, Divider } from "@chakra-ui/react";
+// Necessary imports from Chakra, React, and other components
+import { Box, Flex, Grid, Image } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 import SectionHeader from "../components/SectionHeader";
 import FeaturedImage from "../components/FeaturedImage";
 import BrandButton from "../components/BrandButton";
 import Loader from "../components/Loader";
+
+// Setting up constants for artist array with links to images and alt text
+const artistArray = [
+	{
+		name: "Marcel Duchamp",
+		src: "/images/PortraitofMarcelDuchampManRay.jpg",
+		alt: "Man Ray's Portrait of Marcel Duchamp, 1920-1921",
+	},
+	{
+		name: "Man Ray",
+		src: "/images/ManRayInParis.jpg",
+		alt: "Man Ray in Paris, 1934",
+	},
+	{
+		name: "Francis Picabia",
+		src: "/images/ExcerptofFrancisPicabiaInsideDansedeSaint-Guy.jpg",
+		alt: "Excerpt of Francis Picabia's Inside Danse de Saint-Guy, 1923",
+	},
+	{
+		name: "Kurt Schwitters",
+		src: "/images/KurtSchwittersPortraitYale.jpg",
+		alt: "Studio portrait of Kurt Schwitters in his thirties. Dreier archive, Yale University.",
+	},
+	{
+		name: "Jean (Hans) Arp",
+		src: "/images/JeanArpinthe60s.jpg",
+		alt: "Jean Arp, c. 1960.",
+	},
+	{
+		name: "Max Ernst",
+		src: "/images/MaxErnstExcerptPunchingBallOrTheImmortalityOfBuonarroti.jpeg",
+		alt: "Excerpt from Punching Ball Or The Immortality Of Buonarroti by Max Ernst, 1920",
+	},
+];
 
 function Featured() {
 	// Establish states for the featured artist and artwork
@@ -82,41 +117,8 @@ function Featured() {
 		}
 	};
 
-	// Function to select random artist from hardcoded array of artists and relevant details
+	// Function to select random artist from constant array established above
 	const selectRandomArtist = () => {
-		const artistArray = [
-			{
-				name: "Marcel Duchamp",
-				src: "/images/PortraitofMarcelDuchampManRay.jpg",
-				alt: "Man Ray's Portrait of Marcel Duchamp, 1920-1921",
-			},
-			{
-				name: "Man Ray",
-				src: "/images/ManRayInParis.jpg",
-				alt: "Man Ray in Paris, 1934",
-			},
-			{
-				name: "Francis Picabia",
-				src: "/images/ExcerptofFrancisPicabiaInsideDansedeSaint-Guy.jpg",
-				alt: "Excerpt of Francis Picabia's Inside Danse de Saint-Guy, 1923",
-			},
-			{
-				name: "Kurt Schwitters",
-				src: "/images/KurtSchwittersPortraitYale.jpg",
-				alt: "Studio portrait of Kurt Schwitters in his thirties. Dreier archive, Yale University.",
-			},
-			{
-				name: "Jean (Hans) Arp",
-				src: "/images/JeanArpinthe60s.jpg",
-				alt: "Jean Arp, c. 1960.",
-			},
-			{
-				name: "Max Ernst",
-				src: "/images/MaxErnstExcerptPunchingBallOrTheImmortalityOfBuonarroti.jpeg",
-				alt: "Excerpt from Punching Ball Or The Immortality Of Buonarroti by Max Ernst, 1920",
-			},
-		];
-
 		// Randomizer to select artist from array
 		const artistIndex = Math.floor(Math.random() * artistArray.length);
 		// Set state
@@ -128,12 +130,12 @@ function Featured() {
 		selectRandomArtist();
 	}, []);
 
-	// Hit API and grab art information for artist once selectedArtist is changed
+	// Call API and grab art information for artist once selectedArtist is changed
 	useEffect(() => {
+		// Check to make sure artist has been selected
 		if (!selectedArtist.name) {
 			return;
 		}
-		console.log(selectedArtist);
 		fillFeaturedArtistImages();
 	}, [selectedArtist]);
 
@@ -150,14 +152,17 @@ function Featured() {
 
 	// Click handler to ping relevant functions when randomizing artist from button click
 	const handleClickArtist = () => {
+		// Set loading to true to show loader
 		setLoadingArtist(true);
 		setLoadingArt(true);
+		// Reselect artist, which calls the fillFeaturedArtistImage function
 		selectRandomArtist();
 	};
 
 	// Same as above, but only for art
 	const handleClickArt = () => {
 		setLoadingArt(true);
+		// Reselect art
 		fillFeaturedArtistImages();
 	};
 
@@ -216,6 +221,7 @@ function Featured() {
 				mx="5%"
 				gap={{ base: "0%", lg: "5%" }}
 			>
+				{/* Conditional rendering of loader or Artist image */}
 				{loadingArtist ? (
 					<Flex justify="center" align="center" mb={{ base: 6, lg: 0 }}>
 						<Loader />
@@ -268,6 +274,7 @@ function Featured() {
 							</Flex>
 
 							<Flex direction="row" justify="space-between" gap={3} pb={4}>
+								{/* Use of Brand Button with appropriation functions for onClick */}
 								<BrandButton
 									buttonText="Randomize Artist"
 									functionCall={handleClickArtist}
@@ -277,6 +284,7 @@ function Featured() {
 						</Flex>
 					</Flex>
 				)}
+				{/* Conditional rendering of loader or art images */}
 				{loadingArt ? (
 					<Flex justify="center" align="center" my={{ base: 6, lg: 0 }}>
 						<Loader />
@@ -316,6 +324,7 @@ function Featured() {
 							width={{ base: "330%", md: "270%", lg: "auto" }}
 							justify="space-around"
 						>
+							{/* Map through random art selected from API */}
 							{featuredArtistImageInfo.map((image, index) => {
 								const flexDirection =
 									index % 2 === 0

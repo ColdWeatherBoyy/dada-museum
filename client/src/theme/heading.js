@@ -1,5 +1,7 @@
+// Imports from Chakra for React to extend Theme for heading
 import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
 
+// Define styles for heading
 const artMuseumFont = defineStyle({
 	fontFamily: "Playfair Display, serif",
 	fontStyle: "italic",
@@ -73,6 +75,7 @@ const secondASmall = defineStyle({
 	fontSize: "4xl",
 });
 
+// Export new heading theme variants
 export const headingTheme = defineStyleConfig({
 	variants: {
 		"art-museum-font": artMuseumFont,

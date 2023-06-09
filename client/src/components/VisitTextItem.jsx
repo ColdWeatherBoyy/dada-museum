@@ -1,9 +1,7 @@
 import { Text } from "@chakra-ui/react";
-import { useState } from "react";
 
+// Component that renders text for Visit section
 function VisitTextItem({ contentText }) {
-	const [isActive, setIsActive] = useState(false);
-
 	return (
 		<Text
 			textAlign={{ base: "center", md: "left" }}

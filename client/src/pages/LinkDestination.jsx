@@ -3,9 +3,8 @@ import Header from "../sections/Header";
 import SiteMap from "../sections/SiteMap";
 import ButtonLink from "../components/ButtonLink.jsx";
 
+// Secondary page for links that don't lead anywhere for sample site
 function LinkDestination() {
-	console.log("App rendered");
-
 	return (
 		<Box
 			minH="100vh"

@@ -1,6 +1,7 @@
 import { Button, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
+// Version of brand button that is designed for Link functionality
 function ButtonLink({ buttonText, link }) {
 	return (
 		<Box width="100%">
