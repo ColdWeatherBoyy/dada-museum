@@ -33,9 +33,11 @@ function MapComponent({ headingText, contentArray, links }) {
 				>
 					{contentArray.map((contentLine, index) => {
 						return (
-							<Box key={index} as="a" href={links[index]} _hover={{textDecorationLine: "underline"}}>
-								<VisitTextItem key={index} contentText={contentLine} />
-							</Box>
+							<Link key={index} href={links[index]}>
+								<Box _hover={{ textDecorationLine: "underline" }}>
+									<VisitTextItem key={index} contentText={contentLine} />
+								</Box>
+							</Link>
 						);
 					})}
 				</Box>
