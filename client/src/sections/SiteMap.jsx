@@ -36,7 +36,7 @@ function SiteMap() {
 								"Displays",
 								"Admissions",
 							]}
-							links={["/", "/link", "/link", "/link", "/link"]}
+							links={["/", "/link/", "/link/", "/link/", "/link/"]}
 						/>
 						<MapComponent
 							headingText="Elias Spector-Zabusky"
