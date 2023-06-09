@@ -6,26 +6,23 @@ import BrandButton from "../components/BrandButton";
 import Loader from "../components/Loader";
 
 function Featured() {
-	// establish states for the featured artist
+	// Establish states for the featured artist and artwork
 	const [featuredArtistImageInfo, setFeaturedArtistImageInfo] = useState([]);
 	const [loadingArtist, setLoadingArtist] = useState(true);
 	const [loadingArt, setLoadingArt] = useState(true);
 	const [selectedArtist, setSelectedArtist] = useState({});
-	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	// Separate state for scroll direction in scrollable art box
+	const [scrollDirection, setScrollDirection] = useState({
+		left: false,
+		right: false,
+		up: false,
+		down: true,
+	});
 
-	useEffect(() => {
-		const handleResize = () => {
-			setWindowWidth(window.innerWidth);
-			// console.log(windowWidth);
-		};
-
-		window.addEventListener("resize", handleResize);
-	}, [window.innerWidth]);
-
-	// function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
+	// Function to pull random images from the AIC API for Duchamp (in future, use state to determine artist)
 	const fillFeaturedArtistImages = async () => {
 		try {
-			// fetch request to AIC api for featured artist
+			// Fetch request to AIC api for featured artist
 			const featuredArtist = selectedArtist.name
 				.toLowerCase()
 				.replace(" ", "-")
@@ -35,28 +32,28 @@ function Featured() {
 			});
 			const data = await response.json();
 
-			// set up array to hold random images (to deal for asynchronous nature of state defining)
+			// Set up array to hold random images (to deal for asynchronous nature of state defining)
 			const arrayOfRandomImages = [];
 			const randomIndexArray = [];
 
-			// for loop to grab 6 random artworks with relevant info from our call to the AIC API
+			// For loop to grab 6 random artworks with relevant info from our call to the AIC API
 			for (let i = 0; i < 6; i++) {
 				// randomizer to grab random index from the returned artwork array
 				const randomIndex = Math.floor(Math.random() * data.data.length);
 				const randomArtwork = data.data[randomIndex];
 
-				// push the random artwork to the array with url, title, date, and alt-text (if necessary details present)
+				// Push the random artwork to the array with url, title, date, and alt-text (if necessary details present)
 				if (
 					randomIndexArray.includes(randomIndex) ||
 					!randomArtwork.image_id ||
 					(randomArtwork.artist_title !== selectedArtist.name &&
 						randomArtwork.artist_title !== selectedArtist.name + " (Emmanuel Radnitzky)")
 				) {
-					// if doesn't meet criteria, decrement i
+					// If doesn't meet criteria, decrement i
 					i--;
 				} else {
 					randomIndexArray.push(randomIndex);
-					// otherwise, make URL and push to array
+					// Otherwise, make URL and push to array
 					// Concatenate the random artwork image id with the iiif url to get the image url
 					const randomArtworkImageURL =
 						data.config.iiif_url +
@@ -78,13 +75,14 @@ function Featured() {
 					});
 				}
 			}
-			// set the state of the featuredArtistImageInfo array to the arrayOfRandomImages (for asynchronous nature of state defining)
+			// Set the state of the featuredArtistImageInfo array to the arrayOfRandomImages (for asynchronous nature of state defining)
 			setFeaturedArtistImageInfo(arrayOfRandomImages);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
+	// Function to select random artist from hardcoded array of artists and relevant details
 	const selectRandomArtist = () => {
 		const artistArray = [
 			{
@@ -119,17 +117,18 @@ function Featured() {
 			},
 		];
 
-		// randomizer to select artist from array
+		// Randomizer to select artist from array
 		const artistIndex = Math.floor(Math.random() * artistArray.length);
+		// Set state
 		setSelectedArtist(artistArray[artistIndex]);
 	};
 
-	// call function on page load
+	// Call above function on page load
 	useEffect(() => {
 		selectRandomArtist();
 	}, []);
 
-	// call function on selectedArtist defined
+	// Hit API and grab art information for artist once selectedArtist is changed
 	useEffect(() => {
 		if (!selectedArtist.name) {
 			return;
@@ -138,7 +137,7 @@ function Featured() {
 		fillFeaturedArtistImages();
 	}, [selectedArtist]);
 
-	// use effect for setting loading state to false once featuredArtistImageInfo array is filled
+	// Handles for loading of art and artist from randomizer function and API – timer to show off built loader
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
 			// console.log(featuredArtistImageInfo);
@@ -149,57 +148,61 @@ function Featured() {
 		}
 	}, [featuredArtistImageInfo]);
 
+	// Click handler to ping relevant functions when randomizing artist from button click
 	const handleClickArtist = () => {
 		setLoadingArtist(true);
 		setLoadingArt(true);
 		selectRandomArtist();
 	};
 
+	// Same as above, but only for art
 	const handleClickArt = () => {
 		setLoadingArt(true);
 		fillFeaturedArtistImages();
 	};
 
-	// const [scrollDirection, setScrollDirection] = useState({
-	// 	left: false,
-	// 	right: false,
-	// 	up: false,
-	// 	down: true,
-	// });
-	// const scrollBoxRef = useRef(null);
+	// Logic to detect which direction user can scroll in scroll bar. Originally intended for one feature, now handling webkit scrollbar border radius conditional rendering
+	// Sets up ref to scrollable box
+	const scrollBoxRef = useRef(null);
 
-	// useEffect(() => {
-	// 	const scrollBox = scrollBoxRef.current;
+	// Once art has loaded (if check for scrollBox existing), add event listener to scrollBox to detect scroll (and handle page resizing)
+	useEffect(() => {
+		// Connection to scrollbox
+		const scrollBox = scrollBoxRef.current;
 
-	// 	if (!scrollBox) {
-	// 		return;
-	// 	}
+		if (!scrollBox) {
+			return;
+		}
 
-	// 	const handleScroll = () => {
-	// 		const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
-	// 		const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
+		// Logic to detect which direction user can scroll in scrollbox
+		const handleScroll = () => {
+			const isScrollableX = scrollBox.scrollWidth > scrollBox.clientWidth;
+			const isScrollableY = scrollBox.scrollHeight > scrollBox.clientHeight;
 
-	// 		setScrollDirection({
-	// 			left: scrollBox.scrollLeft > 0 && isScrollableX,
-	// 			right:
-	// 				scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
-	// 				isScrollableX,
-	// 			up: scrollBox.scrollTop > 0 && isScrollableY,
-	// 			down:
-	// 				scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
-	// 				isScrollableY,
-	// 		});
-	// 	};
+			setScrollDirection({
+				left: scrollBox.scrollLeft > 0 && isScrollableX,
+				right:
+					scrollBox.scrollLeft < scrollBox.scrollWidth - scrollBox.clientWidth &&
+					isScrollableX,
+				up: scrollBox.scrollTop > 0 && isScrollableY,
+				down:
+					scrollBox.scrollTop < scrollBox.scrollHeight - scrollBox.clientHeight &&
+					isScrollableY,
+			});
+		};
 
-	// 	scrollBox.addEventListener("scroll", handleScroll);
-	// 	window.addEventListener("resize", handleScroll);
+		// event listeners for scrolling and resizing
+		scrollBox.addEventListener("scroll", handleScroll);
+		window.addEventListener("resize", handleScroll);
 
-	// 	return () => {
-	// 		scrollBox.removeEventListener("scroll", handleScroll);
-	// 		window.removeEventListener("resize", handleScroll);
-	// 	};
-	// }, [loadingArt]);
+		// Cleanup
+		return () => {
+			scrollBox.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("resize", handleScroll);
+		};
+	}, [loadingArt]);
 
+	// Testing to see if scroll direction is being set correctly
 	// useEffect(() => {
 	// 	console.log(scrollDirection);
 	// }, [scrollDirection]);
@@ -280,7 +283,7 @@ function Featured() {
 					</Flex>
 				) : (
 					<Box
-						// ref={scrollBoxRef}
+						ref={scrollBoxRef}
 						pt={4}
 						overflowY={{ base: "hidden", lg: "scroll" }}
 						overflowX={{ base: "scroll", lg: "hidden" }}
@@ -289,30 +292,25 @@ function Featured() {
 						height={{ base: "fit-content", lg: "auto" }}
 						borderRadius="md"
 						boxShadow="inset 1px 1px 6px rgba(0, 0, 0, 0.4)"
+						sx={{
+							"&::-webkit-scrollbar": {
+								backgroundColor: "transparent",
+							},
+							"&::-webkit-scrollbar-thumb": {
+								backgroundColor: "#53443D",
+								boxShadow: "xl",
+								borderTopRightRadius: { base: "0", lg: scrollDirection.up ? "0" : "md" },
+								borderBottomRightRadius: {
+									base: scrollDirection.right ? "0" : "md",
+									lg: scrollDirection.down ? "0" : "md",
+								},
+								borderBottomLeftRadius: {
+									base: scrollDirection.left ? "0" : "md",
+									lg: "0",
+								},
+							},
+						}}
 					>
-						{/* {scrollDirection.left && (
-							<Box
-								position="sticky"
-								pointerEvents="none"
-								width="20px"
-								height="60vh"
-								left="0"
-								zIndex="1"
-								bg="gray.800"
-							/>
-						)}
-						{scrollDirection.up && (
-							<Box
-								position="sticky"
-								pointerEvents="none"
-								width="100%"
-								top="0"
-								height="15%"
-								transition="top 0.5s ease-in-out"
-								zIndex="1"
-								bgGradient="linear(to top, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1))"
-							/>
-						)} */}
 						<Flex
 							direction={{ base: "row", lg: "column" }}
 							width={{ base: "330%", md: "270%", lg: "auto" }}
@@ -346,28 +344,6 @@ function Featured() {
 								);
 							})}
 						</Flex>
-
-						{/* {scrollDirection.right && (
-							<Box
-								position="sticky"
-								width="20px"
-								height="60vh"
-								right="0"
-								zIndex="1"
-								bg="green.800"
-							></Box>
-						)}
-						{scrollDirection.down && (
-							<Box
-								position="sticky"
-								pointerEvents="none"
-								width="100%"
-								height="15%"
-								bottom="-1"
-								zIndex="1"
-								background="linear-gradient(to bottom, rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1))"
-							/>
-						)} */}
 					</Box>
 				)}
 			</Grid>
