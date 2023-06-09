@@ -8,15 +8,15 @@ function CurrentExhibits() {
 	const links = [
 		{
 			text: "Permanent Exhibits",
-			link: "/link",
+			link: "https://dada-museum.herokuapp.com/link",
 		},
 		{
 			text: "Upcoming Exhibits",
-			link: "/link",
+			link: "https://dada-museum.herokuapp.com/link",
 		},
 		{
 			text: "Previous Exhibits",
-			link: "/link",
+			link: "https://dada-museum.herokuapp.com/link",
 		},
 	];
 
