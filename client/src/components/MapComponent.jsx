@@ -1,11 +1,9 @@
-import { Box, Image, Text, Heading } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Heading } from "@chakra-ui/react";
 import VisitTextItem from "./VisitTextItem";
 import { Link } from "react-router-dom";
 
+// Component that renders sections for sitemap/footer
 function MapComponent({ headingText, contentArray, links }) {
-	const [isActive, setIsActive] = useState(false);
-
 	return (
 		<Box position="relative" display="inline-block" marginBottom="5%" w="100%">
 			<Heading
@@ -17,13 +15,7 @@ function MapComponent({ headingText, contentArray, links }) {
 			>
 				{headingText}
 			</Heading>
-			<Box
-				position="relative"
-				borderRadius="sm"
-				onMouseEnter={() => setIsActive(true)}
-				onMouseLeave={() => setIsActive(false)}
-				onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
-			>
+			<Box position="relative" borderRadius="sm">
 				<Box
 					color="gray.100"
 					width="100%"
@@ -31,10 +23,12 @@ function MapComponent({ headingText, contentArray, links }) {
 					borderRadius="sm"
 					textStyle="robotoSlab"
 				>
+					{/* mapping through array to place appropriate number of links */}
 					{contentArray.map((contentLine, index) => {
 						return (
 							<Link key={index} to={links[index]}>
 								<Box _hover={{ textDecorationLine: "underline" }}>
+									{/* Repurpose of previous component */}
 									<VisitTextItem key={index} contentText={contentLine} />
 								</Box>
 							</Link>

@@ -1,12 +1,15 @@
-import { Box, SimpleGrid, Flex, Card, CardBody, Heading } from "@chakra-ui/react";
+// Necessary imports from Chakra, React, and Other components
+import { Box, Flex, Card, CardBody, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import VisitComponent from "../components/VisitComponent.jsx";
 import ButtonArray from "../components/ButtonArray";
 
 function Visit() {
+	// Sets up state for if Museum is open or closed
 	const [status, setStatus] = useState("Open Test");
 
+	// Constants for button array
 	const links = [
 		{
 			text: "Buy Tickets",
@@ -22,10 +25,11 @@ function Visit() {
 		},
 	];
 
+	// Function to determine if Museum is open or not
 	const determineStatus = async () => {
+		// grabs date
 		const current = new Date();
-		console.log(current.getDay());
-		console.log(current.getHours());
+		// Switch case to check the time and day of the week against potential open or closed hours
 		switch (current.getDay()) {
 			case 0:
 				if (current.getHours() > 11 && current.getHours() < 16) {
@@ -77,6 +81,7 @@ function Visit() {
 		}
 	};
 
+	// useEffect to run determineStatus on page load
 	useEffect(() => {
 		determineStatus();
 	}, []);
@@ -99,6 +104,7 @@ function Visit() {
 					mx="10%"
 					h="100%"
 				>
+					{/* Use of Visit Component */}
 					<VisitComponent
 						headingText="Hours:"
 						contentArray={[
@@ -125,13 +131,8 @@ function Visit() {
 							py={{ base: "3", md: "3" }}
 						>
 							<CardBody textStyle="playfairBold">
-								<Heading
-									variant="exhibit-heading"
-									textAlign="center"
-									fontSize="1.25em"
-									// pb={0}
-									// mb="1em"
-								>
+								<Heading variant="exhibit-heading" textAlign="center" fontSize="1.25em">
+									{/* Using the state to conditionally render if the museum is open or closed */}
 									{"The museum is currently " + status}
 								</Heading>
 							</CardBody>

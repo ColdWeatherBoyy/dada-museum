@@ -2,7 +2,9 @@ import { Box, Image, Text, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+// Component that renders images with text overlays for the exhibit section, as well as header text and links
 function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText }) {
+	// state to check hover/tapped status
 	const [isActive, setIsActive] = useState(false);
 
 	return (
@@ -24,11 +26,13 @@ function ExhibitImage({ destination, headingOne, headingTwo, src, alt, hoverText
 			<Box
 				position="relative"
 				borderRadius="sm"
+				// to handle for desktop and mobile hover/tap setting state
 				onMouseEnter={() => setIsActive(true)}
 				onMouseLeave={() => setIsActive(false)}
 				onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
 			>
 				<Image src={src} alt={alt} borderRadius="md" boxShadow="dark-lg" />
+				{/* overlay box that is visible when isActive is true with gradient overlay for legible text */}
 				<Box
 					position="absolute"
 					bottom={0}

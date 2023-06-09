@@ -1,10 +1,11 @@
-import { Box, SimpleGrid, Heading, Flex } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+// Necessary imports from Chakra and other components
+import { Box, SimpleGrid, Flex } from "@chakra-ui/react";
 import SectionHeader from "../components/SectionHeader";
 import ExhibitImage from "../components/ExhibitImage";
 import ButtonArray from "../components/ButtonArray";
 
 function CurrentExhibits() {
+	// Constants array with text and links for button array
 	const links = [
 		{
 			text: "Permanent Exhibits",
@@ -31,6 +32,7 @@ function CurrentExhibits() {
 				justifyItems="center"
 				alignItems="center"
 			>
+				{/* Use of Exhibit Image component with necessary props */}
 				<ExhibitImage
 					destination="/link"
 					headingOne="Champions of Collage"
@@ -56,6 +58,7 @@ function CurrentExhibits() {
 					hoverText="Ordinary objects presented in extraordinary places. A term coined by the titular artist in th 1910s, Readymades test the art worlds willingness to open its definition of 'art.' "
 				/>
 				<Flex>
+					{/* Use of Button Array component */}
 					<ButtonArray links={links} padding={{ base: 3, md: 16 }} />
 				</Flex>
 			</SimpleGrid>

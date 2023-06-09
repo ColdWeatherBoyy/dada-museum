@@ -1,5 +1,5 @@
+// Necessary imports from Chakra and other components
 import { Box, SimpleGrid, Heading, Flex } from "@chakra-ui/react";
-import SectionHeader from "../components/SectionHeader.jsx";
 import MapComponent from "../components/MapComponent.jsx";
 
 function SiteMap() {
@@ -27,6 +27,7 @@ function SiteMap() {
 						justifyContent="space-around"
 						alignItems={{ base: "center", md: "start" }}
 					>
+						{/* Use of Map Component */}
 						<MapComponent
 							headingText="Site Map"
 							contentArray={[

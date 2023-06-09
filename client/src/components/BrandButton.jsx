@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
+// Basic button design/interactivity to use on site for all buttons
 function BrandButton({ buttonText, functionCall }) {
 	return (
 		<Button
@@ -10,6 +11,7 @@ function BrandButton({ buttonText, functionCall }) {
 			bg="gray.100"
 			color="#53443D"
 			boxShadow="lg"
+			// hover effect for desktop
 			_hover={{
 				bg: "#53443D",
 				color: "gray.100",
@@ -17,6 +19,7 @@ function BrandButton({ buttonText, functionCall }) {
 				transform: "scale(1.05) translate(-2px, -2px)",
 				zIndex: "1",
 			}}
+			// click effect for desktop/mobile
 			_active={{
 				color: "#B1BAC1",
 				bg: "#53443D",
@@ -31,6 +34,7 @@ function BrandButton({ buttonText, functionCall }) {
 				md: "18px",
 				lg: "20px",
 			}}
+			// onClick function passed in as prop
 			onClick={() => {
 				{
 					functionCall();

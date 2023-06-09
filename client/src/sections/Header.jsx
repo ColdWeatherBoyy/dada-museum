@@ -1,3 +1,4 @@
+// Necessary imports from Chakra, Chakra Icons, and React Router
 import {
 	Box,
 	Heading,
@@ -61,6 +62,7 @@ function Header() {
 					Art Museum
 				</Heading>
 			</Box>
+			{/* Use of Chakra's menu component, with interactive effects adjusted and styled */}
 			<Menu>
 				<MenuButton
 					marginRight="1vw"

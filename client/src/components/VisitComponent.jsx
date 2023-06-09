@@ -1,11 +1,9 @@
 import { Box, Heading, Card, CardBody } from "@chakra-ui/react";
 import { Stack, StackDivider } from "@chakra-ui/layout";
-import { useState } from "react";
 import VisitTextItem from "./VisitTextItem";
 
+// Component that renders sections for Visit section
 function VisitComponent({ headingText, contentArray }) {
-	const [isActive, setIsActive] = useState(false);
-
 	return (
 		<Box position="relative" display="inline-block" whiteSpace="nowrap" h="100%">
 			<Card
@@ -17,24 +15,13 @@ function VisitComponent({ headingText, contentArray }) {
 			>
 				<CardBody textStyle="playfairBold" h="100%">
 					<Stack divider={<StackDivider borderColor="gray.300" />} spacing="4">
-						<Heading
-							variant="exhibit-heading"
-							textAlign="left"
-							fontSize="1.25em"
-							// pb={0}
-							// mb="1em"
-						>
+						<Heading variant="exhibit-heading" textAlign="left" fontSize="1.25em">
 							{headingText}
 						</Heading>
-						<Box
-							position="relative"
-							borderRadius="sm"
-							onMouseEnter={() => setIsActive(true)}
-							onMouseLeave={() => setIsActive(false)}
-							onTouchStart={() => (isActive ? setIsActive(false) : setIsActive(true))}
-						>
+						<Box position="relative" borderRadius="sm">
 							<Box borderRadius="sm" textStyle="robotoSlab" fontWeight="normal">
 								{contentArray.map((contentLine, index) => {
+									// use of Visit Text Item component
 									return <VisitTextItem key={index} contentText={contentLine} />;
 								})}
 							</Box>

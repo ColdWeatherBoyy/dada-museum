@@ -1,5 +1,6 @@
 import { Box, Heading, Flex } from "@chakra-ui/react";
 
+// Component for uniformity of all section headers
 function SectionHeader({ headerText }) {
 	return (
 		<Flex direction="column" mb={6}>
