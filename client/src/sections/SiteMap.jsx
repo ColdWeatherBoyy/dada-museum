@@ -13,7 +13,7 @@ function SiteMap() {
 					<Box borderBottom="2px solid #EDF2F7" marginBottom={4} borderRadius={2} />
 				</Flex>
 				<SimpleGrid
-					columns={{ sm: 1, md: 2 }}
+					columns={{ sm: 1, md: 3 }}
 					spacingX={{ sm: 0, md: 8, lg: 16 }}
 					spacingY={20}
 					display="flex"
