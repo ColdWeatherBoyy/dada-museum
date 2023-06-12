@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-// Basic button design/interactivity to use on site for all buttons
+// Basic button design/interactivity to use on site for all buttons that call a function instead of a link
 function BrandButton({ buttonText, functionCall }) {
 	return (
 		<Button

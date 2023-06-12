@@ -7,7 +7,9 @@ function CollageElement({ collageBoundary, classText, text }) {
 		<motion.div
 			className={classText}
 			drag={true}
+			// removes default drag settings
 			dragMomentum={false}
+			// sets canvas boundary
 			dragConstraints={collageBoundary}
 			dragElastic={false}
 		>

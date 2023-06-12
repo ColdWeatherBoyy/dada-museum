@@ -15,6 +15,7 @@ function ButtonLink({ buttonText, link }) {
 					bg="gray.100"
 					color="#53443D"
 					boxShadow="lg"
+					// hover effect for desktop
 					_hover={{
 						bg: "#53443D",
 						color: "gray.100",
