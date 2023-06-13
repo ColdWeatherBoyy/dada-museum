@@ -24,12 +24,12 @@ function Collage() {
 	const [textValue, setTextValue] = useState("D");
 	const [fontValue, setFontValue] = useState("serif");
 	const [fontSize, setFontSize] = useState("small");
-	// Setting up constants
+	// Setting up constants to be used in random collage element generation
 	const textOptions = ["D", "A", "d", "a", "!", "?"];
 	const fontOptions = ["serif", "sans-serif"];
 	const sizeOptions = ["small", "medium", "large"];
 
-	// Function to handle adding specific shape to collage
+	// Function to handle adding specific selected shape to collage
 	const addShape = () => {
 		console.log("submitted");
 		const newShape = {
