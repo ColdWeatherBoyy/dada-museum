@@ -9,7 +9,7 @@
 This project is a theoretical home page for an imaginary museum dedicated to the Dada art movement of the 1920s. 
 
 ## Usage:
-* Navigate to the following link to view the website
+* Navigate to the following link to view the website: [Link](https://dada-museum.herokuapp.com/)
 * The navigation links all lead to a placeholder page, as we only created a homepage without the rest of the website
 * The Featured Artist section allows the user to view a randomized selection of art for a specific artist associated with the Dada movement. The artist and art can both be randomized by clicking on the relevant buttons
 * The Collage section allows the user to create a collage (a representative medium of the Dada movement) by adding typographical elements to the canvas using the Add Selected or Add Random buttons. The elements can then be positioned to the user's liking by dragging them around
