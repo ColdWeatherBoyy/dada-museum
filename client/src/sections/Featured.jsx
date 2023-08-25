@@ -95,7 +95,6 @@ function Featured() {
 						"/" +
 						randomArtwork.image_id +
 						"/full/843,/0/default.jpg";
-					console.log(randomArtwork.artist_title);
 					arrayOfRandomImages.push({
 						url: randomArtworkImageURL,
 						title: randomArtwork.title,
@@ -142,7 +141,6 @@ function Featured() {
 	// Handles for loading of art and artist from randomizer function and API – timer to show off built loader
 	useEffect(() => {
 		if (featuredArtistImageInfo.length === 6) {
-			// console.log(featuredArtistImageInfo);
 			const timeout = setTimeout(() => {
 				setLoadingArtist(false);
 				setLoadingArt(false);
@@ -206,11 +204,6 @@ function Featured() {
 			window.removeEventListener("resize", handleScroll);
 		};
 	}, [loadingArt]);
-
-	// Testing to see if scroll direction is being set correctly
-	// useEffect(() => {
-	// 	console.log(scrollDirection);
-	// }, [scrollDirection]);
 
 	return (
 		<Box pt={6} pb={12} mx={{ sm: 8, md: 8, lg: 16 }}>
