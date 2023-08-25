@@ -118,6 +118,7 @@ function Collage() {
 							textAlign="left"
 							fontSize="1.25em"
 							pb={0}
+							pt={4}
 							mb="1em"
 						>
 							Collage Elements:
@@ -216,7 +217,7 @@ function Collage() {
 							w="100%"
 							px={{ base: 0, md: 8 }}
 							justifyContent="space-evenly"
-							pb={{ base: 4, md: 0 }}
+							pb={4}
 						>
 							{/* Function calls on Brand Button component */}
 							<BrandButton functionCall={clearCanvas} buttonText="Clear" />
